@@ -248,7 +248,7 @@ const Section = styled.div`
 `;
 
 const List = styled.li`
-  margin-left: 5px;
+  margin-left: 10px;
   list-style: none;
   cursor: pointer;
 `;
