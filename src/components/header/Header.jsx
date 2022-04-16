@@ -4,16 +4,12 @@ import styled from "styled-components";
 import Grid from "../../elements/Grid";
 
 const Header = (props) => {
-
   const history = useHistory();
   return (
     <>
       <Grid width="1050px" margin="0 auto">
         <HeaderWrap>
           <img
-            onClick={() => {
-              history.push("/");
-            }}
             style={{ cursor: "pointer" }}
             src="https://res.kurly.com/pc/service/common/2011/delivery_210801.png"
             width="121px"
@@ -21,7 +17,14 @@ const Header = (props) => {
             alt="서울, 경기, 인천 샛별배송, 수도권 이외 지역 택배배송"
           />
           <HeaderMenu>
-            <li className="menu signup">회원가입</li>
+            <li
+              className="menu signup"
+              onClick={() => {
+                history.push("/register");
+              }}
+            >
+              회원가입
+            </li>
             <li
               className="menu"
               onClick={() => {
@@ -38,6 +41,9 @@ const Header = (props) => {
           <Logo>
             <h1>
               <img
+                onClick={() => {
+                  history.push("/");
+                }}
                 style={{ cursor: "pointer" }}
                 src="https://res.kurly.com/images/marketkurly/logo/logo_x2.png"
                 width="103px"
@@ -222,7 +228,6 @@ const GnbInput = styled.input`
     font-weight: bold;
     color: lightgray;
   }
-
 `;
 
 const GnbInputClick = styled.img`
@@ -233,7 +238,6 @@ const GnbInputClick = styled.img`
 `;
 
 const Icons = styled.span`
-
   width: 36px;
   height: 36px;
   cursor: pointer;
@@ -287,4 +291,3 @@ const Shadow = styled.div`
     repeat-x 0 100%;
 `;
 export default Header;
-

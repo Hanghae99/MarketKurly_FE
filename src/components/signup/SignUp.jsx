@@ -9,53 +9,93 @@ const SignUp = (props) => {
       </Wrap>
 
       <RegisterSection>
-        <form method="post">
+        <form>
           <Bar>
             <Red>*</Red>필수입력사항
           </Bar>
 
           <Table>
             <tr>
-              <Name>아이디</Name>
               <Content>
-                <Input type="text" />
-                <button>중복확인</button>
+                <Id>
+                  <Name>
+                    아이디<Red>*</Red>
+                  </Name>
+                </Id>
+                <Div>
+                  <Input
+                    type="text"
+                    placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"
+                  />
+                </Div>
+                <Check>
+                  <CheckBtn>중복확인</CheckBtn>
+                </Check>
               </Content>
             </tr>
 
             <tr>
-              <Name>비밀번호</Name>
               <Content>
-                <Input type="text" />
+                <Id>
+                  <Name>
+                    비밀번호<Red>*</Red>
+                  </Name>
+                </Id>
+                <Div>
+                  <Input
+                    type="password"
+                    placeholder="비밀번호를 입력해주세요"
+                  />
+                </Div>
               </Content>
             </tr>
 
             <tr>
-              <Name>비밀번호확인</Name>
               <Content>
-                <Input type="text" />
+                <Id>
+                  <Name>
+                    비밀번호 확인<Red>*</Red>
+                  </Name>
+                </Id>
+                <Div>
+                  <Input
+                    type="password"
+                    placeholder="비밀번호를 한번 더 입력해주세요"
+                  />
+                </Div>
               </Content>
             </tr>
 
             <tr>
-              <Name>닉네임</Name>
               <Content>
-                <Input type="text" />
+                <Id>
+                  <Name>
+                    닉네임<Red>*</Red>
+                  </Name>
+                </Id>
+                <Div>
+                  <Input type="text" placeholder="닉네임을 입력해주세요" />
+                </Div>
               </Content>
             </tr>
 
             <tr>
-              <Name>주소</Name>
               <Content>
-                <Input type="text" />
-                <button>입력완료</button>
+                <Id>
+                  <Name>
+                    주소<Red>*</Red>
+                  </Name>
+                </Id>
+                <Div>
+                  <Input type="text" placeholder="주소를 입력해주세요" />
+                </Div>
               </Content>
             </tr>
           </Table>
 
-          <div>
-            <Button type="button">가입하기</Button>
-          </div>
+          <Reg>
+            <Register>가입하기</Register>
+          </Reg>
         </form>
       </RegisterSection>
     </>
@@ -69,8 +109,51 @@ const RegisterSection = styled.div`
   margin: 0 auto;
 `;
 
+const Div = styled.div`
+  width: 640px;
+  margin: 10px;
+`;
+
+const Check = styled.div`
+  display: flex;
+  margin-top: 10px;
+`;
+
+const CheckBtn = styled.button`
+  color: #5f0081;
+  border-radius: 3px;
+  border: 1px solid #5f0081;
+  background-color: white;
+  cursor: pointer;
+  height: 44px;
+  width: 120px;
+  font-weight: 500;
+  font-size: 14px;
+`;
+
+const Register = styled.button`
+  color: #fff;
+  border-style: none;
+  background-color: #5f0081;
+  height: 100%;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  line-height: 54px;
+`;
+
+const Reg = styled.div`
+  width: 240px;
+  height: 56px;
+  border-radius: 3px;
+  text-align: center;
+  border: 1px solid #5f0081;
+  background-color: #5f0080;
+  margin-left: 230px;
+`;
+
 const Title = styled.h2`
-  font-weight: 700;
+  font-weight: 500;
   font-size: 28px;
   color: #333;
   line-height: 35px;
@@ -85,29 +168,28 @@ const Wrap = styled.div`
 `;
 
 const Bar = styled.span`
-  padding-bottom: 10px;
   font-size: 12px;
+  margin-left: 568px;
   color: #666;
-  line-height: 17px;
-  text-align: right;
 `;
 
 const Red = styled.span`
   color: tomato;
-  padding-right: 2px;
+  margin-bottom: 10px;
 `;
 
 const Table = styled.div`
   width: 100%;
   border-top: 2px solid #333;
-  background-color: tomato;
+  padding-top: 10px;
+  padding-bottom: 40px;
 `;
 
 const Name = styled.th`
-  padding-top: 29px;
-  width: 159px;
+  padding: 10px 0;
+  width: 129px;
   padding: 20px 0 0 20px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   color: #333;
   line-height: 20px;
@@ -116,15 +198,16 @@ const Name = styled.th`
 `;
 
 const Content = styled.div`
-  padding-top: 29px;
+  display: flex;
   width: 159px;
-  padding: 20px 0 0 20px;
+  padding: 5px 0;
   font-weight: 700;
   font-size: 14px;
   color: #333;
   line-height: 20px;
-  vertical-align: top;
-  text-align: left;
+  /* vertical-align: top; */
+  text-align: center;
+  /* margin-right: 10px; */
 `;
 
 const Input = styled.input`
@@ -134,18 +217,13 @@ const Input = styled.input`
   border: 1px solid #ccc;
   font-size: 14px;
   color: #333;
-  line-height: 20px;
+  /* line-height: 20px; */
   border-radius: 3px;
   background: #fff;
   outline: none;
   vertical-align: top;
 `;
 
-const Button = styled.button`
-  width: 240px;
-  height: 56px;
-  font-size: 16px;
-  line-height: 54px;
-  border: 1px solid #5f0081;
-  color: #fff;
+const Id = styled.div`
+  display: flex;
 `;
