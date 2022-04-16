@@ -1,11 +1,11 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
-const SIGN_UP = "SIGN_UP";
+const SET_USER = "SET_USER";
 const LOGIN = "LOGIN";
 const LOG_OUT = "LOG_OUT";
 
-const Signup = createAction(SIGN_UP, (userInfo) => ({ userInfo }));
+const setUser = createAction(SET_USER, (user) => ({ user }));
 const logIn = createAction(LOGIN, (userInfo) => ({ userInfo }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 
@@ -23,12 +23,29 @@ const initialState = {
 
 const signUpDB = (username, password, nickname, address) => {
   return async function (dispatch, getState, { history }) {
+    console.log("아이디", username);
+    console.log("닉네임", nickname);
+    console.log("비밀번호", password);
+    console.log("이메일", address);
+
     const data = {
       username,
       password,
       nickname,
       address,
     };
+
+    // api
+    //       .post("/user/signup", {data})
+    //       .then((res) => {
+    //         console.log(res);
+    //         window.alert("회원가입이 완료되었습니다. 로그인해주세요!");
+    //
+    //         history.push("/login");
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
   };
 };
 
@@ -45,24 +62,6 @@ const usernameCheckDB = (username) => {
   return async function (dispatch, getState, { history }) {};
 };
 
-//isLogin
-// const isLogin = () => {
-//   return function (dispatch, getState, { history }) {
-//     const token = localStorage.getItem("token");
-//     const username = localStorage.getItem("username");
-
-//     // 토큰이 없거나 유저아이디가 없거나 둘 중 하나면 로그인이 아님
-//     if (!token || !username) {
-//       dispatch(logout());
-//     }
-//     console.log(token);
-//     console.log(username);
-//     dispatch();
-//     // 어딘가에서 setUser 를 위한 정보를 가지고 와야 함. 토큰에 이 정보 있는지 확인 필요
-//     // setUser({ username })
-//   };
-// };
-
 const logout = () => {
   return function (dispatch, getState, { history }) {
     localStorage.removeItem("token");
@@ -75,9 +74,9 @@ const logout = () => {
 //reducer
 export default handleActions(
   {
-    [SIGN_UP]: (state, action) =>
+    [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        draft.userInfo = action.payload.userInfo;
+        draft.user = action.payload.userInfo;
         draft.is_login = true;
       }),
 
@@ -104,7 +103,7 @@ export default handleActions(
 const actionCreators = {
   logIn,
   logout,
-  Signup,
+  setUser,
   logOut,
   signUpDB,
   usernameCheckDB,
