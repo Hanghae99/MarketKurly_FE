@@ -97,10 +97,10 @@ const Red = styled.span`
   padding-right: 2px;
 `;
 
-const Table = styled.tbody`
+const Table = styled.div`
   width: 100%;
   border-top: 2px solid #333;
-  /* background-color: tomato; */
+  background-color: tomato;
 `;
 
 const Name = styled.th`
@@ -115,7 +115,7 @@ const Name = styled.th`
   text-align: left;
 `;
 
-const Content = styled.td`
+const Content = styled.div`
   padding-top: 29px;
   width: 159px;
   padding: 20px 0 0 20px;
