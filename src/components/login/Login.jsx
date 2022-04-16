@@ -1,15 +1,56 @@
 import React from "react";
+import { useState } from "react";
+
 import styled from "styled-components";
 
 const Login = (props) => {
+  const [formValue, setFormValue] = useState({
+    username: "",
+    password: "",
+  });
+
+  const onChangeFormValue = (e) => {
+    const { name, value } = e.target;
+
+    setFormValue({
+      ...formValue,
+      [name]: value,
+    });
+  };
+  console.log(formValue);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    login();
+
+    console.log("로그인할래!");
+  };
+
+  const login = () => {
+    if (formValue.username === "" || formValue.password === "") {
+      window.alert("아이디 혹은 비밀번호가 공란입니다! 입력해주세요!");
+      return;
+    }
+  };
+
   return (
     <>
       <LoginSection>
         <Title>로그인</Title>
 
-        <Form method="post">
-          <UserName type="text" placeholder="아이디를 입력해주세요" />
-          <PassWord type="password" placeholder="비밀번호를 입력해주세요" />
+        <Form>
+          <UserName
+            type="text"
+            placeholder="아이디를 입력해주세요"
+            name="username"
+            onChange={onChangeFormValue}
+          />
+          <PassWord
+            type="password"
+            placeholder="비밀번호를 입력해주세요"
+            name="password"
+            onChange={onChangeFormValue}
+          />
 
           <CheckContainer>
             <Wrap>
@@ -17,14 +58,14 @@ const Login = (props) => {
               <Text>보안접속</Text>
             </Wrap>
             <Search>
-              <FindUser href="#none">아이디찾기</FindUser>
+              <FindUser>아이디찾기</FindUser>
               <Bar></Bar>
-              <FindUser href="#none">비밀번호 찾기</FindUser>
+              <FindUser>비밀번호 찾기</FindUser>
             </Search>
           </CheckContainer>
 
           <LogIn>
-            <LoginBtn>로그인</LoginBtn>
+            <LoginBtn onClick={onSubmit}>로그인</LoginBtn>
           </LogIn>
 
           <SignUp>
