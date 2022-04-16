@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { RESP } from '../shared/test';
-import { Grid, Button } from "../elements/index"
+import { Button } from "../elements/index"
 
 const Banner = (props) => {
     const img_list = RESP.imaUrlList;
