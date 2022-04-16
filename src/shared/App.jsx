@@ -13,6 +13,7 @@ function App() {
     <>
       <ConnectedRouter history={history}>
         <Header />
+
         <Route path="/login" exact component={LoginPage} />
         <Route path="/register" exact component={SignUpPage} />
         <Route path="/" exact component={Main} />

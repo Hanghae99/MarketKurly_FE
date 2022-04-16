@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Grid from "../../elements/Grid";
 
 const Header = (props) => {
+
   const history = useHistory();
   return (
     <>
@@ -221,6 +222,7 @@ const GnbInput = styled.input`
     font-weight: bold;
     color: lightgray;
   }
+
 `;
 
 const GnbInputClick = styled.img`
@@ -231,6 +233,7 @@ const GnbInputClick = styled.img`
 `;
 
 const Icons = styled.span`
+
   width: 36px;
   height: 36px;
   cursor: pointer;
@@ -284,3 +287,4 @@ const Shadow = styled.div`
     repeat-x 0 100%;
 `;
 export default Header;
+
