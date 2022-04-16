@@ -1,24 +1,48 @@
 import React from 'react';
+import Slider from 'react-slick';
 import styled from 'styled-components';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css"
 import { Grid } from '../../elements';
 import Item from '../Item';
 import Text from './Text';
+import {RESP} from '../../shared/banner'
 
 const Recommend = (props) => {
+    const settings = { 
+        infinite: true, 
+        speed: 500,
+        slidesToShow: 4, 
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000, 
+    };
+    
+    const item_list = RESP.itemList;
+    
     return (
         <Grid margin="0 0 40px 0">
             <Container>
                 <Text>이 상품 어때요?</Text>
                 <ItemContainer>
-                    <Item />
-                    <Item />
-                    <Item />
-                    <Item />
+                    <StyledSlider {...settings}>
+                        {item_list.map((v ,i) => {
+                            return(
+                                <div key={i}>
+                                    <Item {...v}/>
+                                </div>
+                            )}
+                        )}
+                    </StyledSlider>
                 </ItemContainer>
             </Container>
         </Grid>
     );
 };
+
+const StyledSlider = styled(Slider)`
+    width: 1050px;
+`;
 
 const Container = styled.div`
     width: 1050px;

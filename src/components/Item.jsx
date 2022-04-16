@@ -2,29 +2,31 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Grid } from '../elements';
-
+import { useHistory } from "react-router";
 
 const Item = (props) => {
+    const { imgUrl, brand, price, name } = props;
+    const history = useHistory();
     return (
         <ItemContainer>
             <img
-                src="https://img-cf.kurly.com/shop/data/goods/1591331546650l0.jpg"
-                // style={{padding: "0 9px"}}
+                src={imgUrl}
+                style={{cursor: "pointer"}}
                 width="249px"
                 height="320px"
-                alt=""
+                alt={brand}
             />
             <ItemInfoContainer>
                 <h3 style={{marginBottom: "8px"}}>
                     <BrandName to="">  
-                            [브리미] 라코타 치즈
+                            {`[${brand}] ${name}`}
                     </BrandName>
                 </h3>
                 <Grid>
                     <Discount>10%</Discount>
                     <Price>8,140원</Price>
                 </Grid>
-                <PrePrice>8,900원</PrePrice>
+                <PrePrice>{price}</PrePrice>
             </ItemInfoContainer>
         </ItemContainer>
     )

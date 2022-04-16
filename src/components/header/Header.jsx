@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import Grid from "../../elements/Grid";
-import { history } from "../../redux/store";
+import HoverList from "./HoverList";
 
 const Header = (props) => {
   const history = useHistory();
@@ -37,7 +37,9 @@ const Header = (props) => {
             <li className="menu" onClick={onMoveLogin}>
               로그인
             </li>
-            <li className="cs">고객센터</li>
+            <li className="cs">고객센터
+              <HoverList />
+            </li>
           </HeaderMenu>
         </HeaderWrap>
 
@@ -85,10 +87,12 @@ const Header = (props) => {
 };
 
 const HeaderWrap = styled.div`
+  position: relative;
+  /* z-index: 100; */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   font-family: "Noto Sans";
   letter-spacing: -0.3px;
 `;
@@ -98,7 +102,7 @@ const HeaderMenu = styled.ul`
   font-size: 12px;
   font-family: "Noto Sans";
   position: relative;
-  z-index: 200;
+  /* z-index: 200; */
   & li {
     padding: 0 12px;
     cursor: pointer;
@@ -135,12 +139,17 @@ const HeaderMenu = styled.ul`
     &.signup {
       color: #5f0080;
     }
+
+    &.cs:hover *{
+      display: block;
+    }
   }
 `;
 
 const Logo = styled.div`
   width: 100%;
   & h1 {
+    user-select: none;
     bottom: -6px;
     position: absolute;
     font-size: 2em;

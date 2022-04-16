@@ -5,6 +5,8 @@ const Button = (props) => {
     const {
         place,
         margin,
+        onClick,
+        classname,
     } = props;
     
     const styles = {
@@ -13,7 +15,11 @@ const Button = (props) => {
     }
     return (
         <>
-            <BannerBtn {...styles} />
+            <BannerBtn  
+                {...styles}
+                onClick={onClick}
+                className={classname}
+            />
         </>
     );
 };
@@ -25,7 +31,6 @@ Button.defaultProps = {
 
 const BannerBtn = styled.button`
     position: absolute;
-    display: none;
     z-index: 100;
     width: 52px;
     height: 52px;
@@ -33,7 +38,7 @@ const BannerBtn = styled.button`
     outline: none;
     transform: translate(-50%, -50%);
     cursor: pointer;
-    /* opacity: 0; */
+    opacity: 1;
     transition: all 0.5s ease 0s;
     left: 50%;
     top: 50%;
