@@ -1,9 +1,10 @@
 import React from "react";
+import SignUp from "../components/signup/SignUp";
 
 const SignUpPage = (props) => {
   return (
     <>
-      <h1>회원가입 페이지입니당</h1>
+      <SignUp />
     </>
   );
 };
