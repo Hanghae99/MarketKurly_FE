@@ -10,6 +10,14 @@ import CartPage from "../pages/CartPage";
 import Footer from "../components/footer/Footer";
 
 function App() {
+  // const token = localStorage.getItem("token") ? true : false;
+
+  // React.useEffect(() => {
+  //   if (token) {
+  //     dispatch(userActions.isLogin());
+  //   }
+  // }, []);
+
   return (
     <>
       <ConnectedRouter history={history}>
