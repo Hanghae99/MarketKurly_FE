@@ -10,9 +10,9 @@ function App() {
   return (
     <>
       <ConnectedRouter history={history}>
-        <Route path="/" component={Header} />
+        <Header />
         <Route path="/" exact component={Main} />
-        <Route path="/" exact component={LoginPage} />
+        <Route path="/login" exact component={LoginPage} />
       </ConnectedRouter>
     </>
   );
