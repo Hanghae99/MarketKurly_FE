@@ -2,7 +2,6 @@ import React from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import Grid from "../../elements/Grid";
-import { history } from "../../redux/store";
 import HoverList from "./HoverList";
 
 const Header = (props) => {

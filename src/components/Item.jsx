@@ -2,15 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Grid } from '../elements';
-
+import { useHistory } from "react-router";
 
 const Item = (props) => {
     const { imgUrl, brand, price, name } = props;
+    const history = useHistory();
     return (
         <ItemContainer>
             <img
                 src={imgUrl}
-                // style={{padding: "0 9px"}}
+                style={{cursor: "pointer"}}
                 width="249px"
                 height="320px"
                 alt={brand}

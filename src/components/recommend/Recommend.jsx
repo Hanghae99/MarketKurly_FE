@@ -9,13 +9,15 @@ import Text from './Text';
 import {RESP} from '../../shared/banner'
 
 const Recommend = (props) => {
-    const settings = {
-        dots: false, 
+    const settings = { 
         infinite: true, 
-        // speed: 500,
+        speed: 500,
         slidesToShow: 4, 
-        slidesToScroll: 1, 
-    }
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000, 
+    };
+    
     const item_list = RESP.itemList;
     
     return (
@@ -23,25 +25,24 @@ const Recommend = (props) => {
             <Container>
                 <Text>이 상품 어때요?</Text>
                 <ItemContainer>
-                    <Slider {...settings}>
-                        {/* {item_list.map((v ,i) => {
-                        return(
-                            <Item key={i} {...v}/>
-                        )})} */}
-<Item />
-
-
-                    </Slider>
-                    
-                    <Item />
-                    <Item />
-                    <Item />
-                    <Item />
+                    <StyledSlider {...settings}>
+                        {item_list.map((v ,i) => {
+                            return(
+                                <div key={i}>
+                                    <Item {...v}/>
+                                </div>
+                            )}
+                        )}
+                    </StyledSlider>
                 </ItemContainer>
             </Container>
         </Grid>
     );
 };
+
+const StyledSlider = styled(Slider)`
+    width: 1050px;
+`;
 
 const Container = styled.div`
     width: 1050px;
@@ -53,6 +54,5 @@ const ItemContainer = styled.div`
     width: 1050px;
     display: flex;
     justify-content: center;
-    overflow: hidden;
 `;
 export default Recommend;
