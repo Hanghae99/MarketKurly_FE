@@ -25,6 +25,7 @@ Button.defaultProps = {
 
 const BannerBtn = styled.button`
     position: absolute;
+    display: none;
     z-index: 100;
     width: 52px;
     height: 52px;
@@ -34,6 +35,7 @@ const BannerBtn = styled.button`
     cursor: pointer;
     /* opacity: 0; */
     transition: all 0.5s ease 0s;
+    left: 50%;
     top: 50%;
     margin: ${props => props.margin};
     ${props => props.place === 'right'
