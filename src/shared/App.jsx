@@ -11,13 +11,13 @@ import Footer from "../components/footer/Footer";
 function App() {
   return (
     <>
-      <Header />
       <ConnectedRouter history={history}>
+        <Header />
         <Route path="/login" exact component={LoginPage} />
         <Route path="/register" exact component={SignUpPage} />
         <Route path="/" exact component={Main} />
+        <Footer />
       </ConnectedRouter>
-      <Footer />
     </>
   );
 }

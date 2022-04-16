@@ -55,6 +55,7 @@ const GridBox = styled.div`
 	${props => (props.bg ? `background-color:${props.bg}` : '')};
 	${props => (props.flex ? `display:flex; align-items:center; justify-content:space-between;` : '')}
 	${props => (props.height ? `height:${props.height};` : '')}
+	/* border: 1px red solid; */
 `;
 
 const ParentsGridbox = styled.div`

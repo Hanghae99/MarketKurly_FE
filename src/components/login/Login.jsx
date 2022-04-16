@@ -23,11 +23,11 @@ const Login = (props) => {
             </Search>
           </CheckContainer>
 
-          <LogIn type="submit">
+          <LogIn>
             <LoginBtn>로그인</LoginBtn>
           </LogIn>
 
-          <SignUp href="#none">
+          <SignUp>
             <SignBtn>회원가입</SignBtn>
           </SignUp>
         </Form>
@@ -127,7 +127,7 @@ const Bar = styled.span`
   background-color: #333;
 `;
 
-const LogIn = styled.button`
+const LogIn = styled.div`
   display: block;
   width: 100%;
   height: 54px;
@@ -148,7 +148,7 @@ const LoginBtn = styled.button`
   cursor: pointer;
 `;
 
-const SignUp = styled.button`
+const SignUp = styled.div`
   margin-top: 10px;
   background-color: #fff;
   border: 1px solid #5f0081;

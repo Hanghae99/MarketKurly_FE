@@ -1,28 +1,40 @@
 import React from "react";
 import styled from "styled-components";
-import Grid from "../../elements/Grid";
 
 const Footer = (props) => {
   return (
     <>
-      <IN width="1050px">
-        <Inner display="flex" width="534px">
-          <Position display="flex" width="160px" margin="20px">
-            <div size="20px" margin="0px 0px 22px 0px">
+      <Bar />
+      <Container>
+        <Section>
+          <div>
+            <h2
+              style={{
+                fontWeight: "500",
+                fontSize: "20px",
+                color: "#333",
+              }}
+            >
               고객행복센터
-            </div>
-            <div bold size="28px">
+            </h2>
+            <h1
+              style={{
+                fontWeight: "700",
+                fontSize: "28px",
+                color: "#333",
+                marinTop: "15px",
+                paddingTop: "20px",
+              }}
+            >
               1644-1107
-            </div>
+            </h1>
 
             <Button>카카오톡 문의</Button>
-
             <Button>1:1 문의</Button>
-
             <Button>대량주문 문의</Button>
-          </Position>
+          </div>
 
-          <Inner display="flex">
+          <Section>
             <CenterInfo>
               <li>365고객센터</li>
               <li>오전7시 - 오후7시</li>
@@ -33,48 +45,81 @@ const Footer = (props) => {
               <li>{""}</li>
               <li>비회원의 경우 메일로 문의 바랍니다.</li>
             </CenterInfo>
-          </Inner>
-        </Inner>
+          </Section>
+        </Section>
 
-        <Position width="516px">
-          <KurlyMenu>
-            <Spot>컬리소개</Spot>
-            <Spot>컬리소개영상</Spot>
-            <Spot>인재채용</Spot>
-            <Spot>이용약관</Spot>
-            <Spot>개인정보처리방침</Spot>
-            <Spot>이용안내</Spot>
-          </KurlyMenu>
+        <Wrap>
+          <Menu>
+            <List>컬리소개</List>
+            <List>컬리소개영상</List>
+            <List>인재채용</List>
+            <List>이용약관</List>
+            <List>개인정보처리방침</List>
+            <List>이용안내</List>
+          </Menu>
 
-          <KurlyInfo>
-            <li>
-              법인명 (상호): 주식회사 컬리 | 사업자등록번호:261-81-23567{" "}
-              <span>사업자정보 확인</span>
-            </li>
-            <li>
-              통신판매업:제2018-서울강남-01646 호 | 개인정보보호책임자:이원준
-            </li>
-            <li>
-              주소:서울시 도산대로 16길 20,이래빌딩 B1~4F | 대표이사:김슬아
-            </li>
-            <li>
-              입점문의:<span>입점문의하기</span> | 제휴문의:{" "}
-              <span>business@kurlycorp.com</span>
-            </li>
-            <li>
-              채용문의:<span>recruit@kurlycorp.com</span>
-            </li>
-            <li>
-              팩스:070-7500-6098 | 이메일:<span>help@kurlycorp.com</span>
-            </li>
-            <li>ⓒ KURLY CORP.ALL REIGHTS RESERVED</li>
-          </KurlyInfo>
-        </Position>
-      </IN>
+          <div style={{ margin: "30px 0 0 10px" }}>
+            <KurlyInfo>
+              <li>
+                법인명 (상호): 주식회사 컬리 | 사업자등록번호:261-81-23567{" "}
+                <span>사업자정보 확인</span>
+              </li>
+              <li>
+                통신판매업:제2018-서울강남-01646 호 | 개인정보보호책임자:이원준
+              </li>
+              <li>
+                주소:서울특별시 강남구 테헤란로113, 18층(역삼동) |
+                대표이사:김슬아
+              </li>
+              <li>
+                입점문의:<span>입점문의하기</span> | 마케팅제휴:{" "}
+                <span>business@kurlycorp.com</span>
+              </li>
+              <li>
+                채용문의:<span>recruit@kurlycorp.com</span>
+              </li>
+              <li>
+                팩스:070-7500-6098 | 이메일:<span>help@kurlycorp.com</span>
+              </li>
+              <li>
+                대량주문 문의 : <span>kurlygift@kurlycorp.com</span>
+              </li>
+            </KurlyInfo>
 
-      <IN width="1050px">
+            <KurlyIcon>
+              <Img
+                src="https://res.kurly.com/pc/ico/1810/ico_instagram.png"
+                alt="isms 로고"
+                width="35px"
+              />
+              <Img
+                src="https://res.kurly.com/pc/ico/1810/ico_fb.png"
+                alt="isms 로고"
+                width="35px"
+              />
+              <Img
+                src="https://res.kurly.com/pc/ico/1810/ico_blog.png"
+                alt="마켓컬리 네이버블로그 바로가기"
+                width="35px"
+              />
+              <Img
+                src="https://res.kurly.com/pc/ico/1810/ico_naverpost.png"
+                alt="isms 로고"
+                width="35px"
+              />
+              <Img
+                src="https://res.kurly.com/pc/ico/1810/ico_youtube.png"
+                alt="마켓컬리 유튜브 바로가기"
+                width="35px"
+              />
+            </KurlyIcon>
+          </div>
+        </Wrap>
+      </Container>
+
+      <Container>
         <OutsideInfo>
-          <Inner>
+          <Section>
             <Img
               src="https://res.kurly.com/kurly/logo/isms_220310.png"
               alt="isms 로고"
@@ -85,9 +130,9 @@ const Footer = (props) => {
               <br />
               [유효기간]2022.01.19~2025.01.18
             </div>
-          </Inner>
+          </Section>
 
-          <Inner>
+          <Section>
             <Img
               src="https://res.kurly.com/pc/ico/2001/logo_eprivacyplus.png"
               alt="eprivacy plus 로고"
@@ -97,9 +142,9 @@ const Footer = (props) => {
               개인정보보호 우수 웹사이트 ·<br />
               개인정보처리시스템인증 (ePRIVACY PLUS)
             </div>
-          </Inner>
+          </Section>
 
-          <Inner>
+          <Section>
             <Img
               src="https://res.kurly.com/pc/service/main/2009/logo_payments.png"
               alt="payments 로고"
@@ -111,35 +156,48 @@ const Footer = (props) => {
               <br />
               토스 페이먼츠 구매안전(에스크로)서비스를 이용하실 수 있습니다.
             </div>
-          </Inner>
+          </Section>
         </OutsideInfo>
-      </IN>
+      </Container>
     </>
   );
 };
 
 export default Footer;
 
-const Position = styled.div``;
+const Wrap = styled.div`
+  margin-left: 30px;
+`;
+
+const KurlyIcon = styled.ul`
+  margin-top: 40px;
+`;
+
+const Bar = styled.span`
+  border-top: 0.2px solid gray;
+  opacity: 20%;
+  margin-top: 60px;
+  display: block;
+`;
 
 const CenterInfo = styled.ul`
   font-size: 14px;
-  margin: 25px 10px 0 10px;
+  margin: 30px 0 0 20px;
 
-  & li {
+  & li:nth-child(2n-1) {
     list-style: none;
+    margin-top: 20px;
   }
 
   & li:nth-child(2n) {
     list-style: none;
     color: #999999;
-    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
   }
 `;
 
-const KurlyMenu = styled.ul`
+const Menu = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -156,11 +214,6 @@ const KurlyInfo = styled.ul`
     & span {
       color: #5f0080;
     }
-  }
-  & li:last-child {
-    font-size: 10px;
-    position: relative;
-    top: 8px;
   }
 `;
 
@@ -182,34 +235,38 @@ const Button = styled.button`
   padding: 9px 0px;
   width: 140px;
   size: 14px;
-  margin: 15px 0px;
+  margin: 20px 0px;
   color: #333333;
-  border: 1.5px solid #e3e3e3;
+  border: 1px solid #e3e3e3;
   background-color: #ffffff;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 500;
 `;
 
-const Inner = styled.div`
+const Section = styled.div`
   display: flex;
 `;
 
-const Spot = styled.li`
+const List = styled.li`
   margin-left: 5px;
   list-style: none;
+  cursor: pointer;
 `;
 
-const IN = styled.div`
+const Container = styled.div`
   display: flex;
   justify-content: left;
   align-items: left;
-  margin: 100px auto;
+  margin: 30px auto;
   width: 80%;
   display: flex;
-  margin-left: 300px;
+  margin-left: 380px;
+  width: 1050px;
+  letter-spacing: -0.2px;
 `;
 
 const Img = styled.img`
   margin-right: 5px;
   margin-bottom: 5px;
+  cursor: pointer;
 `;
