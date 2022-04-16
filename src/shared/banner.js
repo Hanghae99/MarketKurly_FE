@@ -1,24 +1,35 @@
 export const RESP = {
-    imaUrlList: [
+    itemList: [
         {
-            imgUrl: 'https://img-cf.kurly.com/banner/main/pc/img/33729ca6-1a24-40d0-9f55-454c9955d267',
-            alt: '배너 1',
+            imgUrl: 'https://img-cf.kurly.com/shop/data/goods/1479893759103l0.jpg',
+            brand: '테라오카',
+            name: '계란에 뿌려먹는 간장',
+            price: '4,900원',
+
         },
         {
-            imgUrl: 'https://img-cf.kurly.com/banner/main/pc/img/fa8ecd2d-b420-4805-9d9a-d158caa7c8a4',
-            alt: '배너 2',
+            imgUrl: 'https://img-cf.kurly.com/shop/data/goods/1610084740375l0.jpg',
+            brand: '폰티',
+            name: '선드라이드 토마토',
+            price: '8,500원',
         },
         {
-            imgUrl: 'https://img-cf.kurly.com/banner/main/pc/img/46b0eed9-0c77-4731-829b-f6f32727a2c3',
-            alt: '배너 3',
+            imgUrl: 'https://img-cf.kurly.com/shop/data/goods/1467283484423l0.jpg',
+            brand: '조선호텔김치',
+            name: '백열무 물김치 1kg',
+            price: '25,000원',
         },
         {
-            imgUrl: 'https://img-cf.kurly.com/banner/main/pc/img/2fc6b874-164b-41bc-9d09-e3fcf9e4c804',
-            alt: '배너 4',
+            imgUrl: 'https://img-cf.kurly.com/shop/data/goods/1648209290872l0.jpeg',
+            brand: '',
+            name: '아스파라거스',
+            price: '5,690원',
         },
         {
-            imgUrl: 'https://img-cf.kurly.com/banner/main/pc/img/ea170c0a-7890-4f99-9c09-9cc7a3bacd74',
-            alt: '배너 5',
+            imgUrl: 'https://img-cf.kurly.com/shop/data/goods/156263606369l0.jpg',
+            brand: '사비니',
+            name: '트러플 바질 페스토',
+            price: '39,000원',
         },
     ]
 }
