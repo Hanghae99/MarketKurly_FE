@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Grid from '../../elements/Grid';
+import { history } from '../../redux/store';
 
 const Header = (props) => {
     return(
@@ -55,7 +56,10 @@ const Header = (props) => {
                     </Grid>
                     <Icons className='location' /> 
                     <Icons className='pick' />
-                    <Icons className='cart' />
+                    <Icons 
+                        className='cart' 
+                        onClick={() => history.push('/cart')}
+                    />
                 </Gnb>
                 <Shadow />
             </Container>
@@ -134,7 +138,7 @@ const Gnb = styled.div`
     top: 0;
     display: flex;
     align-items: center;
-    padding: 10px 0 7px 0;
+    padding: 9px 0 8px 0;
     justify-content: space-between;
     background-color: #ffffff;
     letter-spacing: -0.3px;
@@ -143,6 +147,7 @@ const Gnb = styled.div`
 const GnbMenu = styled.ul`
     display: flex;
     justify-content: space-between;
+    background-color: #ffffff;
 	font-size: 16px;
     color: #333;
     line-height: 20px;
@@ -244,6 +249,8 @@ const Icons = styled.span`
 
 const Container = styled.div`
     width: 100%;
+    display: flex;
+    flex-direction: column;
     position: sticky;
     z-index: 200;
     top: 0;
@@ -253,12 +260,10 @@ const Container = styled.div`
 `;
 
 const Shadow = styled.div`
-    content: "";
     position: absolute;
     z-index: 200;
     left: 0;
-    bottom: 1px;
-    top: 56px;
+    top: 53px;
     width: 100%;
     height: 9px;
     background: url(https://res.kurly.com/pc/service/common/1902/bg_1x9.png) repeat-x 0 100%;

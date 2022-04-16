@@ -5,6 +5,8 @@ import { history } from "../redux/store";
 import "./app.css";
 import Main from "../pages/Main";
 import Header from "../components/header/Header";
+import SignUpPage from "../pages/SignUpPage";
+import CartPage from "../pages/CartPage";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Header />
         <Route path="/" exact component={Main} />
         <Route path="/login" exact component={LoginPage} />
+        <Route path="/signup" exact component={SignUpPage} />
+        <Route path="/cart" exact component={CartPage} />
       </ConnectedRouter>
     </>
   );

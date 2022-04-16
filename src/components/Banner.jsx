@@ -8,28 +8,30 @@ const Banner = (props) => {
 
     return (
         <BannerContainer>
-            <BannerItem image={img_list[2].imgUrl}>
-                <Grid flex>
-                    <BannerBtnWrap>
-                        <Button margin="0 0 0 360px" place="left" />
-                    </BannerBtnWrap>
-                    <BannerBtnWrap>
-                        <Button margin="0 0 0 590px" place="right" /> 
-                    </BannerBtnWrap>
-                </Grid>  
+            <BannerItem image={img_list[1].imgUrl} >
+                <Button place="right" margin="0 0 0 590px"/>
+                <Button margin="0 0 0 -590px"/>
             </BannerItem>
         </BannerContainer>
     );
 };
 
+// 버튼도 움직이게 고칠 것!
+
 const BannerContainer = styled.div`
+    position: relative;
+    justify-content: center;
     width: 100%;
     margin-bottom: 40px;
 `;
 
 const BannerItem = styled.div`
+    overflow: hidden;
+    position: relative;
     display: flex;
+    flex-wrap: nowrap;
     height: 370px;
+    min-width: 1050px;
     max-width: 1900px;
     margin: 0 auto;
     background: url(${props => props.image});
@@ -37,12 +39,13 @@ const BannerItem = styled.div`
     background-color: rgb(238, 238, 238);
     background-position: 50% center;
     background-repeat: no-repeat;
-`;
+    cursor: pointer;
 
-const BannerBtnWrap = styled.div`
-    position: relative;
-    width: 950px;
-    height: 370px;
+    &:hover Button{
+        display: block;
+        opacity: 1;
+        /* transition: all 0.5s ease 0s; */
+    }
 `;
 
 export default Banner;
