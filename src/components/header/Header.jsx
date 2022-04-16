@@ -134,7 +134,7 @@ const Gnb = styled.div`
     top: 0;
     display: flex;
     align-items: center;
-    padding: 10px 0 5px 0;
+    padding: 10px 0 7px 0;
     justify-content: space-between;
     background-color: #ffffff;
     letter-spacing: -0.3px;
@@ -205,6 +205,8 @@ const GnbInput = styled.input`
     
     &::placeholder{
         letter-spacing: -.05em;
+        font-weight: bold;
+        color: lightgray;
     };
 `;
 
@@ -243,15 +245,17 @@ const Icons = styled.span`
 const Container = styled.div`
     width: 100%;
     position: sticky;
+    z-index: 200;
     top: 0;
     justify-content: center;
     align-items: center;
+    background-color: #ffffff;
 `;
 
 const Shadow = styled.div`
     content: "";
     position: absolute;
-    z-index: 299;
+    z-index: 200;
     left: 0;
     bottom: 1px;
     top: 56px;
