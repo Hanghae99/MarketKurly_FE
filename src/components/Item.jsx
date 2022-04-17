@@ -9,13 +9,12 @@ const Item = (props) => {
     const history = useHistory();
     return (
         <ItemContainer>
-            <img
-                src={imgUrl}
-                style={{cursor: "pointer"}}
-                width="249px"
-                height="320px"
-                alt={brand}
-            />
+            <ItemImageWrap>
+                <ItemImage
+                    src={imgUrl}
+                    alt={brand}
+                />
+            </ItemImageWrap>
             <ItemInfoContainer>
                 <h3 style={{marginBottom: "8px"}}>
                     <BrandName to="">  
@@ -36,6 +35,20 @@ const ItemContainer = styled.div`
     padding: 0 9px;
     display: flex;
     flex-direction: column;
+`;
+
+const ItemImageWrap = styled.div`
+    overflow: hidden;
+`;
+const ItemImage = styled.img`
+    width: 249px;
+    height: 320px;
+    transform: scale(1);
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    &:hover {
+        transform:scale(1.1);
+    }
 `;
 
 const ItemInfoContainer = styled.div`
