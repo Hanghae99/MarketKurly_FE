@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import styled from 'styled-components';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
-import { Grid } from '../../elements';
+import { Button, Grid } from '../../elements';
 import Item from '../Item';
 import Text from './Text';
 import {RESP} from '../../shared/banner'
@@ -13,9 +13,9 @@ const Recommend = (props) => {
         infinite: true, 
         speed: 500,
         slidesToShow: 4, 
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5000, 
+        slidesToScroll: 4,
+        nextArrow: <Button type="recommend" place="right" bg="right"/>,
+        prevArrow: <Button type="recommend"/>,
     };
     
     const item_list = RESP.itemList;

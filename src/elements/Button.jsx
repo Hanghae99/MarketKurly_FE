@@ -7,12 +7,27 @@ const Button = (props) => {
         margin,
         onClick,
         classname,
+        type,
+        bg,
     } = props;
     
     const styles = {
         place,
         margin,
+        bg,
     }
+    
+    if(type==='recommend'){
+        return (
+            <>
+                <RecommendBtn
+                    {...styles}
+                    onClick={onClick}
+                />
+            </>
+        )
+    }
+
     return (
         <>
             <BannerBtn  
@@ -26,7 +41,9 @@ const Button = (props) => {
 
 Button.defaultProps = {
     place: null,
+    bg: false,
     margin: false,
+    type: false,
 }
 
 const BannerBtn = styled.button`
@@ -49,6 +66,33 @@ const BannerBtn = styled.button`
     }
 `;
 
+const RecommendBtn = styled.button`
+    position: absolute;
+    top: 160px;
+    z-index: 100;
+    border: 0px;
+    outline: 0px;
+    width: 60px;
+    height: 60px;
+    transform: translate(50%, -50%);
+    cursor: pointer;
+    transition: background 0.5s ease 0s;
+    ${props => props.place === 'right'
+        ? 'right: 4px;'
+        : 'left: -50px;'
+    }
+    ${props => props.bg === 'right'
+        ? "background: url('https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_list_right_60_60.svg') 50% 50% no-repeat; content: url('https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_list_right_over_60_60.svg');"
+        : "content: url('https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_list_left_over_60_60.svg'); background: url('https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_list_left_60_60.svg') 50% 50% no-repeat; "
+    }
+
+    &:hover {
+        ${props => props.bg === 'right'
+        ? "background: url('https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_list_right_over_60_60.svg');"
+        : "background: url('https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_list_left_over_60_60.svg');"
+    }
+    }
+`;
 
 
 
