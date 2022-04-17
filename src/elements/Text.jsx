@@ -11,6 +11,8 @@ const Text = (props) => {
         text,
         padding,
         margin,
+        width,
+        textAlign,
     } = props;
 
     const styles = {
@@ -21,6 +23,8 @@ const Text = (props) => {
         letterSpacing,
         padding,
         margin,
+        width,
+        textAlign,
     }
     return (
         <ElText 
@@ -36,10 +40,12 @@ Text.defaultProps = {
     size: "14px",
     bold: "normal",
     color: "#333",
-    lineHeight: false,
+    lineHeight: "initial",
     letterSpacing: "normal",
     padding: false,
     margin: false,
+    width: "100%",
+    textAlign: "auto",
 }
 
 const ElText = styled.div`
@@ -49,7 +55,10 @@ const ElText = styled.div`
     line-height: ${props => props.lineHeight};
     letter-spacing: ${props => props.letterSpacing};
     padding: ${props => props.padding};
-    margin: ${props => props.margin}
+    margin: ${props => props.margin};
+    width: ${props => props.width};
+    text-align: ${props => props.textAlign};
+    user-select: none;
 `;
         
 export default Text;

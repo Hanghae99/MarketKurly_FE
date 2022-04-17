@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { setModal } from '../../redux/modules/modal';
 
 const CartBtn = (props) => {
+    const { right, bottom } = props;
+    const styles = { right, bottom };
     const dispatch = useDispatch();
 
     const openModal = () => {
@@ -12,7 +14,7 @@ const CartBtn = (props) => {
     };
 
     return (
-        <CartButton onClick={openModal}>
+        <CartButton onClick={openModal} {...styles}>
             <img
                 src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/cart_white_45_45.svg"
                 alt="장바구니 버튼"
@@ -24,6 +26,11 @@ const CartBtn = (props) => {
     );
 };
 
+CartBtn.defaultProps = {
+    bottom: "15px",
+    right: "15px",
+};
+
 const CartButton = styled.button`
     position: absolute;
     z-index: 100;
@@ -32,8 +39,8 @@ const CartButton = styled.button`
     border: none;
     outline: none;
     background: none;
-    bottom: 10px;
-    right: 10px;
+    bottom: ${props => props.bottom}; 
+    right: ${props => props.right}; 
     cursor: pointer;
 `;
 

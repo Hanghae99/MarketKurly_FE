@@ -16,6 +16,7 @@ const Button = (props) => {
         bold,
         background,
         text,
+        lineHeight,
     } = props;
     
     const styles = {
@@ -28,6 +29,7 @@ const Button = (props) => {
         color,
         bold,
         background,
+        lineHeight,
     }
     
     if(type==='recommend'){
@@ -74,6 +76,7 @@ Button.defaultProps = {
     size: "14px",
     color: "white",
     bold: false,
+    lineHeight: "initial",
 }
 
 const BannerBtn = styled.button`
@@ -132,9 +135,11 @@ const Btn = styled.button`
     color: ${props => props.color};
     font-weight: ${props => props.bold};
     background: ${props => props.background};
+    line-height: ${props => props.lineHeight};
     border-radius: 3px;
     cursor: pointer;
     border: 1px solid #ddd;
+
 `;
 
 
