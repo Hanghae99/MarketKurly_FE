@@ -8,6 +8,7 @@ import Main from "../pages/Main";
 import Header from "../components/header/Header";
 import CartPage from "../pages/CartPage";
 import Footer from "../components/footer/Footer";
+import DetailPage from "../pages/DetailPage";
 
 function App() {
   // const token = localStorage.getItem("token") ? true : false;
@@ -26,6 +27,7 @@ function App() {
         <Route path="/register" exact component={SignUpPage} />
         <Route path="/" exact component={Main} />
         <Route path="/cart" exact component={CartPage} />
+        <Route path="/detail" exact component={DetailPage} />
         <Footer />
       </ConnectedRouter>
     </>
