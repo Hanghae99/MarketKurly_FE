@@ -2,11 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Grid } from '../elements';
-import { useHistory } from "react-router";
+import CartBtn from './modal/CartBtn';
 
 const Item = (props) => {
     const { imgUrl, brand, price, name } = props;
-    const history = useHistory();
     return (
         <ItemContainer>
             <ItemImageWrap>
@@ -14,6 +13,7 @@ const Item = (props) => {
                     src={imgUrl}
                     alt={brand}
                 />
+                <CartBtn />
             </ItemImageWrap>
             <ItemInfoContainer>
                 <h3 style={{marginBottom: "8px"}}>
@@ -38,8 +38,13 @@ const ItemContainer = styled.div`
 `;
 
 const ItemImageWrap = styled.div`
+    position: relative;
+    display: flex;
     overflow: hidden;
+    width: 249px;
+    height: 320px;
 `;
+
 const ItemImage = styled.img`
     width: 249px;
     height: 320px;

@@ -64,8 +64,9 @@ const Banner = (props) => {
 };
 
 const StyledSlider = styled(Slider)`
+   //슬라이드 컨테이너 영역
    position: relative;
-   height: 370px; //슬라이드 컨테이너 영역
+   height: 370px; 
    width: 100%;
    margin-bottom: 40px;
    overflow: hidden;
@@ -86,6 +87,7 @@ const StyledSlider = styled(Slider)`
 
   .slick-slide div { //슬라이더  컨텐츠
     cursor: pointer;
+    outline: none;
   }
 `;
 

@@ -9,12 +9,25 @@ const Button = (props) => {
         classname,
         type,
         bg,
+        width,
+        height,
+        size,
+        color,
+        bold,
+        background,
+        text,
     } = props;
     
     const styles = {
         place,
         margin,
         bg,
+        width,
+        height,
+        size,
+        color,
+        bold,
+        background,
     }
     
     if(type==='recommend'){
@@ -25,6 +38,17 @@ const Button = (props) => {
                     onClick={onClick}
                 />
             </>
+        )
+    }
+    
+    if(type==='big'){
+        return (
+            <Btn
+                {...styles}
+                onClick={onClick}
+            >
+                {text}
+            </Btn>
         )
     }
 
@@ -42,8 +66,14 @@ const Button = (props) => {
 Button.defaultProps = {
     place: null,
     bg: false,
+    background: "#fff",
     margin: false,
     type: false,
+    width: "100%",
+    height: "100%",
+    size: "14px",
+    color: "white",
+    bold: false,
 }
 
 const BannerBtn = styled.button`
@@ -94,6 +124,18 @@ const RecommendBtn = styled.button`
     }
 `;
 
+const Btn = styled.button`
+    margin: ${props => props.margin};
+    width: ${props => props.width};
+    height: ${props => props.height};
+    font-size: ${props => props.size};
+    color: ${props => props.color};
+    font-weight: ${props => props.bold};
+    background: ${props => props.background};
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+`;
 
 
 

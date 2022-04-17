@@ -8,6 +8,8 @@ import Main from "../pages/Main";
 import Header from "../components/header/Header";
 import CartPage from "../pages/CartPage";
 import Footer from "../components/footer/Footer";
+import Modal from "../components/modal/Modal";
+import { useSelector } from "react-redux";
 
 function App() {
   // const token = localStorage.getItem("token") ? true : false;
@@ -17,6 +19,8 @@ function App() {
   //     dispatch(userActions.isLogin());
   //   }
   // }, []);
+
+  const is_open = useSelector(state => state.modal.is_open);
 
   return (
     <>
@@ -28,6 +32,7 @@ function App() {
         <Route path="/cart" exact component={CartPage} />
         <Footer />
       </ConnectedRouter>
+      {is_open ? <Modal /> : ""}
     </>
   );
 }
