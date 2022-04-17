@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Grid } from '../elements';
-import CartBtn from './modal/CartBtn';
+import { Grid } from '../../elements/index';
+import CartBtn from '../modal/CartBtn';
 
 const Item = (props) => {
     const { imgUrl, brand, price, name } = props;

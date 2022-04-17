@@ -1,6 +1,6 @@
 import React from 'react';
-import Banner from '../components/Banner';
-import Recommend from '../components/recommend/Recommend';
+import Banner from '../components/main/Banner';
+import Recommend from '../components/main/Recommend';
 
 const Main = (props) => {
     return(
