@@ -19,7 +19,7 @@ const HoverList = (props) => {
 const Container = styled.div`
     display: none;
     position: absolute;
-    z-index: 10000000;
+    z-index: 1000;
     right: 2px;
     top: 34px;
     width: 102px;

@@ -88,11 +88,11 @@ const Header = (props) => {
 
 const HeaderWrap = styled.div`
   position: relative;
-  /* z-index: 100; */
+  z-index: 300;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* background-color: #ffffff; */
+  background-color: transparent;
   font-family: "Noto Sans";
   letter-spacing: -0.3px;
 `;
@@ -102,7 +102,7 @@ const HeaderMenu = styled.ul`
   font-size: 12px;
   font-family: "Noto Sans";
   position: relative;
-  /* z-index: 200; */
+
   & li {
     padding: 0 12px;
     cursor: pointer;
