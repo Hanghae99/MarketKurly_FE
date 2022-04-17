@@ -47,7 +47,7 @@ const ItemImage = styled.img`
     transition: all 0.5s ease-in-out;
     cursor: pointer;
     &:hover {
-        transform:scale(1.1);
+        transform:scale(1.05);
     }
 `;
 

@@ -78,7 +78,7 @@ const RecommendBtn = styled.button`
     cursor: pointer;
     transition: background 0.5s ease 0s;
     ${props => props.place === 'right'
-        ? 'right: 4px;'
+        ? 'right: 8px;'
         : 'left: -50px;'
     }
     ${props => props.bg === 'right'
