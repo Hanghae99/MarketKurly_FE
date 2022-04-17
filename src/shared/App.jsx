@@ -8,6 +8,7 @@ import { Main, LoginPage, SignUpPage, SearchPage, CartPage } from "../pages/inde
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Modal from "../components/modal/Modal";
+import ScrollTop from "./ScrollTop";
 
 function App() {
   // const token = localStorage.getItem("token") ? true : false;
@@ -30,7 +31,9 @@ function App() {
         <Route path="/cart" exact component={CartPage} />
         <Route path="/search" exact component={SearchPage} />
         <Footer />
+        <ScrollTop />
       </ConnectedRouter>
+      
       {is_open ? <Modal /> : ""}
     </>
   );
