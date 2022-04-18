@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import styled from "styled-components";
-import { signUpDB, usernameCheckDB } from "../../redux/modules/user";
+import { signUpDB } from "../../redux/modules/user";
 
 const SignUp = (props) => {
   const dispatch = useDispatch();
@@ -34,13 +34,7 @@ const SignUp = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    signUpClick();
-    dispatch(signUpDB(formRegister));
 
-    console.log("회원가입할래!");
-  };
-
-  const signUpClick = () => {
     if (!username || !nickname || !password || !pwCheck || !address) {
       alert("빈칸을 모두 채워주세요.");
       return;
@@ -53,10 +47,13 @@ const SignUp = (props) => {
       alert("아이디를 다시 입력해주세요");
       return;
     }
-    if (isPassword !== password) {
+
+    if (!isPassword(password)) {
       alert("비밀번호를 다시 입력해주세요");
       return;
     }
+
+    dispatch(signUpDB(formRegister));
   };
 
   function isId(username) {
@@ -73,14 +70,10 @@ const SignUp = (props) => {
   const usernameCheckDB = (username) => {
     return async function (dispatch, getState, { history }) {
       axios
-        .post(`http://14.39.43.45:8080/api/user/dupliChk`, {
+        .post(`http://54.180.156.74/api/user/dupliChk`, {
           username,
         })
         .then((res) => {
-          if (!isId(username)) {
-            alert("아이디를 다시 입력해주세요");
-            return;
-          }
           if (res.data === "OK") {
             alert("사용가능한 아이디입니다!");
           } else if (res.data === "BAD_REQUEST")

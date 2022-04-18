@@ -29,6 +29,7 @@ export const signUpDB = (formRegister) => {
         history.push("/login");
       })
       .catch((err) => {
+        window.alert("에러!!");
         console.log(err);
       });
   };
@@ -42,12 +43,6 @@ export const logInDB = (formValue) => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.headers.authorization);
-
-        // const base64Payload = res.headers.authorization.split(".")[1];
-        // const payload = Buffer.from(base64Payload, "base64");
-        // const result = JSON.parse(payload.toString());
-        // localStorage.setItem("userInfo", result.userId);
-        // console.log(base64Payload, payload);
 
         dispatch(
           setUser({

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid } from "../../elements";
+import NumBtn from "./NumBtn";
 
 const Detail = () => {
   return (
@@ -41,6 +42,24 @@ const Detail = () => {
                 {/* <p>66,000원</p> */}
                 <P>로그인 후, 회원할인가와 적립혜택이 제공됩니다.</P>
               </div>
+
+              <Border />
+              <Tit>안내사항</Tit>
+              <Con> - 2020년부터 패키지가 변경되었습니다.</Con>
+              <Border />
+              <Tit>구매수량</Tit>
+              <NumBtn />
+              <Border />
+
+              <Order>
+                <DivO>
+                  <Total>총 상품금액:</Total> <Bold>3,800</Bold>원
+                </DivO>
+                <Point>
+                  <IconPoint>적립</IconPoint>로그인 후,회원할인가와 적립혜택
+                  적용
+                </Point>
+              </Order>
             </Wrap>
           </Fix>
         </Div>
@@ -58,8 +77,85 @@ const Section = styled.section`
   display: flex;
 `;
 
-const Div = styled.div`
+const IconPoint = styled.div`
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+  margin-right: 2px;
+  border-radius: 10px;
+  background-color: #ffbf00;
+  font-weight: 700;
+  font-size: 11px;
+  color: #fff;
+  line-height: 20px;
+  text-align: center;
+`;
+
+const Total = styled.div`
+  font-weight: 700;
+  font-size: 15px;
   display: flex;
+`;
+
+const Point = styled.span`
+  font-size: 15px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+`;
+
+const Bold = styled.span`
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 20px;
+  vertical-align: 2px;
+  display: flex;
+  color: #333;
+  margin-left: 10px;
+  margin-bottom: 10px;
+`;
+
+const Div = styled.div`
+  padding: 30px 0 20px;
+  border-top: 1px solid #f4f4f4;
+  color: #333;
+  letter-spacing: 0;
+  display: flex;
+`;
+
+const DivO = styled.div`
+  padding: 30px 0 20px;
+  color: #333;
+  letter-spacing: 0;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+`;
+
+const Order = styled.div`
+  justify-content: right;
+  align-items: right;
+`;
+
+const Tit = styled.span`
+  width: 128px;
+  font-size: 14px;
+  color: #666;
+  line-height: 20px;
+`;
+
+const Con = styled.span`
+  color: #333;
+  letter-spacing: -0.5px;
+  font-size: 15px;
+  margin-left: 40px;
+`;
+
+const Border = styled.div`
+  border-top: 0.2px solid gray;
+  opacity: 20%;
+  margin-top: 30px;
+  margin-bottom: 20px;
 `;
 
 // const Icon = styled.img`
@@ -69,7 +165,7 @@ const Div = styled.div`
 // `;
 
 const Wrapper = styled.div`
-  display: flex;
+  /* display: flex; */
 `;
 
 const Price = styled.div`
@@ -96,12 +192,13 @@ const Won = styled.span`
 
 const Img = styled.div`
   padding: 0 40px 0 0;
+  display: flex;
   width: 430px;
   height: 552px;
 `;
 
 const P = styled.p`
-  display: block;
+  /* display: block; */
   padding-top: 7px;
   font-size: 14px;
   color: #5f0080;
@@ -113,12 +210,13 @@ const ImgSrc = styled.img`
   width: 430px;
   height: 552px;
   max-width: 100%;
-  display: flex;
-  position: fixed;
+  /* display: flex; */
+  /* position: fixed; */
 `;
 
 const Strong = styled.p`
   /* background-color: blanchedalmond; */
+  /* display: flex; */
   font-weight: 500;
   font-size: 24px;
   color: #333;
@@ -129,24 +227,23 @@ const InfoSection = styled.section`
 `;
 
 const Wrap = styled.div`
-  position: fixed;
   margin-left: 40px;
 `;
 
 const Fix = styled.div`
-  display: block;
+  /* display: block; */
   padding: 10px;
 `;
 
-const SaleText = styled.p`
-  width: 560px;
-  padding-right: 21px;
-  font-size: 14px;
-  color: #333;
-`;
+// const SaleText = styled.p`
+//   width: 560px;
+//   padding-right: 21px;
+//   font-size: 14px;
+//   color: #333;
+// `;
 
 const Content = styled.div`
-  display: block;
+  /* display: block; */
   padding: 4px 60px 0 0;
   font-size: 14px;
   color: #999;
