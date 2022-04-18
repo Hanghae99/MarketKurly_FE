@@ -1,15 +1,16 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { actionCreators as userActions } from "../../redux/modules/user";
+
 import styled from "styled-components";
+import { signUpDB, usernameCheckDB } from "../../redux/modules/user";
 
 const SignUp = (props) => {
+  const dispatch = useDispatch();
   const [formRegister, setFormRegister] = useState({
     username: "",
-    idDup: false,
     password: "",
-    pwCheck: "",
     nickname: "",
     address: "",
   });
@@ -24,11 +25,17 @@ const SignUp = (props) => {
       [name]: value,
     });
   };
-  console.log(formRegister);
+  // console.log(formRegister);
+
+  const onClick = (e) => {
+    e.preventDefault();
+    dispatch(usernameCheckDB(username));
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
     signUpClick();
+    dispatch(signUpDB(formRegister));
 
     console.log("회원가입할래!");
   };
@@ -42,42 +49,50 @@ const SignUp = (props) => {
       alert("패스워드가 서로 일치하지 않습니다.");
       return;
     }
-
-    // else {
-    //  dispatch(userActions.signUpApi(formInput));
-    // }
+    if (!isId(username)) {
+      alert("아이디를 다시 입력해주세요");
+      return;
+    }
+    if (isPassword !== password) {
+      alert("비밀번호를 다시 입력해주세요");
+      return;
+    }
   };
 
   function isId(username) {
-    let regExp = /^[a-z]+[a-z0-9]{5,19}$/g;
-
+    let regExp = /[a-zA-Z0-9]/;
     return regExp.test(username);
   }
 
   function isPassword(password) {
     let regExp =
       /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
-
     return regExp.test(password); // 형식에 맞는 경우 true 리턴
   }
 
-  // const dispatch = useDispatch();
+  const usernameCheckDB = (username) => {
+    return async function (dispatch, getState, { history }) {
+      axios
+        .post(`http://14.39.43.45:8080/api/user/dupliChk`, {
+          username,
+        })
+        .then((res) => {
+          if (!isId(username)) {
+            alert("아이디를 다시 입력해주세요");
+            return;
+          }
+          if (res.data === "OK") {
+            alert("사용가능한 아이디입니다!");
+          } else if (res.data === "BAD_REQUEST")
+            alert("이미 존재하는 아이디입니다");
 
-  // const idcheckAPI = (username) => {
-  //   api
-  //     .post("api/user/dupliChk", {
-  //       username,
-  //     })
-  //     .then((res) => {
-  //       setIdDup(true);
-  //       console.log(res);
-  //       window.alert(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.response);
-  //       window.alert(err.response);
-  //     });
-  // };
+          console.log(res);
+        })
+        .catch((err) => {
+          window.alert(err.response);
+        });
+    };
+  };
 
   return (
     <>
@@ -108,7 +123,7 @@ const SignUp = (props) => {
                   />
                 </Div>
                 <Check>
-                  {/* <CheckBtn onClick={() => idcheckAPI(id)}>중복확인</CheckBtn> */}
+                  <CheckBtn onClick={onClick}>중복확인</CheckBtn>
                 </Check>
               </Content>
             </tr>
@@ -212,17 +227,17 @@ const Check = styled.div`
   margin-top: 10px;
 `;
 
-// const CheckBtn = styled.button`
-//   color: #5f0081;
-//   border-radius: 3px;
-//   border: 1px solid #5f0081;
-//   background-color: white;
-//   cursor: pointer;
-//   height: 44px;
-//   width: 120px;
-//   font-weight: 500;
-//   font-size: 14px;
-// `;
+const CheckBtn = styled.button`
+  color: #5f0081;
+  border-radius: 3px;
+  border: 1px solid #5f0081;
+  background-color: white;
+  cursor: pointer;
+  height: 44px;
+  width: 120px;
+  font-weight: 500;
+  font-size: 14px;
+`;
 
 const Register = styled.button`
   color: #fff;
