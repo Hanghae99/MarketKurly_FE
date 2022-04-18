@@ -1,21 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Grid } from '../elements';
-import { useHistory } from "react-router";
+import { Link } from 'react-router-dom';
+import { Grid } from '../../elements/index';
+import CartBtn from '../modal/CartBtn';
 
 const Item = (props) => {
     const { imgUrl, brand, price, name } = props;
-    const history = useHistory();
     return (
         <ItemContainer>
-            <img
-                src={imgUrl}
-                style={{cursor: "pointer"}}
-                width="249px"
-                height="320px"
-                alt={brand}
-            />
+            <ItemImageWrap>
+                <ItemImage
+                    src={imgUrl}
+                    alt={brand}
+                />
+                <CartBtn />
+            </ItemImageWrap>
             <ItemInfoContainer>
                 <h3 style={{marginBottom: "8px"}}>
                     <BrandName to="">  
@@ -33,9 +32,29 @@ const Item = (props) => {
 };
 
 const ItemContainer = styled.div`
-    padding: 0 9px;
+    padding: 25px 18px 0 0;
     display: flex;
     flex-direction: column;
+    height: 650px;
+    width: 356px;
+`;
+
+const ItemImageWrap = styled.div`
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    width: 338px;
+`;
+
+const ItemImage = styled.img`
+    width: 100%;
+    transform: scale(1);
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        transform:scale(1.05);
+    }
 `;
 
 const ItemInfoContainer = styled.div`
@@ -45,27 +64,29 @@ const ItemInfoContainer = styled.div`
 
 const BrandName = styled(Link)`
     text-decoration: none;
-    font-size: 16px;
-    line-height: 1.45;
-    color: rgb(51, 51, 51);
-    font-weight: 500;
     text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: normal;
+    max-height: 58px;
+    font-size: 20px;
+    color: #333;
+    line-height: 29px;
 `;
 
 const Discount = styled.span`
     color: rgb(250, 98, 47);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    line-height: 1.5;
+    line-height: 29px;
     white-space: nowrap;
     margin-right: 7px;
 `;
 
 const Price = styled.span`
     color: rgb(51, 51, 51);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    line-height: 1.5;
+    line-height: 29px;
     white-space: nowrap;
 `;
 

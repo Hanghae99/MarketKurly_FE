@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
-import { Button } from "../elements/index";
+import { Button } from "../../elements/index";
 
 const Banner = (props) => {
     
@@ -64,8 +64,9 @@ const Banner = (props) => {
 };
 
 const StyledSlider = styled(Slider)`
+   //슬라이드 컨테이너 영역
    position: relative;
-   height: 370px; //슬라이드 컨테이너 영역
+   height: 370px; 
    width: 100%;
    margin-bottom: 40px;
    overflow: hidden;
@@ -86,6 +87,7 @@ const StyledSlider = styled(Slider)`
 
   .slick-slide div { //슬라이더  컨텐츠
     cursor: pointer;
+    outline: none;
   }
 `;
 

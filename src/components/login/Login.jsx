@@ -1,9 +1,13 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import styled from "styled-components";
+import { actionCreators } from "../../redux/modules/user";
 
 const Login = (props) => {
+  const dispatch = useDispatch();
+
   const [formValue, setFormValue] = useState({
     username: "",
     password: "",
@@ -17,11 +21,12 @@ const Login = (props) => {
       [name]: value,
     });
   };
-  console.log(formValue);
+  // console.log(formValue);
 
   const onSubmit = (e) => {
     e.preventDefault();
     login();
+    dispatch(actionCreators.logInDB(formValue));
 
     console.log("로그인할래!");
   };

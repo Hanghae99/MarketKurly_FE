@@ -3,7 +3,19 @@ import styled from 'styled-components';
 
 const Grid = props => {
 
-	const { flex, gridBox, width, margin, padding, bg, children, center, height, position } = props;
+	const { 
+		flex, 
+		gridBox,
+		width, 
+		margin, 
+		padding, 
+		bg, 
+		children, 
+		center, 
+		height, 
+		position,
+		justify,
+	} = props;
 
 	const styles = {
 		flex: flex,
@@ -15,6 +27,7 @@ const Grid = props => {
 		gridBox: gridBox,
 		height: height,
         position,
+		justify,
 	};
 
 	if (gridBox) {
@@ -43,6 +56,7 @@ Grid.defaultProp = {
 	gridBox: false,
 	height: false,
     position: "static",
+	justify: false,
 };
 
 const GridBox = styled.div`
@@ -53,8 +67,9 @@ const GridBox = styled.div`
 	${props => (props.padding ? `padding:${props.padding}` : '')};
 	${props => (props.margin ? `margin:${props.margin}` : '')};
 	${props => (props.bg ? `background-color:${props.bg}` : '')};
-	${props => (props.flex ? `display:flex; align-items:center; justify-content:space-between;` : '')}
-	${props => (props.height ? `height:${props.height};` : '')}
+	${props => (props.flex ? `display:flex; align-items:center; justify-content:space-between` : '')};
+	${props => (props.height ? `height:${props.height}` : '')};
+	${props => (props.justify ? `justify-content:${props.justify}` : '')};
 	/* border: 1px red solid; */
 `;
 
@@ -66,8 +81,7 @@ const ParentsGridbox = styled.div`
 	${props => (props.margin ? `margin:${props.margin}` : '')};
 	${props => (props.bg ? `background-color:${props.bg}` : '')};
 	display: grid;
-	grid-template-columns: repeat(3, 308px);
-	grid-column-gap: 24px;
+	grid-template-columns: 1fr 1fr 1fr;
 	align-items: center;
 `;
 
