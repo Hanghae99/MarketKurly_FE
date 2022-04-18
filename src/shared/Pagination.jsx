@@ -25,8 +25,9 @@ const Pagination = (props) => {
         const page = e.target.innerText;
         setChoicedPage(e.target.innerText);
         dispatch(productActions.getProductApi(page));
+        window.scrollTo(0, 1325);
     };
-
+    console.log(window.scrollY)
     return (
         <Grid
             width="1050px"

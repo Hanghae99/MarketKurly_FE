@@ -7,18 +7,21 @@ import Item from '../components/shared/Item';
 import { Grid, Text } from '../elements';
 import Pagination from '../shared/Pagination';
 import { actionCreators as productActions } from '../redux/modules/product';
+import Spinner from '../shared/Spinner';
 
 const Main = (props) => {
     const dispatch = useDispatch();
     const page_num = useSelector(state => state.product.page);
     const product_list = useSelector(state => state.product.list);
+    const is_loading = useSelector(state => state.product.is_loading);
+
     const [ page ] = useState(page_num);
-   
+    
     useEffect(() => {
         dispatch(productActions.getProductApi(page));
     }, []);
 
-    console.log("pageNumber :", page)
+    console.log("pageNumber :", page);
     return(
         <>
             <Banner />
@@ -49,6 +52,7 @@ const Main = (props) => {
                 )}
             </Grid>
             <Pagination />
+            {is_loading && <Spinner type="page" is_dim/>}
         </>
     );
 };

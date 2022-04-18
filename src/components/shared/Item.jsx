@@ -47,6 +47,7 @@ const ItemImageWrap = styled.div`
     display: flex;
     overflow: hidden;
     width: 338px;
+    height: 435px;
 `;
 
 const ItemImage = styled.img`
