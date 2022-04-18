@@ -1,15 +1,23 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Grid from "../../elements/Grid";
+import { logOut } from "../../redux/modules/user";
 import HoverList from "./HoverList";
-import { actionCreators as productActions } from "../../redux/modules/product";
+import { history } from "../../redux/store";
 
 const Header = (props) => {
-  const history = useHistory();
+  const token = localStorage.getItem("token");
+
+  const is_login = useSelector((state) => state.user.is_login);
   const dispatch = useDispatch();
-  const [ word, setWord ] = useState("");
+
+  const logout_click = () => {
+    localStorage.removeItem("token");
+    dispatch(logOut());
+    history.replace("/");
+    // window.location.reload();
+  };
 
   const onMoveRegister = () => {
     history.push("/register");
@@ -23,81 +31,138 @@ const Header = (props) => {
     history.push("/");
   };
 
-  const searchItem = () => {
-    dispatch(productActions.getProductApi(1, word));
-    setWord("");
-  };
-
-  return (
-    <>
-      <Grid width="1050px" margin="0 auto">
-        <HeaderWrap>
-          <img
-            style={{ cursor: "pointer" }}
-            src="https://res.kurly.com/pc/service/common/2011/delivery_210801.png"
-            width="121px"
-            height="22px"
-            alt="서울, 경기, 인천 샛별배송, 수도권 이외 지역 택배배송"
-          />
-          <HeaderMenu>
-            <li className="menu signup" onClick={onMoveRegister}>
-              회원가입
-            </li>
-            <li className="menu" onClick={onMoveLogin}>
-              로그인
-            </li>
-            <li className="cs">고객센터
-              <HoverList />
-            </li>
-          </HeaderMenu>
-        </HeaderWrap>
-
-        <Grid height="63px" position="relative">
-          <Logo>
-            <h1>
-              <img
-                style={{ cursor: "pointer" }}
-                src="https://res.kurly.com/images/marketkurly/logo/logo_x2.png"
-                width="103px"
-                height="79px"
-                alt="마켓컬리 로고"
-                onClick={onMoveMain}
-              />
-            </h1>
-          </Logo>
-        </Grid>
-      </Grid>
-      <Container>
-        <Gnb>
-          <GnbMenu>
-            <li className="all-categoty menu1">전체 카테고리</li>
-            <li className="menu2">신상품</li>
-            <li className="menu3">베스트</li>
-            <li className="menu4">알뜰쇼핑</li>
-            <li className="menu5">특가/혜택</li>
-          </GnbMenu>
-          <Grid position="relative">
-            <GnbInput 
-              onChange={(e) => {setWord(e.target.value)}} 
-              value={word}
-              placeholder="검색어를 입력해주세요." 
+  if (token && is_login) {
+    return (
+      <>
+        <Grid width="1050px" margin="0 auto">
+          <HeaderWrap>
+            <img
+              style={{ cursor: "pointer" }}
+              src="https://res.kurly.com/pc/service/common/2011/delivery_210801.png"
+              width="121px"
+              height="22px"
+              alt="서울, 경기, 인천 샛별배송, 수도권 이외 지역 택배배송"
             />
-            <GnbInputClick
-              onClick={searchItem}
-              src="https://res.kurly.com/pc/service/common/1908/ico_search_x2.png"
-              width="30px"
-              height="30px"
-              alt="마켓컬리 검색창 돋보기"
-            />
+            <HeaderMenu>
+              <li className="menu" onClick={logout_click}>
+                로그아웃
+              </li>
+              <li className="cs">
+                고객센터
+                <HoverList />
+              </li>
+            </HeaderMenu>
+          </HeaderWrap>
+
+          <Grid height="63px" position="relative">
+            <Logo>
+              <h1>
+                <img
+                  style={{ cursor: "pointer" }}
+                  src="https://res.kurly.com/images/marketkurly/logo/logo_x2.png"
+                  width="103px"
+                  height="79px"
+                  alt="마켓컬리 로고"
+                  onClick={onMoveMain}
+                />
+              </h1>
+            </Logo>
           </Grid>
-          <Icons className="location" />
-          <Icons className="pick" />
-          <Icons className="cart" onClick={() => history.push("/cart")} />
-        </Gnb>
-        <Shadow />
-      </Container>
-    </>
-  );
+        </Grid>
+        <Container>
+          <Gnb>
+            <GnbMenu>
+              <li className="all-categoty menu1">전체 카테고리</li>
+              <li className="menu2">신상품</li>
+              <li className="menu3">베스트</li>
+              <li className="menu4">알뜰쇼핑</li>
+              <li className="menu5">특가/혜택</li>
+            </GnbMenu>
+            <Grid position="relative">
+              <GnbInput placeholder="검색어를 입력해주세요." />
+              <GnbInputClick
+                src="https://res.kurly.com/pc/service/common/1908/ico_search_x2.png"
+                width="30px"
+                height="30px"
+                alt="마켓컬리 검색창 돋보기"
+              />
+            </Grid>
+            <Icons className="location" />
+            <Icons className="pick" />
+            <Icons className="cart" onClick={() => history.push("/cart")} />
+          </Gnb>
+          <Shadow />
+        </Container>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Grid width="1050px" margin="0 auto">
+          <HeaderWrap>
+            <img
+              style={{ cursor: "pointer" }}
+              src="https://res.kurly.com/pc/service/common/2011/delivery_210801.png"
+              width="121px"
+              height="22px"
+              alt="서울, 경기, 인천 샛별배송, 수도권 이외 지역 택배배송"
+            />
+            <HeaderMenu>
+              <li className="menu signup" onClick={onMoveRegister}>
+                회원가입
+              </li>
+              <li className="menu" onClick={onMoveLogin}>
+                로그인
+              </li>
+              <li className="cs">
+                고객센터
+                <HoverList />
+              </li>
+            </HeaderMenu>
+          </HeaderWrap>
+
+          <Grid height="63px" position="relative">
+            <Logo>
+              <h1>
+                <img
+                  style={{ cursor: "pointer" }}
+                  src="https://res.kurly.com/images/marketkurly/logo/logo_x2.png"
+                  width="103px"
+                  height="79px"
+                  alt="마켓컬리 로고"
+                  onClick={onMoveMain}
+                />
+              </h1>
+            </Logo>
+          </Grid>
+        </Grid>
+        <Container>
+          <Gnb>
+            <GnbMenu>
+              <li className="all-categoty menu1">전체 카테고리</li>
+              <li className="menu2">신상품</li>
+              <li className="menu3">베스트</li>
+              <li className="menu4">알뜰쇼핑</li>
+              <li className="menu5">특가/혜택</li>
+            </GnbMenu>
+            <Grid position="relative">
+              <GnbInput placeholder="검색어를 입력해주세요." />
+              <GnbInputClick
+                src="https://res.kurly.com/pc/service/common/1908/ico_search_x2.png"
+                width="30px"
+                height="30px"
+                alt="마켓컬리 검색창 돋보기"
+              />
+            </Grid>
+            <Icons className="location" />
+            <Icons className="pick" />
+            <Icons className="cart" onClick={() => history.push("/cart")} />
+          </Gnb>
+          <Shadow />
+        </Container>
+      </>
+    );
+  }
 };
 
 const HeaderWrap = styled.div`
@@ -154,7 +219,7 @@ const HeaderMenu = styled.ul`
       color: #5f0080;
     }
 
-    &.cs:hover *{
+    &.cs:hover * {
       display: block;
     }
   }
