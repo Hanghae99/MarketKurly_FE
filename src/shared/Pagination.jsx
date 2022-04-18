@@ -11,30 +11,22 @@ const Pagination = (props) => {
     const link_arr = useRef([]);
     const [ choicedPage, setChoicedPage ] = useState(page_num);
     const [ prevPage, setPrevPage ] = useState();
-
-    {/* 이번 프로젝트에서는 5페이지로 고정 */}
+    
+    /* 이번 프로젝트에서는 5페이지로 고정 */
     const num_arr = [1, 2, 3, 4, 5];
-
+    
     useEffect(() => {
-        if(prevPage){
-            link_arr.current[prevPage-1].classList.remove("choice-page");
-            link_arr.current[choicedPage-1].className += " choice-page";
-        } else {
-            link_arr.current[choicedPage-1].className += " choice-page";
-        };
+        if(prevPage) link_arr.current[prevPage-1].classList.remove("choice-page");
+        link_arr.current[choicedPage-1].className += " choice-page";
         setPrevPage(choicedPage);    
     }, [choicedPage]);
-    console.log(prevPage, choicedPage)
-    
+
     const clickBtn = (e) => {
         const page = e.target.innerText;
         setChoicedPage(e.target.innerText);
         dispatch(productActions.getProductApi(page));
     };
 
-    const goods = "meat"
-    // console.log(link_arr.current[0].innerText)
-    
     return (
         <Grid
             width="1050px"
@@ -54,15 +46,7 @@ const Pagination = (props) => {
                 >
                     {i+1}
                 </StyledLink>
-            )}
-
-            {/* 이번 프로젝트에서는 5페이지로 고정 */}
-            {/* <StyledLink to="/" ref={elem => link_arr.current[0] = elem} className='layout-pagination-button'>1</StyledLink>
-            <StyledLink to="/" ref={elem => link_arr.current[1] = elem} className='layout-pagination-button'>2</StyledLink>
-            <StyledLink to="/" ref={elem => link_arr.current[2] = elem} className='layout-pagination-button'>3</StyledLink>
-            <StyledLink to="/" ref={elem => link_arr.current[3] = elem} className='layout-pagination-button'>4</StyledLink>
-            <StyledLink to="/" ref={elem => link_arr.current[4] = elem} className='layout-pagination-button'>5</StyledLink> */}
-            
+            )}        
             <StyledLink to="#" className='layout-pagination-button layout-pagination-next-page'>다음 페이지로 가기</StyledLink>
             <StyledLink to="#" className='layout-pagination-button layout-pagination-last-page'>맨 끝 페이지로 가기</StyledLink>
         </Grid>
