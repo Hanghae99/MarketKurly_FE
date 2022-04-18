@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 import Modal from "./modules/modal"
+import Product from "./modules/product";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   modal: Modal,
+  product: Product,
   router: connectRouter(history),
 });
 
@@ -17,6 +19,7 @@ const env = process.env.NODE_ENV;
 
 if (env === "development") {
   const { logger } = require("redux-logger");
+  middlewares.push(logger);
 }
 
 const composeEnhancers =

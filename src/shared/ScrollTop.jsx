@@ -10,7 +10,7 @@ const ScrollTop = (props) => {
     
     // useEffet를 써야하나??...잘안먹히네
     window.addEventListener('scroll', function(){
-        if(this.window.scrollY > 1000 && this.window.innerWidth > 1000){
+        if(window.scrollY > 1000 && window.innerWidth > 1000){
             btnRef.current.style.opacity = 1;
             btnRef.current.style.bottom = "30px";
         } else {

@@ -31,9 +31,8 @@ function App() {
         <Route path="/cart" exact component={CartPage} />
         <Route path="/search" exact component={SearchPage} />
         <Footer />
-        <ScrollTop />
+        {/* <ScrollTop /> */}
       </ConnectedRouter>
-      
       {is_open ? <Modal /> : ""}
     </>
   );

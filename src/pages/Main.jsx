@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Banner from '../components/main/Banner';
 import Recommend from '../components/main/Recommend';
 import SmallBanner from '../components/main/SmallBanner';
 import Item from '../components/shared/Item';
 import { Grid, Text } from '../elements';
-import {RESP} from '../shared/banner';
+import Pagination from '../shared/Pagination';
+import { actionCreators as productActions } from '../redux/modules/product';
 
 const Main = (props) => {
-    const item_list = RESP.itemList;
+    const dispatch = useDispatch();
+    const page_num = useSelector(state => state.product.page);
+    const product_list = useSelector(state => state.product.list);
+    const [ page ] = useState(page_num);
+   
+    useEffect(() => {
+        dispatch(productActions.getProductApi(page));
+    }, []);
+
+    console.log("pageNumber :", page)
     return(
         <>
             <Banner />
@@ -29,7 +40,7 @@ const Main = (props) => {
                 width="1050px"
                 margin="0 auto"
             >  
-                {item_list.map((v ,i) => {
+                {product_list.map((v ,i) => {
                     return(
                         <div key={i}>
                             <Item {...v}/>
@@ -37,6 +48,7 @@ const Main = (props) => {
                     )}
                 )}
             </Grid>
+            <Pagination />
         </>
     );
 };

@@ -6,6 +6,7 @@ import CartBtn from '../modal/CartBtn';
 
 const Item = (props) => {
     const { imgUrl, brand, price, name } = props;
+
     return (
         <ItemContainer>
             <ItemImageWrap>
@@ -18,7 +19,9 @@ const Item = (props) => {
             <ItemInfoContainer>
                 <h3 style={{marginBottom: "8px"}}>
                     <BrandName to="">  
-                            {`[${brand}] ${name}`}
+                        {brand 
+                            ? `[${brand}] ${name}`
+                            : `${name}`}
                     </BrandName>
                 </h3>
                 <Grid>
