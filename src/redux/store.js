@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
+import Modal from "./modules/modal"
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
+  modal: Modal,
   router: connectRouter(history),
 });
 

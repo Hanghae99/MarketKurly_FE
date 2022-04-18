@@ -1,13 +1,14 @@
 import { ConnectedRouter } from "connected-react-router";
 import { Route } from "react-router";
-import LoginPage from "../pages/LoginPage";
-import SignUpPage from "../pages/SignUpPage";
+import { useSelector } from "react-redux";
 import { history } from "../redux/store";
+
 import "./app.css";
-import Main from "../pages/Main";
+import { Main, LoginPage, SignUpPage, SearchPage, CartPage } from "../pages/index";
 import Header from "../components/header/Header";
-import CartPage from "../pages/CartPage";
 import Footer from "../components/footer/Footer";
+import Modal from "../components/modal/Modal";
+import ScrollTop from "./ScrollTop";
 
 function App() {
   // const token = localStorage.getItem("token") ? true : false;
@@ -18,6 +19,8 @@ function App() {
   //   }
   // }, []);
 
+  const is_open = useSelector(state => state.modal.is_open);
+
   return (
     <>
       <ConnectedRouter history={history}>
@@ -26,10 +29,14 @@ function App() {
         <Route path="/register" exact component={SignUpPage} />
         <Route path="/" exact component={Main} />
         <Route path="/cart" exact component={CartPage} />
+        <Route path="/search" exact component={SearchPage} />
         <Footer />
+        <ScrollTop />
       </ConnectedRouter>
+      
+      {is_open ? <Modal /> : ""}
     </>
   );
-}
+};
 
 export default App;
