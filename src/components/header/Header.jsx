@@ -1,12 +1,10 @@
 import React from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Grid from "../../elements/Grid";
-import { isLogin, logOut } from "../../redux/modules/user";
+import { logOut } from "../../redux/modules/user";
 import HoverList from "./HoverList";
 import { history } from "../../redux/store";
-import { useState } from "react";
 
 const Header = (props) => {
   const token = localStorage.getItem("token");
