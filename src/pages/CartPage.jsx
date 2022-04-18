@@ -6,7 +6,6 @@ import CartHeader from '../components/cart/CartHeader';
 import CartOrderBtn from '../components/cart/CartOrderBtn';
 import OrderInfo from '../components/cart/OrderInfo';
 import { Grid } from '../elements';
-import Spinner from '../shared/Spinner';
 
 const CartPage = (props) => {
     return (

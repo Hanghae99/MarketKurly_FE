@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Grid } from '../elements';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as productActions } from '../redux/modules/product';
 
 const Pagination = (props) => {
     const dispatch = useDispatch();
-    const page_num = useSelector(state => state.product.page);
+    const location = useLocation();
     const link_arr = useRef([]);
     const arrow_arr = useRef([]);
+    const page_num = useSelector(state => state.product.page);
     const [ choicedPage, setChoicedPage ] = useState(page_num);
     const [ prevPage, setPrevPage ] = useState();
     
@@ -26,9 +27,12 @@ const Pagination = (props) => {
         const page = e.target.innerText;
         setChoicedPage(e.target.innerText);
         dispatch(productActions.getProductApi(page));
-        window.scrollTo(0, 1325);
+        if(location.pathname === '/'){
+            window.scrollTo(0, 1325);
+        }
     };
 
+    // 좋은 방식이 아닌 것 같음
     const clickArrow = (e) => {
         // const click = e.target.dataset.num;
         // switch (click*1) {
@@ -43,17 +47,22 @@ const Pagination = (props) => {
         //         if(choicedPage!==1){
         //             dispatch(productActions.getProductApi(choicedPage-1));
         //             setChoicedPage(choicedPage-1);
+        //             window.scrollTo(0, 1325);
         //         }
         //         break;
         //     case 2:
         //         if(choicedPage!==5){
         //             dispatch(productActions.getProductApi(choicedPage+1));
         //             setChoicedPage(choicedPage+1);
+        //             window.scrollTo(0, 1325);
         //         }
         //         break;
         //     case 3:
-        //         dispatch(productActions.getProductApi(5));
-        //         setChoicedPage(5);
+        //         if(choicedPage!==5){
+        //             dispatch(productActions.getProductApi(5));
+        //             setChoicedPage(5);
+        //             window.scrollTo(0, 1325);
+        //         }
         //         break;
         //     default:
         //     alert( "어떤 값인지 파악이 되지 않습니다." );

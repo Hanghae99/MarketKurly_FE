@@ -30,7 +30,7 @@ const isLoading = createAction(IS_LOADING, (is_loading) => ({is_loading}));
 
 // middleWares
 const getProductApi = (page, search_word) => {
-    return async function (dispatch, getState){
+    return async function (dispatch, getState, {history}){
         dispatch(isLoading(true));
         try {
             let product;
@@ -41,6 +41,8 @@ const getProductApi = (page, search_word) => {
                         "page": page,
                     },
                 });
+                const product_list = product.data.content;
+                dispatch(getProduct(page, product_list));
             }else{
                 product = await axios.get("http://54.180.156.74/api/board",{
                     params: {
@@ -48,12 +50,13 @@ const getProductApi = (page, search_word) => {
                         "page": page,
                     },
                 });
+                const product_list = product.data.content;
+                dispatch(getProduct(page, product_list));
+                history.push('/search');
             };
-            const product_list = product.data.content;
-            dispatch(getProduct(page, product_list));
         }catch(err){
             console.log("에러발생", err);
-            window.alert("제품 조회에 실패했습니다.");
+            window.alert("해당 상품은 없는 상품입니다.");
         };
     };
 };

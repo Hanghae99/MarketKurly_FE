@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import Grid from "../../elements/Grid";
 import HoverList from "./HoverList";
+import { actionCreators as productActions } from "../../redux/modules/product";
 
 const Header = (props) => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const [ word, setWord ] = useState("");
 
   const onMoveRegister = () => {
     history.push("/register");
@@ -17,6 +21,11 @@ const Header = (props) => {
 
   const onMoveMain = () => {
     history.push("/");
+  };
+
+  const searchItem = () => {
+    dispatch(productActions.getProductApi(1, word));
+    setWord("");
   };
 
   return (
@@ -68,8 +77,13 @@ const Header = (props) => {
             <li className="menu5">특가/혜택</li>
           </GnbMenu>
           <Grid position="relative">
-            <GnbInput placeholder="검색어를 입력해주세요." />
+            <GnbInput 
+              onChange={(e) => {setWord(e.target.value)}} 
+              value={word}
+              placeholder="검색어를 입력해주세요." 
+            />
             <GnbInputClick
+              onClick={searchItem}
               src="https://res.kurly.com/pc/service/common/1908/ico_search_x2.png"
               width="30px"
               height="30px"

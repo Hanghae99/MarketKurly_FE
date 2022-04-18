@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Button, Grid, Text } from '../../elements';
+import { actionCreators as productActions } from '../../redux/modules/product';
 
 const SearchBox = (props) => {
+    const dispatch = useDispatch();
+    const [ word, setWord ] = useState("");
+
+    const searchItem = () => {
+        dispatch(productActions.getProductApi(1, word));
+        setWord("");
+    };
+
     return (
         <Container>
             <Grid justify="space-around" flex>
@@ -14,8 +24,13 @@ const SearchBox = (props) => {
                     bold="500"
                     />
                 <Grid width="845px" padding="26px 26px 0 0" flex >
-                    <Input type="text" />
+                    <Input 
+                        type="text"
+                        value={word}
+                        onChange={(e) => setWord(e.target.value)}
+                    />
                     <Button 
+                        onClick={searchItem}
                         type="big"
                         width="175px"
                         height="45px"
