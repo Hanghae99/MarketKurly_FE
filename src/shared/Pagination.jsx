@@ -9,6 +9,7 @@ const Pagination = (props) => {
     const dispatch = useDispatch();
     const page_num = useSelector(state => state.product.page);
     const link_arr = useRef([]);
+    const arrow_arr = useRef([]);
     const [ choicedPage, setChoicedPage ] = useState(page_num);
     const [ prevPage, setPrevPage ] = useState();
     
@@ -27,7 +28,39 @@ const Pagination = (props) => {
         dispatch(productActions.getProductApi(page));
         window.scrollTo(0, 1325);
     };
-    console.log(window.scrollY)
+
+    const clickArrow = (e) => {
+        // const click = e.target.dataset.num;
+        // switch (click*1) {
+        //     case 0:
+        //         if(choicedPage!==1){
+        //             dispatch(productActions.getProductApi(1));
+        //             setChoicedPage(1);
+        //             window.scrollTo(0, 1325);
+        //         }
+        //         break;
+        //     case 1:
+        //         if(choicedPage!==1){
+        //             dispatch(productActions.getProductApi(choicedPage-1));
+        //             setChoicedPage(choicedPage-1);
+        //         }
+        //         break;
+        //     case 2:
+        //         if(choicedPage!==5){
+        //             dispatch(productActions.getProductApi(choicedPage+1));
+        //             setChoicedPage(choicedPage+1);
+        //         }
+        //         break;
+        //     case 3:
+        //         dispatch(productActions.getProductApi(5));
+        //         setChoicedPage(5);
+        //         break;
+        //     default:
+        //     alert( "어떤 값인지 파악이 되지 않습니다." );
+        // };
+        // setChoicedPage(click+1);   
+    };
+    
     return (
         <Grid
             width="1050px"
@@ -35,8 +68,8 @@ const Pagination = (props) => {
             flex
             justify="center"
         >
-            <StyledLink to='#' className='layout-pagination-button layout-pagination-first-page'>맨 처음 페이지로 가기</StyledLink>
-            <StyledLink to='#' className='layout-pagination-button layout-pagination-prev-page'>이전 페이지로 가기</StyledLink>
+            <StyledLink to='#' ref={elem => arrow_arr.current[0] = elem} data-num="0" onClick={clickArrow} className='layout-pagination-button layout-pagination-first-page'>맨 처음 페이지로 가기</StyledLink>
+            <StyledLink to='#' ref={elem => arrow_arr.current[1] = elem} data-num="1" onClick={clickArrow} className='layout-pagination-button layout-pagination-prev-page'>이전 페이지로 가기</StyledLink>
             {num_arr.map((v, i) => 
                 <StyledLink 
                     to="#" 
@@ -48,8 +81,8 @@ const Pagination = (props) => {
                     {i+1}
                 </StyledLink>
             )}        
-            <StyledLink to="#" className='layout-pagination-button layout-pagination-next-page'>다음 페이지로 가기</StyledLink>
-            <StyledLink to="#" className='layout-pagination-button layout-pagination-last-page'>맨 끝 페이지로 가기</StyledLink>
+            <StyledLink to="#" ref={elem => arrow_arr.current[2] = elem} data-num="2" onClick={clickArrow} className='layout-pagination-button layout-pagination-next-page'>다음 페이지로 가기</StyledLink>
+            <StyledLink to="#" ref={elem => arrow_arr.current[3] = elem} data-num="3" onClick={clickArrow} className='layout-pagination-button layout-pagination-last-page'>맨 끝 페이지로 가기</StyledLink>
         </Grid>
     );
 };
