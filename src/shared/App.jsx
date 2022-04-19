@@ -15,11 +15,13 @@ import {
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Modal from "../components/modal/Modal";
+import AlertModal from "../components/modal/AlertModal";
 // import ScrollTop from "./ScrollTop";
 
 function App() {
   const is_open = useSelector((state) => state.modal.is_open);
-
+  const is_open_alert = useSelector((state) => state.modal.alert_open);
+  console.log(is_open_alert)
   return (
     <>
       <ConnectedRouter history={history}>
@@ -34,6 +36,7 @@ function App() {
         {/* <ScrollTop /> */}
       </ConnectedRouter>
       {is_open ? <Modal /> : ""}
+      {is_open_alert ? <AlertModal /> : ""}
     </>
   );
 }
