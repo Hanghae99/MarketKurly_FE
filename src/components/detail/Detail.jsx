@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid } from "../../elements";
 import NumBtn from "./NumBtn";
 
 const Detail = () => {
@@ -23,10 +22,6 @@ const Detail = () => {
                     <span>[마이올리브트리]</span>
                     엑스트라버진 500ml
                   </Strong>
-                  {/* <Icon
-                  src="https://res.kurly.com/mobile/service/goodsview/1910/ico_view_sns.png"
-                  alt=""
-                /> */}
                 </Wrapper>
                 <Content>[그리스 햇올리브]2021년 가을 수확한 햇올리브</Content>
               </InfoSection>
@@ -36,28 +31,36 @@ const Detail = () => {
                   <Num>
                     39,600 <Won>원</Won>
                   </Num>
-                  {/* <Percent>40%</Percent> */}
                 </Price>
 
-                {/* <p>66,000원</p> */}
                 <P>로그인 후, 회원할인가와 적립혜택이 제공됩니다.</P>
               </div>
 
               <Border />
-              <Tit>안내사항</Tit>
-              <Con> - 2020년부터 패키지가 변경되었습니다.</Con>
+              <Tit>
+                안내사항 <Con> 2020년부터 패키지가 변경되었습니다.</Con>
+              </Tit>
+
               <Border />
-              <Tit>구매수량</Tit>
-              <NumBtn />
+              <Tit>
+                구매수량 <NumBtn />
+              </Tit>
               <Border />
 
               <Order>
-                <DivO>
-                  <Total>총 상품금액:</Total> <Bold>3,800</Bold>원
-                </DivO>
+                <Total>
+                  총 상품금액 :<Bold>39,600</Bold>원
+                </Total>
+                <IconPoint>적립</IconPoint>로그인 후,회원할인가와 적립혜택 적용
                 <Point>
-                  <IconPoint>적립</IconPoint>로그인 후,회원할인가와 적립혜택
-                  적용
+                  <WrapIcon>
+                    <LikeBtn />
+                    <Alert />
+
+                    <Reg>
+                      <Btn>장바구니 담기</Btn>
+                    </Reg>
+                  </WrapIcon>
                 </Point>
               </Order>
             </Wrap>
@@ -81,6 +84,7 @@ const IconPoint = styled.div`
   display: inline-block;
   width: 38px;
   height: 20px;
+  margin-left: 420px;
   margin-right: 2px;
   border-radius: 10px;
   background-color: #ffbf00;
@@ -94,61 +98,59 @@ const IconPoint = styled.div`
 const Total = styled.div`
   font-weight: 700;
   font-size: 15px;
+  margin-bottom: 10px;
   display: flex;
+  justify-content: right;
 `;
 
 const Point = styled.span`
   font-size: 15px;
-  display: flex;
-  justify-content: right;
+  display: block;
+  justify-content: center;
   align-items: center;
+  margin-left: 300px;
 `;
 
 const Bold = styled.span`
+  display: flex;
+  justify-content: right;
   font-weight: 900;
   font-size: 30px;
-  line-height: 20px;
-  vertical-align: 2px;
+  line-height: 10px;
+  margin-right: 2px;
   display: flex;
   color: #333;
-  margin-left: 10px;
   margin-bottom: 10px;
+  margin-left: 15px;
 `;
 
 const Div = styled.div`
   padding: 30px 0 20px;
-  border-top: 1px solid #f4f4f4;
   color: #333;
   letter-spacing: 0;
   display: flex;
-`;
-
-const DivO = styled.div`
-  padding: 30px 0 20px;
-  color: #333;
-  letter-spacing: 0;
-  display: flex;
-  justify-content: right;
-  align-items: center;
 `;
 
 const Order = styled.div`
-  justify-content: right;
-  align-items: right;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
 `;
 
 const Tit = styled.span`
-  width: 128px;
+  display: flex;
+  width: 500px;
   font-size: 14px;
   color: #666;
-  line-height: 20px;
 `;
 
 const Con = styled.span`
   color: #333;
   letter-spacing: -0.5px;
   font-size: 15px;
-  margin-left: 40px;
+  margin-left: 20px;
 `;
 
 const Border = styled.div`
@@ -158,14 +160,15 @@ const Border = styled.div`
   margin-bottom: 20px;
 `;
 
-// const Icon = styled.img`
-//   display: flex;
-//   margin-left: 120px;
-//   cursor: pointer;
-// `;
+const WrapIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+`;
 
 const Wrapper = styled.div`
-  /* display: flex; */
+  display: flex;
 `;
 
 const Price = styled.div`
@@ -183,13 +186,6 @@ const Won = styled.span`
   font-size: 20px;
 `;
 
-// const Percent = styled.span`
-//   font-weight: 500;
-//   font-size: 30px;
-//   padding-left: 10px;
-//   color: #fa622f;
-// `;
-
 const Img = styled.div`
   padding: 0 40px 0 0;
   display: flex;
@@ -198,7 +194,6 @@ const Img = styled.div`
 `;
 
 const P = styled.p`
-  /* display: block; */
   padding-top: 7px;
   font-size: 14px;
   color: #5f0080;
@@ -210,16 +205,16 @@ const ImgSrc = styled.img`
   width: 430px;
   height: 552px;
   max-width: 100%;
-  /* display: flex; */
-  /* position: fixed; */
 `;
 
 const Strong = styled.p`
-  /* background-color: blanchedalmond; */
-  /* display: flex; */
   font-weight: 500;
   font-size: 24px;
   color: #333;
+  margin-right: 219px;
+  display: flex;
+  justify-content: left;
+  align-items: left;
 `;
 
 const InfoSection = styled.section`
@@ -231,20 +226,66 @@ const Wrap = styled.div`
 `;
 
 const Fix = styled.div`
-  /* display: block; */
   padding: 10px;
 `;
-
-// const SaleText = styled.p`
-//   width: 560px;
-//   padding-right: 21px;
-//   font-size: 14px;
-//   color: #333;
-// `;
 
 const Content = styled.div`
   /* display: block; */
   padding: 4px 60px 0 0;
   font-size: 14px;
   color: #999;
+`;
+
+const Reg = styled.div`
+  /* display: block; */
+  display: flex;
+  width: 280px;
+  height: 54px;
+  border-radius: 3px;
+  font-size: 0;
+  text-align: center;
+  background-color: #5f0080;
+  margin-top: 20px;
+`;
+
+const Btn = styled.button`
+  width: 432px;
+  height: 56px;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  color: #fff;
+  background-color: #5f0081;
+  border: 1px solid #5f0081;
+  cursor: pointer;
+`;
+
+const LikeBtn = styled.button`
+  width: 56px;
+  height: 56px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  color: transparent !important;
+  background: url(https://res.kurly.com/pc/service/pick/btn-itemdetail-like.svg)
+    no-repeat center;
+  background-size: 32px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 10px;
+`;
+
+const Alert = styled.button`
+  background: url(https://res.kurly.com/pc/service/goodsview/btn-itemdetail-restock-dim.svg)
+    no-repeat center;
+  background-size: 32px;
+  cursor: default;
+  width: 56px;
+  height: 56px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  color: transparent !important;
+  margin-top: 20px;
+  margin-right: 10px;
 `;
