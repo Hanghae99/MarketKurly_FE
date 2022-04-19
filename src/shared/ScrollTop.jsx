@@ -18,8 +18,13 @@ const ScrollTop = (props) => {
       btnRef.current.style.bottom = "0px";
     }
   });
-
-  return <ScrollBtn onClick={scrollTop} ref={btnRef} />;
+    
+  return (
+      <ScrollBtn
+          onClick={scrollTop}
+          ref={btnRef}
+      />
+  );
 };
 
 const ScrollBtn = styled.div`

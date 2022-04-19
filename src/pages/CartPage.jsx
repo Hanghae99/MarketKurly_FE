@@ -28,7 +28,6 @@ const CartPage = (props) => {
                     <OrderInfo />
                 </Grid>
             </CartContainer>
-            {/* <div style={{height:"2000px"}} /> */}
         </>
     );
 };

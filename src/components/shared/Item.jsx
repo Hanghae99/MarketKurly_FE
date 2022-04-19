@@ -6,6 +6,7 @@ import CartBtn from '../modal/CartBtn';
 
 const Item = (props) => {
     const { imgUrl, brand, price, name } = props;
+
     return (
         <ItemContainer>
             <ItemImageWrap>
@@ -18,7 +19,9 @@ const Item = (props) => {
             <ItemInfoContainer>
                 <h3 style={{marginBottom: "8px"}}>
                     <BrandName to="">  
-                            {`[${brand}] ${name}`}
+                        {brand 
+                            ? `[${brand}] ${name}`
+                            : `${name}`}
                     </BrandName>
                 </h3>
                 <Grid>
@@ -44,6 +47,7 @@ const ItemImageWrap = styled.div`
     display: flex;
     overflow: hidden;
     width: 338px;
+    height: 435px;
 `;
 
 const ItemImage = styled.img`

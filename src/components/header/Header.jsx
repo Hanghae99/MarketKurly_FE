@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Grid from "../../elements/Grid";
 import { logOut } from "../../redux/modules/user";
 import HoverList from "./HoverList";
 import { history } from "../../redux/store";
+import { actionCreators as productActions } from "../../redux/modules/product";
 
 const Header = (props) => {
-  const token = localStorage.getItem("token");
-
-  const is_login = useSelector((state) => state.user.is_login);
   const dispatch = useDispatch();
+  const [ word, setWord ] = useState("");
+
+  const token = localStorage.getItem("token");
+  const is_login = useSelector((state) => state.user.is_login);
 
   const logout_click = () => {
     localStorage.removeItem("token");
@@ -29,6 +31,11 @@ const Header = (props) => {
 
   const onMoveMain = () => {
     history.push("/");
+  };
+  
+  const searchItem = () => {
+    dispatch(productActions.getProductApi(1, word));
+    setWord("");
   };
 
   if (token && is_login) {
@@ -79,8 +86,13 @@ const Header = (props) => {
               <li className="menu5">특가/혜택</li>
             </GnbMenu>
             <Grid position="relative">
-              <GnbInput placeholder="검색어를 입력해주세요." />
+              <GnbInput 
+                onChange={(e) => {setWord(e.target.value)}}
+                value={word}
+                placeholder="검색어를 입력해주세요."
+              />
               <GnbInputClick
+                onClick={searchItem}
                 src="https://res.kurly.com/pc/service/common/1908/ico_search_x2.png"
                 width="30px"
                 height="30px"
@@ -146,8 +158,13 @@ const Header = (props) => {
               <li className="menu5">특가/혜택</li>
             </GnbMenu>
             <Grid position="relative">
-              <GnbInput placeholder="검색어를 입력해주세요." />
+            <GnbInput 
+                onChange={(e) => {setWord(e.target.value)}}
+                value={word}
+                placeholder="검색어를 입력해주세요."
+              />
               <GnbInputClick
+                onClick={searchItem}
                 src="https://res.kurly.com/pc/service/common/1908/ico_search_x2.png"
                 width="30px"
                 height="30px"
