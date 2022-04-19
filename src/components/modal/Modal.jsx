@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Button, Grid } from '../../elements';
@@ -9,9 +9,23 @@ import { setModal } from '../../redux/modules/modal'
 const Modal = (props) => {
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        document.body.style.cssText = `
+          position: fixed; 
+          top: -${window.scrollY}px;
+          overflow-y: scroll;
+          width: 100%;
+        `;
+        
+        return () => {
+          const scrollY = document.body.style.top;
+          document.body.style.cssText = '';
+          window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+        };
+      }, []);
+
     const closeModal = () => {
         dispatch(setModal(false));
-        // document.getElementById("root").style.position = "static";
     };
 
     return (
