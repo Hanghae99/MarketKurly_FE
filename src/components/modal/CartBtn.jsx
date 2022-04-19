@@ -7,9 +7,16 @@ const CartBtn = (props) => {
     const { right, bottom } = props;
     const styles = { right, bottom };
     const dispatch = useDispatch();
-
+    const product_list = props.list;
+    const new_product_list = {
+        ...product_list,
+        quantity: 0,
+        sum: 0,
+    }
+    console.log(new_product_list)
+    
     const openModal = () => {
-        dispatch(setModal(true));
+        dispatch(setModal(true, new_product_list));
         // document.getElementById("root").style.position = "fixed";
     };
 

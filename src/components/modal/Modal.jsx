@@ -11,7 +11,7 @@ const Modal = (props) => {
 
     const closeModal = () => {
         dispatch(setModal(false));
-        document.getElementById("root").style.position = "static";
+        // document.getElementById("root").style.position = "static";
     };
 
     return (

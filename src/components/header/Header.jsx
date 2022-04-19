@@ -35,7 +35,14 @@ const Header = (props) => {
   
   const searchItem = () => {
     dispatch(productActions.getProductApi(1, word));
+    window.scrollTo(0, 0);
     setWord("");
+  };
+
+  const doSearch = (e) => {
+    if(e.keyCode === 13){
+      searchItem();
+    };
   };
 
   if (token && is_login) {
@@ -87,6 +94,7 @@ const Header = (props) => {
             </GnbMenu>
             <Grid position="relative">
               <GnbInput 
+                onKeyDown={doSearch}
                 onChange={(e) => {setWord(e.target.value)}}
                 value={word}
                 placeholder="검색어를 입력해주세요."
@@ -159,6 +167,7 @@ const Header = (props) => {
             </GnbMenu>
             <Grid position="relative">
             <GnbInput 
+                onKeyDown={doSearch}
                 onChange={(e) => {setWord(e.target.value)}}
                 value={word}
                 placeholder="검색어를 입력해주세요."

@@ -10,6 +10,7 @@ const IS_LOADING = "IS_LOADING";
 // initialState
 const initialState = {
     loading: false,
+    search_word: null,
     page: 1,
     list: [
         {
@@ -24,7 +25,7 @@ const initialState = {
 };
 
 // actionCreators
-const getProduct = createAction(GET_PRODUCT, (page, product_list) => ({page, product_list}));
+const getProduct = createAction(GET_PRODUCT, (page, search_word, product_list) => ({page, search_word, product_list}));
 const getOneProduct = createAction(GET_ONE_PRODUCT, (product) => ({product}));
 const isLoading = createAction(IS_LOADING, (is_loading) => ({is_loading}));
 
@@ -37,12 +38,12 @@ const getProductApi = (page, search_word) => {
             if(!search_word){
                 product = await axios.get(`http://54.180.156.74/api/board`,{
                     params: {
-                        "searchWord": "밀키트",
+                        "searchWord": "프레시지",
                         "page": page,
                     },
                 });
                 const product_list = product.data.content;
-                dispatch(getProduct(page, product_list));
+                dispatch(getProduct(page, search_word, product_list));
             }else{
                 product = await axios.get("http://54.180.156.74/api/board",{
                     params: {
@@ -51,9 +52,16 @@ const getProductApi = (page, search_word) => {
                     },
                 });
                 const product_list = product.data.content;
-                dispatch(getProduct(page, product_list));
+                dispatch(getProduct(page, search_word, product_list));
                 history.push('/search');
             };
+            // console.log(product.data.content)
+            // const a = {...product.data.content[1]}
+            // console.log(a)
+            // const product_arr = product.data.content;
+            // console.log(product_arr)
+            // const new_arr = product_arr.map((v => v.price = v.price.toLocaleString('ko-KR')));
+            // console.log(new_arr)
         }catch(err){
             console.log("에러발생", err);
             window.alert("해당 상품은 없는 상품입니다.");
@@ -74,6 +82,7 @@ export default handleActions(
             produce(state, (draft) => {
                 draft.page = action.payload.page;
                 draft.list = action.payload.product_list;
+                draft.search_word = action.payload.search_word;
                 draft.is_loading = false;
         }),
         [IS_LOADING]: (state, action) =>

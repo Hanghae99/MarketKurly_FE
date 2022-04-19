@@ -6,7 +6,8 @@ import CartBtn from '../modal/CartBtn';
 
 const Item = (props) => {
     const { imgUrl, brand, price, name } = props;
-
+    
+    const locale_price = price.toLocaleString('ko-KR');
     return (
         <ItemContainer>
             <ItemImageWrap>
@@ -14,7 +15,7 @@ const Item = (props) => {
                     src={imgUrl}
                     alt={brand}
                 />
-                <CartBtn />
+                <CartBtn list={props}/>
             </ItemImageWrap>
             <ItemInfoContainer>
                 <h3 style={{marginBottom: "8px"}}>
@@ -26,9 +27,9 @@ const Item = (props) => {
                 </h3>
                 <Grid>
                     <Discount>10%</Discount>
-                    <Price>8,140원</Price>
+                    <Price>{locale_price}원</Price>
                 </Grid>
-                <PrePrice>{price}</PrePrice>
+                {/* <PrePrice>{price}</PrePrice> */}
             </ItemInfoContainer>
         </ItemContainer>
     )
