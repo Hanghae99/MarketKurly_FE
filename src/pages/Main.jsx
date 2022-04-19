@@ -21,7 +21,6 @@ const Main = (props) => {
         dispatch(productActions.getProductApi(page));
     }, []);
 
-    console.log("pageNumber :", page);
     return(
         <>
             <Banner />

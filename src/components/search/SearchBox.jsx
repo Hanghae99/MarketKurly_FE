@@ -13,6 +13,12 @@ const SearchBox = (props) => {
         setWord("");
     };
 
+    const doSearch = (e) => {
+        if(e.keyCode === 13){
+            searchItem();
+        };
+    };
+
     return (
         <Container>
             <Grid justify="space-around" flex>
@@ -25,6 +31,7 @@ const SearchBox = (props) => {
                     />
                 <Grid width="845px" padding="26px 26px 0 0" flex >
                     <Input 
+                        onKeyDown={doSearch}
                         type="text"
                         value={word}
                         onChange={(e) => setWord(e.target.value)}
