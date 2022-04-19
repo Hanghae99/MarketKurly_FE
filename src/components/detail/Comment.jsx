@@ -1,7 +1,9 @@
 import React from "react";
+
 import styled from "styled-components";
 
-const Comment = () => {
+const Comment = (props) => {
+  console.log(props);
   return (
     <>
       <OneComment>
@@ -12,7 +14,7 @@ const Comment = () => {
             paddingRight: "18px",
           }}
         >
-          2583
+          {props.userId}
         </CommentData>
         <CommentData
           style={{
@@ -22,7 +24,7 @@ const Comment = () => {
             textAlign: "left",
           }}
         >
-          맛살 무쌈 맛있어요
+          {props.comment}
         </CommentData>
         <CommentData
           style={{
@@ -36,7 +38,7 @@ const Comment = () => {
             textAlign: "left",
           }}
         >
-          연재몬
+          {props.nickname}
         </CommentData>
         <CommentData
           style={{
@@ -45,7 +47,7 @@ const Comment = () => {
             textAlign: "center",
           }}
         >
-          2022-08-14
+          {props.createdAt}
         </CommentData>
         <CommentData
           style={{
@@ -65,26 +67,6 @@ const Comment = () => {
           0
         </CommentData>
       </OneComment>
-      {/* {clickComment && (
-        <CommentDetail> */}
-      {/* <DetailWrap>
-            <DetailTitle>{props.productName}</DetailTitle>
-            {props.file ? <DetailImage src={props.file} /> : null}
-            <Detail>{props.comment}</Detail>
-          </DetailWrap> */}
-
-      {/* <HelpWrap>
-            <HelpButton onClick={helpReview}>
-              도움이 돼요 {props.helpCount}
-            </HelpButton>
-          </HelpWrap>
-          <DeleteWrap>
-            {userId === props.uid ? (
-              <DeleteButton onClick={deleteReview}>삭제하기</DeleteButton>
-            ) : null}
-          </DeleteWrap> */}
-      {/* </CommentDetail>
-      )} */}
     </>
   );
 };

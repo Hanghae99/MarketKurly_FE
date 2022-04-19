@@ -1,19 +1,24 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Grid, Text } from '../../elements';
 import CountBtn from './CountBtn';
 
 const ModalItem = (props) => {
+    const product_list = useSelector(state => state.modal.list);
+    const locale_price = product_list.price.toLocaleString('ko-KR');
     return (
         <Container>
             <Text
                 lineHeight="20px"
-                text="[브리미] 라코타 치즈"
+                text={product_list.brand 
+                    ? `[${product_list.brand }] ${product_list.name }`
+                    : `${product_list.name}`}
             />
             <Grid padding="7px 0 0 0" flex>
                 <Text 
                     padding="0 4px 0 0"
-                    text="8,900원"
+                    text={`${locale_price}원`}
                     bold="bold"
                 />
                 <CountBtn />

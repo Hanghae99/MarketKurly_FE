@@ -1,15 +1,20 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import SearchBox from '../components/search/SearchBox';
-import SortMenu from '../components/search/SortMenu';
-import Item from '../components/shared/Item';
+
+import { SearchBox, SortMenu } from '../components/search/index';
 import { Grid, Text } from '../elements';
-import Spinner from '../shared/Spinner';
+import { Spinner, Pagination } from '../shared/index';
+import Item from '../components/shared/Item';
+import { history } from '../redux/store';
+
 
 const SearchPage = (props) => {
     const item_list = useSelector(state => state.product.list);
     const is_loading = useSelector(state => state.product.is_loading);
+    const search_word = useSelector(state => state.product.search_word);
 
+    // 새로고침시 메인으로 이동
+    if(!search_word) history.replace('/');
     return (
         <>
             {is_loading && <Spinner type="page" is_dim/>}
@@ -40,6 +45,7 @@ const SearchPage = (props) => {
                     )}
                 </Grid>
             </Grid>
+            <Pagination />
         </>
     );
 };

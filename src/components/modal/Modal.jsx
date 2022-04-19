@@ -1,17 +1,56 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Button, Grid } from '../../elements';
 import ModalItem from './ModalItem';
 import ModalSum from './ModalSum';
-import { setModal } from '../../redux/modules/modal'
+import { setAlertModal, setModal } from '../../redux/modules/modal'
 
 const Modal = (props) => {
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        document.body.style.cssText = `
+          position: fixed; 
+          top: -${window.scrollY}px;
+          overflow-y: scroll;
+          width: 100%;
+        `;
+        
+        return () => {
+          const scrollY = document.body.style.top;
+          document.body.style.cssText = '';
+          window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+        };
+      }, []);
+
     const closeModal = () => {
         dispatch(setModal(false));
-        document.getElementById("root").style.position = "static";
+    };
+
+    const product_in_modal = useSelector(state => state.modal.list);
+
+    // localStorage 장바구니
+    const goBasket = () => {
+        if(product_in_modal.quantity === 0){
+            dispatch(setAlertModal(true));
+            return;
+        };
+
+        const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
+        
+        let idx;
+        baskets.map((v, i) => {
+            if(v?.id === product_in_modal.id) return idx = i;
+        })
+
+        if(typeof(idx) === 'number'){
+            baskets[idx].quantity += product_in_modal.quantity;
+        } else {
+            baskets.push(product_in_modal);
+        }
+        localStorage.setItem("baskets", JSON.stringify(baskets));
+        closeModal();
     };
 
     return (
@@ -31,6 +70,7 @@ const Modal = (props) => {
                         bold="bold"
                     />
                     <Button 
+                        onClick={goBasket}
                         type="big"
                         height="54px"
                         width="184px"

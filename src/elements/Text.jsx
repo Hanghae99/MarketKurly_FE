@@ -1,3 +1,4 @@
+import { nodeName } from 'jquery';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -13,6 +14,7 @@ const Text = (props) => {
         margin,
         width,
         textAlign,
+        borderB,
     } = props;
 
     const styles = {
@@ -25,6 +27,7 @@ const Text = (props) => {
         margin,
         width,
         textAlign,
+        borderB,
     }
     return (
         <ElText 
@@ -46,6 +49,7 @@ Text.defaultProps = {
     margin: false,
     width: "100%",
     textAlign: "auto",
+    borderB: "none",
 }
 
 const ElText = styled.div`
@@ -58,6 +62,7 @@ const ElText = styled.div`
     margin: ${props => props.margin};
     width: ${props => props.width};
     text-align: ${props => props.textAlign};
+    border-bottom: ${props => props.borderB};
     user-select: none;
 `;
         

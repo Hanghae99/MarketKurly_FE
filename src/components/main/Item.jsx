@@ -5,7 +5,8 @@ import { Grid } from '../../elements/index';
 import CartBtn from '../modal/CartBtn';
 
 const Item = (props) => {
-    const { imgUrl, brand, price, name } = props;
+    const { imgUrl, brand, price, name, sale_rate, sale_price } = props;
+    
     return (
         <ItemContainer>
             <ItemImageWrap>
@@ -13,19 +14,21 @@ const Item = (props) => {
                     src={imgUrl}
                     alt={brand}
                 />
-                <CartBtn bottom="10px" right="10px"/>
+                {/* <CartBtn bottom="10px" right="10px"/> */}
             </ItemImageWrap>
             <ItemInfoContainer>
                 <h3 style={{marginBottom: "8px"}}>
                     <BrandName to="">  
-                            {`[${brand}] ${name}`}
+                        {brand 
+                            ? `[${brand}] ${name}`
+                            : `${name}`}
                     </BrandName>
                 </h3>
                 <Grid>
-                    <Discount>10%</Discount>
-                    <Price>8,140원</Price>
+                    {sale_rate && <Discount>{sale_rate}</Discount>}
+                    <Price>{price}</Price>
                 </Grid>
-                <PrePrice>{price}</PrePrice>
+                {sale_price && <PrePrice>{sale_price}</PrePrice>}
             </ItemInfoContainer>
         </ItemContainer>
     )

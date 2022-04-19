@@ -5,6 +5,7 @@ import SearchPage from "./SearchPage";
 import CartPage from "./CartPage";
 import DetailPage from "./DetailPage";
 import ReviewWritePage from "./ReviewWritePage";
+import "@fortawesome/fontawesome-free/js/all.js";
 
 export {
   Main,

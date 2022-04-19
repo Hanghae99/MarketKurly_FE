@@ -1,8 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Grid, Text } from '../../elements';
 
 const ModalSum = (props) => {
+    const sum = useSelector(state => state.modal.list.sum);
+    const locale_price = sum.toLocaleString('ko-KR');
     return (
         <Grid>
             <Grid padding="20px 0 0 0" flex>
@@ -15,7 +18,7 @@ const ModalSum = (props) => {
                 />
                 <Grid flex>
                     <Text
-                        text="0" 
+                        text={locale_price ? locale_price : "0"} 
                         size="24px"
                         lineHeight="24px"
                         padding="0 0 3px 0"

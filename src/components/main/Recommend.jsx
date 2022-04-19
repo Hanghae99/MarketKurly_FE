@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css"
 import { Button, Grid } from '../../elements';
 import Item from '../../components/main/Item';
 import Text from './Text';
-import {RESP} from '../../shared/banner'
+import {RESP} from '../../shared/recomList'
 
 const Recommend = (props) => {
     const settings = { 

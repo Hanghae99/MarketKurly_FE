@@ -17,15 +17,21 @@ const NumBtn = () => {
 
   return (
     <>
-      <Box>
-        <Btn onClick={min}>-</Btn>
-        <label htmlFor="1">
-          <Input type="number" id="1" />
-          {number}
-        </label>
+      <Total>
+        <Box>
+          <Btn onClick={min}>
+            <i className="fa-solid fa-minus"></i>
+          </Btn>
+          <label htmlFor="1">
+            <Input type="number" id="1" />
+            {number}
+          </label>
 
-        <Btn onClick={max}>+</Btn>
-      </Box>
+          <Btn onClick={max}>
+            <i class="fa-solid fa-plus-large"></i>
+          </Btn>
+        </Box>
+      </Total>
     </>
   );
 };
@@ -33,12 +39,19 @@ const NumBtn = () => {
 export default NumBtn;
 
 const Input = styled.input`
-  width: 20px;
+  width: fit-content;
   display: none;
 `;
 
+const Total = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Box = styled.div`
-  width: 88px;
+  margin-left: 20px;
+  width: 80px;
   height: 30px;
   border: 1px solid #dddfe1;
   border-radius: 3px;
@@ -52,12 +65,11 @@ const Btn = styled.button`
   height: 28px;
   border: none;
   color: #333;
-  font-weight: bold;
   background-color: white;
   border-radius: 4px;
   font-weight: 600;
   text-align: center;
   outline: none;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 12px;
 `;

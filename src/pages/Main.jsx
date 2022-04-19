@@ -14,14 +14,12 @@ const Main = (props) => {
     const page_num = useSelector(state => state.product.page);
     const product_list = useSelector(state => state.product.list);
     const is_loading = useSelector(state => state.product.is_loading);
-
     const [ page ] = useState(page_num);
     
     useEffect(() => {
         dispatch(productActions.getProductApi(page));
     }, []);
 
-    console.log("pageNumber :", page);
     return(
         <>
             <Banner />
@@ -35,7 +33,7 @@ const Main = (props) => {
                 lineHeight="1.15"
                 letterSpacing="-.26px"
                 bold="500"
-                text="마켓컬리 MD추천"
+                text={`마켓컬리와 프레시지의 합작`}
                 padding="32px 0 0 0"
             />
             <Grid 

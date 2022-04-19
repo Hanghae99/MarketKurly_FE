@@ -1,8 +1,15 @@
 import styled from "styled-components";
-import { React } from "react";
+import { React, useEffect } from "react";
 import Comment from "./Comment";
+import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 
 const Review = () => {
+  const history = useHistory();
+  const post_list = useSelector((state) => state.comment.commentList);
+  console.log(post_list);
+
+  useEffect(() => {});
   return (
     <>
       <Total>
@@ -20,13 +27,6 @@ const Review = () => {
                   배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리
                   내1:1 문의에 남겨주세요.
                 </Li>
-                {/* <div>
-                  <select name="" id="">
-                    <option value="">최근등록순</option>
-                    <option value="">좋아요많은순</option>
-                    <option value="">조회많은순</option>
-                  </select>
-                </div> */}
               </Content>
             </Title>
             <HeaderInfo>
@@ -86,22 +86,51 @@ const Review = () => {
               </Info>
             </HeaderInfo>
             <div>
-              <Comment />
-              <Comment />
-              <Comment />
+              {post_list.map((item, idx) => {
+                return <Comment key={item.id} {...item} />;
+              })}
             </div>
           </Form>
         </div>
       </Total>
+      <Reg>
+        <Btn
+          onClick={() => {
+            history.push("/detail/write");
+          }}
+        >
+          후기쓰기
+        </Btn>
+      </Reg>
     </>
   );
 };
 
 export default Review;
 
+const Reg = styled.div`
+  display: block;
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  background-color: #795b8f;
+  border: 1px solid #5f0080;
+  margin-left: 1370px;
+`;
+
+const Btn = styled.button`
+  color: #fff;
+  border-style: none;
+  background-color: #795b8f;
+  height: 100%;
+  font-weight: 500;
+  font-size: 12px;
+  cursor: pointer;
+`;
+
 const Total = styled.div`
-  width: 1050px;
-  margin: 20px auto;
+  width: 850px;
+  margin: 50px auto;
   padding-top: 20px;
   display: flex;
 `;
@@ -151,35 +180,4 @@ const Content = styled.div`
 
 const Li = styled.li`
   width: 100%;
-`;
-
-const Tr = styled.tr`
-  display: table-row;
-  vertical-align: inherit;
-  border-color: inherit;
-  color: #353535;
-  font-size: 12px;
-  line-height: 140%;
-`;
-
-const Th = styled.th`
-  padding: 25px 0 23px;
-  vertical-align: middle;
-  font-size: 12px;
-`;
-
-const Table = styled.table`
-  margin: 15px 0 0;
-  color: #353535;
-  font-size: 12px;
-  line-height: 140%;
-  table-layout: fixed;
-  border-collapse: collapse;
-  border-top: 2px solid #522772;
-`;
-
-const Tbody = styled.tbody`
-  display: table-row-group;
-  vertical-align: middle;
-  border-color: inherit;
 `;
