@@ -13,11 +13,9 @@ const CartBtn = (props) => {
         quantity: 0,
         sum: 0,
     }
-    console.log(new_product_list)
     
     const openModal = () => {
         dispatch(setModal(true, new_product_list));
-        // document.getElementById("root").style.position = "fixed";
     };
 
     return (

@@ -45,6 +45,8 @@ const Header = (props) => {
     };
   };
 
+  const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
+
   if (token && is_login) {
     return (
       <>
@@ -110,6 +112,7 @@ const Header = (props) => {
             <Icons className="location" />
             <Icons className="pick" />
             <Icons className="cart" onClick={() => history.push("/cart")} />
+            {baskets.length ? <CartItemNum>{baskets.length}</CartItemNum> : ''}
           </Gnb>
           <Shadow />
         </Container>
@@ -183,6 +186,7 @@ const Header = (props) => {
             <Icons className="location" />
             <Icons className="pick" />
             <Icons className="cart" onClick={() => history.push("/cart")} />
+            {baskets.length ? <CartItemNum>{baskets.length}</CartItemNum> : ''}
           </Gnb>
           <Shadow />
         </Container>
@@ -407,4 +411,19 @@ const Shadow = styled.div`
   background: url(https://res.kurly.com/pc/service/common/1902/bg_1x9.png)
     repeat-x 0 100%;
 `;
+
+const CartItemNum = styled.div`
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  background-color: #5f0080;
+  font-size: 10px;
+  color: #fff;
+  right: -1px;
+  top: 5px;
+  text-align: center;
+`;
+
 export default Header;
