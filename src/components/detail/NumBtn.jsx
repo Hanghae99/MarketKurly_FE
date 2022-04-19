@@ -1,13 +1,28 @@
 import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 const NumBtn = () => {
+  const [number, setNumber] = useState(1);
+
+  const min = () => {
+    setNumber(parseInt(number) - 1);
+  };
+
+  const max = () => {
+    setNumber(parseInt(number) + 1);
+  };
+
   return (
     <>
       <Box>
-        <Btn>-</Btn>
-        <Input type="number" placeholder={1} />
-        <Btn>+</Btn>
+        <Btn onClick={min}>-</Btn>
+        <label htmlFor="1">
+          <Input type="number" id="1" />
+          {number}
+        </label>
+
+        <Btn onClick={max}>+</Btn>
       </Box>
     </>
   );
@@ -17,6 +32,7 @@ export default NumBtn;
 
 const Input = styled.input`
   width: 20px;
+  display: none;
 `;
 
 const Box = styled.div`
@@ -24,6 +40,9 @@ const Box = styled.div`
   height: 30px;
   border: 1px solid #dddfe1;
   border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Btn = styled.button`
@@ -37,4 +56,6 @@ const Btn = styled.button`
   font-weight: 600;
   text-align: center;
   outline: none;
+  cursor: pointer;
+  font-size: 20px;
 `;

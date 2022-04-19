@@ -21,7 +21,7 @@ const Detail = () => {
                 <Wrapper>
                   <Strong>
                     <span>[마이올리브트리]</span>
-                    엑스트라버진 500ml
+                    엑스트라버진 500ml엑스트라버진
                   </Strong>
                   {/* <Icon
                   src="https://res.kurly.com/mobile/service/goodsview/1910/ico_view_sns.png"

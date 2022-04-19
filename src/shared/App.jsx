@@ -30,7 +30,6 @@ function App() {
         <Route path="/cart" exact component={CartPage} />
         <Route path="/search" exact component={SearchPage} />
         <Route path="/detail" exact component={DetailPage} />
-
         <Footer />
         <ScrollTop />
       </ConnectedRouter>
