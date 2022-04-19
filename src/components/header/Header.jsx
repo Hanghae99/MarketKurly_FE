@@ -9,7 +9,7 @@ import { actionCreators as productActions } from "../../redux/modules/product";
 
 const Header = (props) => {
   const dispatch = useDispatch();
-  const [ word, setWord ] = useState("");
+  const [word, setWord] = useState("");
 
   const token = localStorage.getItem("token");
   const is_login = useSelector((state) => state.user.is_login);
@@ -17,8 +17,6 @@ const Header = (props) => {
   const logout_click = () => {
     localStorage.removeItem("token");
     dispatch(logOut());
-    history.replace("/");
-    // window.location.reload();
   };
 
   const onMoveRegister = () => {
@@ -32,7 +30,7 @@ const Header = (props) => {
   const onMoveMain = () => {
     history.push("/");
   };
-  
+
   const searchItem = () => {
     dispatch(productActions.getProductApi(1, word));
     setWord("");
@@ -86,8 +84,10 @@ const Header = (props) => {
               <li className="menu5">특가/혜택</li>
             </GnbMenu>
             <Grid position="relative">
-              <GnbInput 
-                onChange={(e) => {setWord(e.target.value)}}
+              <GnbInput
+                onChange={(e) => {
+                  setWord(e.target.value);
+                }}
                 value={word}
                 placeholder="검색어를 입력해주세요."
               />
@@ -158,8 +158,10 @@ const Header = (props) => {
               <li className="menu5">특가/혜택</li>
             </GnbMenu>
             <Grid position="relative">
-            <GnbInput 
-                onChange={(e) => {setWord(e.target.value)}}
+              <GnbInput
+                onChange={(e) => {
+                  setWord(e.target.value);
+                }}
                 value={word}
                 placeholder="검색어를 입력해주세요."
               />

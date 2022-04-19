@@ -11,6 +11,7 @@ import {
   SearchPage,
   CartPage,
   DetailPage,
+  ReviewWritePage,
 } from "../pages/index";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
@@ -30,6 +31,7 @@ function App() {
         <Route path="/cart" exact component={CartPage} />
         <Route path="/search" exact component={SearchPage} />
         <Route path="/detail" exact component={DetailPage} />
+        <Route path="/detail/write" exact component={ReviewWritePage} />
         <Footer />
         {/* <ScrollTop /> */}
       </ConnectedRouter>

@@ -6,7 +6,9 @@ const NumBtn = () => {
   const [number, setNumber] = useState(1);
 
   const min = () => {
-    setNumber(parseInt(number) - 1);
+    if (number <= 1) {
+      window.alert("최소주문수량은 1개입니다!");
+    } else setNumber(parseInt(number) - 1);
   };
 
   const max = () => {
@@ -41,7 +43,7 @@ const Box = styled.div`
   border: 1px solid #dddfe1;
   border-radius: 3px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `;
 

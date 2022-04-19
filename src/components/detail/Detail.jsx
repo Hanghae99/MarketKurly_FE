@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid } from "../../elements";
 import NumBtn from "./NumBtn";
 
 const Detail = () => {
@@ -23,10 +22,6 @@ const Detail = () => {
                     <span>[마이올리브트리]</span>
                     엑스트라버진 500ml엑스트라버진
                   </Strong>
-                  {/* <Icon
-                  src="https://res.kurly.com/mobile/service/goodsview/1910/ico_view_sns.png"
-                  alt=""
-                /> */}
                 </Wrapper>
                 <Content>[그리스 햇올리브]2021년 가을 수확한 햇올리브</Content>
               </InfoSection>
@@ -36,10 +31,8 @@ const Detail = () => {
                   <Num>
                     39,600 <Won>원</Won>
                   </Num>
-                  {/* <Percent>40%</Percent> */}
                 </Price>
 
-                {/* <p>66,000원</p> */}
                 <P>로그인 후, 회원할인가와 적립혜택이 제공됩니다.</P>
               </div>
 
@@ -117,7 +110,6 @@ const Bold = styled.span`
 
 const Div = styled.div`
   padding: 30px 0 20px;
-  border-top: 1px solid #f4f4f4;
   color: #333;
   letter-spacing: 0;
   display: flex;
@@ -158,15 +150,7 @@ const Border = styled.div`
   margin-bottom: 20px;
 `;
 
-// const Icon = styled.img`
-//   display: flex;
-//   margin-left: 120px;
-//   cursor: pointer;
-// `;
-
-const Wrapper = styled.div`
-  /* display: flex; */
-`;
+const Wrapper = styled.div``;
 
 const Price = styled.div`
   width: 560px;
@@ -183,13 +167,6 @@ const Won = styled.span`
   font-size: 20px;
 `;
 
-// const Percent = styled.span`
-//   font-weight: 500;
-//   font-size: 30px;
-//   padding-left: 10px;
-//   color: #fa622f;
-// `;
-
 const Img = styled.div`
   padding: 0 40px 0 0;
   display: flex;
@@ -198,7 +175,6 @@ const Img = styled.div`
 `;
 
 const P = styled.p`
-  /* display: block; */
   padding-top: 7px;
   font-size: 14px;
   color: #5f0080;
@@ -210,13 +186,9 @@ const ImgSrc = styled.img`
   width: 430px;
   height: 552px;
   max-width: 100%;
-  /* display: flex; */
-  /* position: fixed; */
 `;
 
 const Strong = styled.p`
-  /* background-color: blanchedalmond; */
-  /* display: flex; */
   font-weight: 500;
   font-size: 24px;
   color: #333;
@@ -231,16 +203,8 @@ const Wrap = styled.div`
 `;
 
 const Fix = styled.div`
-  /* display: block; */
   padding: 10px;
 `;
-
-// const SaleText = styled.p`
-//   width: 560px;
-//   padding-right: 21px;
-//   font-size: 14px;
-//   color: #333;
-// `;
 
 const Content = styled.div`
   /* display: block; */
