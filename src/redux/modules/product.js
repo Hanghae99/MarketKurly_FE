@@ -10,6 +10,7 @@ const IS_LOADING = "IS_LOADING";
 // initialState
 const initialState = {
     loading: false,
+    search_word: null,
     page: 1,
     list: [
         {
@@ -24,7 +25,7 @@ const initialState = {
 };
 
 // actionCreators
-const getProduct = createAction(GET_PRODUCT, (page, product_list) => ({page, product_list}));
+const getProduct = createAction(GET_PRODUCT, (page, search_word, product_list) => ({page, search_word, product_list}));
 const getOneProduct = createAction(GET_ONE_PRODUCT, (product) => ({product}));
 const isLoading = createAction(IS_LOADING, (is_loading) => ({is_loading}));
 
@@ -33,16 +34,18 @@ const getProductApi = (page, search_word) => {
     return async function (dispatch, getState, {history}){
         dispatch(isLoading(true));
         try {
+            console.log(page, search_word)
             let product;
             if(!search_word){
                 product = await axios.get(`http://54.180.156.74/api/board`,{
                     params: {
-                        "searchWord": "밀키트",
+                        "searchWord": null,
                         "page": page,
                     },
                 });
                 const product_list = product.data.content;
-                dispatch(getProduct(page, product_list));
+                console.log(product.data)
+                dispatch(getProduct(page, search_word, product_list));
             }else{
                 product = await axios.get("http://54.180.156.74/api/board",{
                     params: {
@@ -51,7 +54,8 @@ const getProductApi = (page, search_word) => {
                     },
                 });
                 const product_list = product.data.content;
-                dispatch(getProduct(page, product_list));
+                console.log(product.data)
+                dispatch(getProduct(page, search_word, product_list));
                 history.push('/search');
             };
         }catch(err){
@@ -74,6 +78,7 @@ export default handleActions(
             produce(state, (draft) => {
                 draft.page = action.payload.page;
                 draft.list = action.payload.product_list;
+                draft.search_word = action.payload.search_word;
                 draft.is_loading = false;
         }),
         [IS_LOADING]: (state, action) =>

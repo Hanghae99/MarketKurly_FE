@@ -35,6 +35,7 @@ const Header = (props) => {
   
   const searchItem = () => {
     dispatch(productActions.getProductApi(1, word));
+    window.scrollTo(0, 0);
     setWord("");
   };
 

@@ -15,7 +15,7 @@ import {
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Modal from "../components/modal/Modal";
-import ScrollTop from "./ScrollTop";
+// import ScrollTop from "./ScrollTop";
 
 function App() {
   const is_open = useSelector((state) => state.modal.is_open);

@@ -14,7 +14,6 @@ const Main = (props) => {
     const page_num = useSelector(state => state.product.page);
     const product_list = useSelector(state => state.product.list);
     const is_loading = useSelector(state => state.product.is_loading);
-
     const [ page ] = useState(page_num);
     
     useEffect(() => {
