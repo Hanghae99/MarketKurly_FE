@@ -21,7 +21,7 @@ import AlertModal from "../components/modal/AlertModal";
 function App() {
   const is_open = useSelector((state) => state.modal.is_open);
   const is_open_alert = useSelector((state) => state.modal.alert_open);
-  console.log(is_open_alert)
+
   return (
     <>
       <ConnectedRouter history={history}>

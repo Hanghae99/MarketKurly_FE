@@ -29,7 +29,7 @@ const Modal = (props) => {
     };
 
     const product_in_modal = useSelector(state => state.modal.list);
-    console.log(product_in_modal.quantity)
+
     // localStorage 장바구니
     const goBasket = () => {
         if(product_in_modal.quantity === 0){
