@@ -33,7 +33,7 @@ const Main = (props) => {
                 lineHeight="1.15"
                 letterSpacing="-.26px"
                 bold="500"
-                text="마켓컬리 MD추천"
+                text={`마켓컬리와 프레시지의 합작`}
                 padding="32px 0 0 0"
             />
             <Grid 

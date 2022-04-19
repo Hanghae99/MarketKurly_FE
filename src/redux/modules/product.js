@@ -34,17 +34,15 @@ const getProductApi = (page, search_word) => {
     return async function (dispatch, getState, {history}){
         dispatch(isLoading(true));
         try {
-            console.log(page, search_word)
             let product;
             if(!search_word){
                 product = await axios.get(`http://54.180.156.74/api/board`,{
                     params: {
-                        "searchWord": null,
+                        "searchWord": "프레시지",
                         "page": page,
                     },
                 });
                 const product_list = product.data.content;
-                console.log(product.data)
                 dispatch(getProduct(page, search_word, product_list));
             }else{
                 product = await axios.get("http://54.180.156.74/api/board",{
@@ -54,10 +52,16 @@ const getProductApi = (page, search_word) => {
                     },
                 });
                 const product_list = product.data.content;
-                console.log(product.data)
                 dispatch(getProduct(page, search_word, product_list));
                 history.push('/search');
             };
+            // console.log(product.data.content)
+            // const a = {...product.data.content[1]}
+            // console.log(a)
+            // const product_arr = product.data.content;
+            // console.log(product_arr)
+            // const new_arr = product_arr.map((v => v.price = v.price.toLocaleString('ko-KR')));
+            // console.log(new_arr)
         }catch(err){
             console.log("에러발생", err);
             window.alert("해당 상품은 없는 상품입니다.");

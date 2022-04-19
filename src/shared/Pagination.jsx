@@ -14,12 +14,12 @@ const Pagination = (props) => {
     const search_word = useSelector(state => state.product.search_word);
     const [ choicedPage, setChoicedPage ] = useState(page_num);
     const [ prevPage, setPrevPage ] = useState();
-    console.log(search_word, "page: ", page_num)
+        
     /* 이번 프로젝트에서는 5페이지로 고정 */
     const num_arr = [1, 2, 3, 4, 5];
     
     useEffect(() => {
-        if(page_num === 1) setChoicedPage(1);
+        if(search_word) setChoicedPage(page_num);
         if(prevPage) link_arr.current[prevPage-1].classList.remove("choice-page");
         link_arr.current[choicedPage-1].className += " choice-page";
         setPrevPage(choicedPage);    
@@ -39,6 +39,8 @@ const Pagination = (props) => {
             window.scrollTo(0, 100);
         }
     };
+
+
 
     // 좋은 방식이 아닌 것 같음
     const clickArrow = (e) => {
