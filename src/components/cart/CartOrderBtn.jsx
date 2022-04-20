@@ -4,21 +4,24 @@ import styled from 'styled-components';
 
 const CartOrderBtn = (props) => {
     const cart_list = useSelector(state => state.cart.list);
-    const quantity_arr = cart_list.map(v => v.quantity);
-    const total_num = quantity_arr.reduce((acc, cur) => acc + cur, 0);
-   
-    if(total_num > 0){
+    // const quantity_arr = cart_list.map(v => v.quantity);
+    // const total_num = quantity_arr.reduce((acc, cur) => acc + cur, 0);
+    
+    const choice_item = cart_list.findIndex(v => v.checked === false)
+    
+    if(choice_item !== 0){
         return (
             <OrderContainer type="submit">
                 <span>주문하기</span>
             </OrderContainer>
         );
-    }
-    return (
-        <Container type="submit">
-            <span>상품을 담아주세요</span>
-        </Container>
-    );
+    }else{
+        return (
+            <Container type="submit">
+                <span>상품을 담아주세요</span>
+            </Container>
+        );
+    };
 };
 
 const OrderContainer = styled.button`

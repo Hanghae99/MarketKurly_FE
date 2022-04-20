@@ -6,7 +6,6 @@ import { logOut } from "../../redux/modules/user";
 import HoverList from "./HoverList";
 import { history } from "../../redux/store";
 import { actionCreators as productActions } from "../../redux/modules/product";
-import cart from "../../redux/modules/cart";
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -15,7 +14,6 @@ const Header = (props) => {
   const token = localStorage.getItem("token");
   const is_login = useSelector((state) => state.user.is_login);
   const nickname = useSelector((state) => state.user.user_info);
-  console.log(nickname);
 
   const logout_click = () => {
     localStorage.removeItem("token");
