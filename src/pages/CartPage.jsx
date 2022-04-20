@@ -8,18 +8,10 @@ import CartHeader from '../components/cart/CartHeader';
 import CartOrderBtn from '../components/cart/CartOrderBtn';
 import OrderInfo from '../components/cart/OrderInfo';
 import { Grid } from '../elements';
-import { setCart } from '../redux/modules/cart';
 
 const CartPage = (props) => {
-    const dispatch = useDispatch();
     const cart_list = useSelector(state => state.cart.list);
-    const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
-    console.log("baskets :", baskets)
-    console.log("cacart_list :",cart_list)
-    useEffect(() => {
-        dispatch(setCart(baskets));
-    },[]);
- 
+    console.log(cart_list)    
     return (
         <>
             <Text>장바구니</Text>
@@ -30,13 +22,7 @@ const CartPage = (props) => {
                         ?   cart_list.map((v,i) => 
                                 <CartBlock                                     
                                     key={v.id} 
-                                    id={v.id}
-                                    brand={v.brand}
-                                    name={v.name}
-                                    imgUrl={v.imgUrl}
-                                    price={v.price}
-                                    quantity={v.quantity}
-                                    sum={v.sum}
+                                    {...v}
                                 />
                             )
                         :   <CartContent>
