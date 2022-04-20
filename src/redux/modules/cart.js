@@ -5,6 +5,7 @@ import { produce } from "immer";
 const SET_CART = "SET_CART";
 const UPDATE_CART = "UPDATE_CART";
 const DELETE_CART = "DELETE_CART";
+const CHOICE_DELETE_CART ="CHOICE_DELETE_CART";
 const SET_CHECK = "SET_CHECK";
 const SET_CHECK_ALL = "SET_CHECK_ALL";
 
@@ -12,6 +13,7 @@ const SET_CHECK_ALL = "SET_CHECK_ALL";
 export const setCart = createAction(SET_CART, (cart_list) => ({cart_list}));
 export const updateCart = createAction(UPDATE_CART, (id, price, count) => ({id, price, count}));
 export const deleteCart = createAction(DELETE_CART, (id) => ({id}));
+export const choiceDeleteCart = createAction(CHOICE_DELETE_CART, () => ({}));
 export const setCheck = createAction(SET_CHECK, (id) => ({id}));
 export const setCheckAll = createAction(SET_CHECK_ALL, (is_check) => ({is_check}));
 
@@ -73,6 +75,19 @@ export default handleActions(
                 localStorage.setItem("baskets", JSON.stringify(baskets));
                 //
             }),
+        [CHOICE_DELETE_CART]: (state, action) =>
+            produce(state, (draft) => {
+                const new_arr = draft.list.filter(v => v.checked !== true);
+                draft.list = new_arr;
+
+                // localStorage 업데이트
+                const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
+                const new_baskets = baskets.filter(v => v.checked !== true);  
+                localStorage.setItem("baskets", JSON.stringify(new_baskets));
+                //
+            }),
+        
+
         [SET_CHECK]: (state, action) =>
             produce(state, (draft) => {
                 const idx = draft.list.findIndex(v => v.id === action.payload.id);
@@ -103,7 +118,6 @@ export default handleActions(
                 );    
                 localStorage.setItem("baskets", JSON.stringify(new_baskets));
                 //
-
             }),
     },
     initialState
@@ -115,6 +129,7 @@ const actionCreators = {
     deleteCart,
     setCheck,
     setCheckAll,
+    choiceDeleteCart,
 };
 
 export { actionCreators };

@@ -1,15 +1,39 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid } from '../../elements';
+import { useSelector } from 'react-redux';
+import { Grid, Text } from '../../elements';
 
 const CartAddress = (props) => {
+    const is_login = useSelector(state => state.user.is_login);
+    const post_address = useSelector(state => state.user.user_info?.address);
+  
+    if(is_login){
+        return (
+            <Container>
+                <Grid>
+                    <ElP className='address-place'>배송지</ElP>
+                    <Grid padding="11px 0 0 0">
+                        <ElP>{post_address}</ElP>
+                        <Text
+                            padding="8px 0 0 0"
+                            bold="normal"
+                            letterSpacing="-.3px"
+                            color="#5f0080"
+                            text="샛별배송"
+                        />
+                        <SearchAddress>배송지 변경</SearchAddress>
+                    </Grid>
+                </Grid>
+            </Container>
+        )
+    }
     return (
         <Container>
             <Grid>
-                <Text className='address-place'>배송지</Text>
+                <ElP className='address-place'>배송지</ElP>
                 <Grid padding="11px 0 0 0">
-                    <Text><span>배송지를 입력</span>하고</Text>
-                    <Text>배송유형을 확인해 보세요!</Text>
+                    <ElP><span>배송지를 입력</span>하고</ElP>
+                    <ElP>배송유형을 확인해 보세요!</ElP>
                     <SearchAddress><span />주소 검색</SearchAddress>
                 </Grid>
             </Grid>
@@ -19,20 +43,21 @@ const CartAddress = (props) => {
 
 const Container = styled.div`
     width: 100%;
-    height: 175px;
     border-bottom: 1px solid #ddd;
     padding: 23px 19px 20px;
 `;
 
-const Text = styled.p`
+const ElP = styled.p`
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
+    text-overflow: ellipsis;
+    word-break: break-word;
 
     &.address-place:before{
         content: '';
         padding-left: 24px;
-        background-image: url(https://res.kurly.com/pc/service/cart/2007/ico_location.svg);
+        background-image: url('https://res.kurly.com/pc/service/cart/2007/ico_location.svg');
         background-color: transparent;
         background-repeat: no-repeat;
         background-size: 20px 20px;

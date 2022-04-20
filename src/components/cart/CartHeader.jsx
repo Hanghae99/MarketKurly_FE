@@ -16,6 +16,17 @@ const CartHeader = (props) => {
         setChecked(!checked);
     };
 
+    const clickChoicedDelete = () => {
+        if(cart_list.length && checked_true_arr.length){
+            if(window.confirm("선택한 상품을 삭제하시겠습니까?")){
+                console.log("tlfgod")
+                dispatch(cartActions.choiceDeleteCart());
+            };
+        } else {
+            window.alert("선택된 상품이 없습니다.")
+        }
+    };
+
     return (
         <Container border={borderB}>
             <ChoiceAll>
@@ -23,7 +34,7 @@ const CartHeader = (props) => {
                     <CheckBox onClick={allCheck} check={props.check}/>
                     <Text className="all">전체선택 ({checked_true_arr.length}/{cart_list.length})</Text>
                 </Grid>
-                <Text className="choice">선택삭제</Text>
+                <Text className="choice" onClick={clickChoicedDelete}>선택삭제</Text>
             </ChoiceAll>
         </Container>
     );
@@ -50,6 +61,7 @@ const Text = styled.div`
     color: #333;
     line-height: 25px;
     letter-spacing: -.3px;
+    cursor: pointer;
 
     &.all {
         padding: 18px 0 17px;
