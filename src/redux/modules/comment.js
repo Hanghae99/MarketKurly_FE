@@ -70,7 +70,7 @@ export const addCommentDB = (productId, commentValue) => {
         history.push(`/detail/${productId}`);
       })
       .catch((err) => {
-        console.log(err);
+        window.alert("로그인 후 이용해주세요!");
       });
   };
 };
