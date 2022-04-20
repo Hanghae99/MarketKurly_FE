@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import CartAddress from '../components/cart/CartAddress';
 import CartBlock from '../components/cart/CartBlock';
@@ -11,13 +11,20 @@ import { Grid } from '../elements';
 
 const CartPage = (props) => {
     const cart_list = useSelector(state => state.cart.list);
-    console.log(cart_list)    
+    
+    let all_check_btn;
+    if(cart_list.findIndex(v => v.checked === false) === -1){
+        all_check_btn = true;
+    } else {
+        all_check_btn = false;
+    }; 
+   
     return (
         <>
             <Text>장바구니</Text>
             <CartContainer>
                 <CartLeft>
-                    <CartHeader borderB />
+                    <CartHeader borderB check={all_check_btn}/>
                     {cart_list.length 
                         ?   cart_list.map((v,i) => 
                                 <CartBlock                                     
@@ -29,7 +36,7 @@ const CartPage = (props) => {
                                 <p style={{textAlign: "center"}}>장바구니에 담긴 상품이 없습니다.</p>
                             </CartContent>
                     }
-                    <CartHeader />
+                    <CartHeader check={all_check_btn}/>
                 </CartLeft>
                 <Grid width="284px">
                     <CartRight>

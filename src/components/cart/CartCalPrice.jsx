@@ -1,25 +1,79 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { Text } from '../../elements';
 
 const CartCalPrice = (props) => {
+    const cart_list =useSelector(state => state.cart.list);
+    const checked_true_arr = cart_list.filter(v => v.checked === true);
+    const sum_arr = checked_true_arr.map(v => v.sum);
+    
+    const prevprice = sum_arr.reduce((acc, cur) => acc + cur, 0);
+    const locale_price = prevprice.toLocaleString('ko-KR') + "원";
+    
+    const post_price = prevprice >= 40000 ? 0 : 3000;
+    const post_price_locale = post_price.toLocaleString('ko-KR')
+    
+    const free_post_price_rest = prevprice >= 40000 ? "" : 40000-prevprice;
+    const free_post_price_rest_locale = free_post_price_rest.toLocaleString('ko-KR') + "원 추가주문 시, 무료배송";
+    
+    const expected_payment = post_price + prevprice;
+    const expected_payment_locale = expected_payment.toLocaleString('ko-KR')
+    
+    if(checked_true_arr.length === 0){
+        return (
+            <Container>
+            <Calculate>
+                <Span>상품금액</Span>
+                <Span>0원</Span>
+            </Calculate>
+            <Calculate>
+                <Span>상품할인금액</Span>
+                <Span>0원</Span>
+            </Calculate>
+            <Calculate>
+                <Span>배송비</Span>
+                <Span>0원</Span>
+            </Calculate> 
+            <Line />
+            <Calculate>
+                <Span>결제예정금액</Span>
+                <Sum>0원</Sum>
+            </Calculate>
+        </Container>
+        )
+    }
     return (
         <Container>
             <Calculate>
-                <Text>상품금액</Text>
-                <Text>0원</Text>
+                <Span>상품금액</Span>
+                <Span>{locale_price}</Span>
             </Calculate>
             <Calculate>
-                <Text>상품할인금액</Text>
-                <Text>0원</Text>
+                <Span>상품할인금액</Span>
+                <Span>0원</Span>
             </Calculate>
             <Calculate>
-                <Text>배송비</Text>
-                <Text>0원</Text>
+                <Span>배송비</Span>
+                {post_price
+                    ? <Span>+{post_price_locale}원</Span>
+                    : <Span>0원</Span>
+                }
             </Calculate>
+            {free_post_price_rest 
+                &&  <Text
+                        text={free_post_price_rest_locale}
+                        padding="3px 0 0 0"
+                        textAlign="right"
+                        color="#5f0080"
+                        size="12px"
+                        lineHeight="18px"
+                    />
+            }
             <Line />
             <Calculate>
-                <Text>결제예정금액</Text>
-                <Sum>0원</Sum>
+                <Span>결제예정금액</Span>
+                <Sum>{expected_payment_locale}원</Sum>
             </Calculate>
         </Container>
     )
@@ -42,7 +96,7 @@ const Line = styled.div`
     border-top: 1px solid #eee;
 `;
 
-const Text = styled.div`
+const Span = styled.div`
     font-size: 16px;
     line-height: 27px;
     color: #4c4c4c;

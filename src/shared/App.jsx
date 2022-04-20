@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     if (baskets.length > 0) {
       dispatch(cartActions.setCart(baskets));
-    }
+    };
   }, []);
 
   useEffect(() => {

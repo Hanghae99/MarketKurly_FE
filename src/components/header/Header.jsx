@@ -6,6 +6,7 @@ import { logOut } from "../../redux/modules/user";
 import HoverList from "./HoverList";
 import { history } from "../../redux/store";
 import { actionCreators as productActions } from "../../redux/modules/product";
+import cart from "../../redux/modules/cart";
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const Header = (props) => {
     }
   };
 
-  const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
+  const cart_list = useSelector(state => state.cart.list);
 
   if (token && is_login) {
     return (
@@ -127,7 +128,7 @@ const Header = (props) => {
             <Icons className="location" />
             <Icons className="pick" />
             <Icons className="cart" onClick={onMoveCart} />
-            {baskets.length ? <CartItemNum>{baskets.length}</CartItemNum> : ""}
+            {cart_list.length ? <CartItemNum>{cart_list.length}</CartItemNum> : ''}
           </Gnb>
           <Shadow />
         </Container>
@@ -203,7 +204,7 @@ const Header = (props) => {
             <Icons className="location" />
             <Icons className="pick" />
             <Icons className="cart" onClick={onMoveCart} />
-            {baskets.length ? <CartItemNum>{baskets.length}</CartItemNum> : ""}
+            {cart_list.length ? <CartItemNum>{cart_list.length}</CartItemNum> : ''}
           </Gnb>
           <Shadow />
         </Container>
