@@ -1,18 +1,27 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Grid } from '../../elements';
+import { actionCreators as cartActions} from '../../redux/modules/cart';
 
 const CartHeader = (props) => {
+    const dispatch = useDispatch();
     const { borderB } = props;
     const cart_list = useSelector(state => state.cart.list);
-    // const is_choice = useSelector(state => state.cart.list)
+    const checked_true_arr = cart_list.filter(v => v.checked === true);
+    
+    const [ checked, setChecked ] = useState(props.check);
+    const allCheck = () => {
+        dispatch(cartActions.setCheckAll(!checked));
+        setChecked(!checked);
+    };
+
     return (
         <Container border={borderB}>
             <ChoiceAll>
                 <Grid flex>
-                    <CheckBox onClick={() => {}}/>
-                    <Text className="all">전체선택 ({cart_list.length}/{cart_list.length})</Text>
+                    <CheckBox onClick={allCheck} check={props.check}/>
+                    <Text className="all">전체선택 ({checked_true_arr.length}/{cart_list.length})</Text>
                 </Grid>
                 <Text className="choice">선택삭제</Text>
             </ChoiceAll>
@@ -66,8 +75,10 @@ const CheckBox = styled.button`
     border: none;
     outline: none;
     margin: 0 12px 0 0;
-    background-image: url('https://res.kurly.com/mobile/service/common/2006/ico_checkbox_checked.svg');
-    /* background-image: url('https://res.kurly.com/mobile/service/common/2006/ico_checkbox.svg'); */
+    ${props => props.check
+        ? "background-image: url('https://res.kurly.com/mobile/service/common/2006/ico_checkbox_checked.svg');"
+        : "background-image: url('https://res.kurly.com/mobile/service/common/2006/ico_checkbox.svg');"
+    }
     background-color: transparent;
     background-repeat: no-repeat;     
     background-size: 24px 24px;
