@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Grid, Text } from '../../elements';
-import { updateCart } from '../../redux/modules/cart';
+import { actionCreators as cartActions } from '../../redux/modules/cart';
 
 const CartBlock = (props) => {
     const dispatch = useDispatch();
@@ -14,14 +14,18 @@ const CartBlock = (props) => {
     
     const plusNumber_ = () => {
         setNumber(number => number + 1);
-        dispatch(updateCart(id, price, number +1));
+        dispatch(cartActions.updateCart(id, price, number +1));
     };
 
     const minusNumber_ = () => {
         if(number > 0){
             setNumber(number => number - 1);
-            dispatch(updateCart(id, price, number - 1));
+            dispatch(cartActions.updateCart(id, price, number - 1));
         };    
+    };
+
+    const deleteBtn = () => {
+        dispatch(cartActions.deleteCart(id));
     };
 
     return (
@@ -55,7 +59,10 @@ const CartBlock = (props) => {
                 textAlign="right"
                 padding="0 10px 0 0"   
             />
-            <DeleteBtn type="button"/>
+            <DeleteBtn 
+                type="button"
+                onClick={deleteBtn}
+            />
         </Grid>
     );
 };

@@ -4,11 +4,12 @@ import { produce } from "immer";
 // action
 const SET_CART = "SET_CART";
 const UPDATE_CART = "UPDATE_CART";
-
+const DELETE_CART = "DELETE_CART";
 
 // actionCreator
 export const setCart = createAction(SET_CART, (cart_list) => ({cart_list}));
 export const updateCart = createAction(UPDATE_CART, (id, price, count) => ({id, price, count}));
+export const deleteCart = createAction(DELETE_CART, (id) => ({id}));
 
 // initialState
 const initialState = {
@@ -45,6 +46,17 @@ export default handleActions(
                 }
                 draft.list[idx] = new_arr;
             }),
+        [DELETE_CART]: (state, action) =>
+            produce(state, (draft) => {
+                const idx = draft.list.findIndex(v => v.id === action.payload.id);
+                draft.list.splice(idx, 1);
+                
+                // localStorage 삭제
+                const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
+                baskets.splice(idx, 1);
+                localStorage.setItem("baskets", JSON.stringify(baskets));
+                //
+            }),
     },
     initialState
 );
@@ -52,6 +64,7 @@ export default handleActions(
 const actionCreators = {
     setCart,
     updateCart,
+    deleteCart,
 };
 
 export { actionCreators };
