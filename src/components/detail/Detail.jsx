@@ -1,21 +1,31 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 import styled from "styled-components";
-import NumBtn from "./NumBtn";
 
-const Detail = () => {
-  const product = useSelector(state => state.product.list[0]);
-  const locale_price = product.price.toLocaleString('ko-KR');
-  
+const Detail = (props) => {
+  const product = useSelector((state) => state.product.list[0]);
+  const locale_price = product.price.toLocaleString("ko-KR");
+  const price = product.price;
+
+  const [number, setNumber] = useState(1);
+
+  const min = () => {
+    if (number <= 1) {
+      window.alert("최소주문수량은 1개입니다!");
+    } else setNumber(parseInt(number) - 1);
+  };
+
+  const max = () => {
+    setNumber(parseInt(number) + 1);
+  };
+
   return (
     <>
       <Section>
         <Div>
           <Img>
-            <ImgSrc
-              src={`${product.imgUrl}`}
-              alt=""
-            />
+            <ImgSrc src={`${product.imgUrl}`} alt="" />
           </Img>
 
           <Fix>
@@ -33,7 +43,7 @@ const Detail = () => {
               <div>
                 <Price>
                   <Num>
-                  {locale_price} <Won>원</Won>
+                    {locale_price} <Won>원</Won>
                   </Num>
                 </Price>
 
@@ -42,18 +52,33 @@ const Detail = () => {
 
               <Border />
               <Tit>
-                안내사항 <Con> 2020년부터 패키지가 변경되었습니다.</Con>
+                안내사항 <Con> {product.info}</Con>
               </Tit>
 
               <Border />
               <Tit>
-                구매수량 <NumBtn />
+                구매수량
+                <SectionBtn>
+                  <Box>
+                    <BtnNum onClick={min}>
+                      <i class="fa-solid fa-minus"></i>
+                    </BtnNum>
+                    <label htmlFor="1">
+                      <Input type="number" id="1" />
+                      {number}
+                    </label>
+
+                    <BtnNum onClick={max}>
+                      <i class="fa-solid fa-plus"></i>
+                    </BtnNum>
+                  </Box>
+                </SectionBtn>
               </Tit>
               <Border />
 
               <Order>
                 <Total>
-                  총 상품금액 :<Bold>만</Bold>원
+                  총 상품금액 :<Bold> {price * number}</Bold>원
                 </Total>
                 <IconPoint>적립</IconPoint>로그인 후,회원할인가와 적립혜택 적용
                 <Point>
@@ -103,6 +128,7 @@ const Total = styled.div`
   font-weight: 700;
   font-size: 15px;
   margin-bottom: 10px;
+  margin-right: 170px;
   display: flex;
   justify-content: right;
 `;
@@ -112,7 +138,7 @@ const Point = styled.span`
   display: block;
   justify-content: center;
   align-items: center;
-  margin-left: 300px;
+  margin-left: 140px;
 `;
 
 const Bold = styled.span`
@@ -136,16 +162,13 @@ const Div = styled.div`
 `;
 
 const Order = styled.div`
-  display: block;
-  justify-content: center;
-  align-items: center;
   margin-bottom: 10px;
   padding: 10px;
 `;
 
 const Tit = styled.span`
   display: flex;
-  width: 500px;
+  width: 900px;
   font-size: 14px;
   color: #666;
 `;
@@ -292,4 +315,40 @@ const Alert = styled.button`
   color: transparent !important;
   margin-top: 20px;
   margin-right: 10px;
+`;
+
+const Input = styled.input`
+  width: fit-content;
+  display: none;
+`;
+
+const SectionBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Box = styled.div`
+  margin-left: 20px;
+  width: 80px;
+  height: 30px;
+  border: 1px solid #dddfe1;
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const BtnNum = styled.button`
+  width: 28px;
+  height: 28px;
+  border: none;
+  color: #333;
+  background-color: white;
+  border-radius: 4px;
+  font-weight: 600;
+  text-align: center;
+  outline: none;
+  cursor: pointer;
+  font-size: 12px;
 `;

@@ -55,57 +55,20 @@ export const addCommentDB = (productId, commentValue) => {
 
   return async function (dispatch, getState, { history }) {
     await axios
-      .post(`http://54.180.156.74/api/detail/13/comment`, commentValue, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      })
+      .post(
+        `http://54.180.156.74/api/detail/${productId}/comment`,
+        commentValue,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      )
       .then((res) => {
         dispatch(addComment(productId, res.data));
         console.log(res.data);
+        history.push(`/detail/${productId}`);
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-};
-
-export const deleteCommentDB = (commentId) => {
-  const token = localStorage.getItem("token");
-  return async function (dispatch, getState, { history }) {
-    await axios
-      .delete(`http://54.180.156.74/api/detail/comment/${commentId}`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        dispatch(deleteComment(commentId));
-        window.alert("삭제가 완료되었어요!");
-      })
-
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-};
-
-export const editCommentDB = (commentId) => {
-  const token = localStorage.getItem("token");
-  return async function (dispatch, getState, { history }) {
-    await axios
-      .delete(`http://54.180.156.74/api/detail/comment/${commentId}`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        dispatch(deleteComment(commentId));
-        window.alert("삭제가 완료되었어요!");
-      })
-
       .catch((err) => {
         console.log(err);
       });
@@ -120,20 +83,6 @@ const initialComment = {
       nickname: "쿼카아",
       comment: "맛살 무쌈 너무맛있어요!!!",
       createdAt: "2022-04-10",
-    },
-    {
-      userId: 2,
-      commentId: 2,
-      nickname: "연재몬",
-      comment: "댓글 테스트입니다아!",
-      createdAt: "2022-04-11",
-    },
-    {
-      userId: 3,
-      commentId: 3,
-      nickname: "배고파아",
-      comment: "클론코딩 화이팅",
-      createdAt: "2022-04-19",
     },
   ],
 };
