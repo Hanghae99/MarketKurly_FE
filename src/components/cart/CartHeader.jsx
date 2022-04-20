@@ -4,7 +4,7 @@ import { Grid } from '../../elements';
 
 const CartHeader = (props) => {
     const { borderB } = props;
-
+    
     return (
         <Container border={borderB}>
             <ChoiceAll>

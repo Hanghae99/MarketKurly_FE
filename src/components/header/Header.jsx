@@ -30,6 +30,11 @@ const Header = (props) => {
   const onMoveMain = () => {
     history.push("/");
   };
+  
+  const onMoveCart = () => {
+    history.push('/cart');
+    window.scrollTo(0, 0);
+  }
 
   const searchItem = () => {
     dispatch(productActions.getProductApi(1, word));
@@ -111,8 +116,8 @@ const Header = (props) => {
             </Grid>
             <Icons className="location" />
             <Icons className="pick" />
-            <Icons className="cart" onClick={() => history.push("/cart")} />
-            {baskets.length ? <CartItemNum>{baskets.length}</CartItemNum> : ""}
+            <Icons className="cart" onClick={onMoveCart} />
+            {baskets.length ? <CartItemNum>{baskets.length}</CartItemNum> : ''}
           </Gnb>
           <Shadow />
         </Container>
@@ -187,8 +192,8 @@ const Header = (props) => {
             </Grid>
             <Icons className="location" />
             <Icons className="pick" />
-            <Icons className="cart" onClick={() => history.push("/cart")} />
-            {baskets.length ? <CartItemNum>{baskets.length}</CartItemNum> : ""}
+            <Icons className="cart" onClick={onMoveCart} />
+            {baskets.length ? <CartItemNum>{baskets.length}</CartItemNum> : ''}
           </Gnb>
           <Shadow />
         </Container>
