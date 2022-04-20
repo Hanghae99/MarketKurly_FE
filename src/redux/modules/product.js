@@ -71,8 +71,17 @@ const getProductApi = (page, search_word) => {
 
 const getOneProductApi = (id) => {
     return async function (dispatch, getState, {history}){
-        const product = axios.get()
-    }
+        try {
+            const product = await axios.get(`http://54.180.156.74/api/detail/${id}`);
+            const product_list = product.data;
+            dispatch(getOneProduct(product_list));
+            history.push(`/detail/${id}`)
+            window.scrollTo(0, 0);
+        } catch(err){
+            console.log("에러발생", err);
+            window.alert("해당 상품은 없는 상품입니다.");
+        };
+    };
 };
 
 // reducer
@@ -85,6 +94,13 @@ export default handleActions(
                 draft.search_word = action.payload.search_word;
                 draft.is_loading = false;
         }),
+        [GET_ONE_PRODUCT]: (state, action) =>
+            produce(state, (draft) => {
+                // draft.page = action.payload.page;
+                draft.list = [action.payload.product];
+                // draft.search_word = action.payload.search_word;
+                // draft.is_loading = false;
+        }),
         [IS_LOADING]: (state, action) =>
             produce(state, (draft) => {
                 draft.is_loading = action.payload.is_loading;
@@ -95,6 +111,7 @@ export default handleActions(
 
 const actionCreators = {
     getProductApi,
+    getOneProductApi,
 };
 
 export { actionCreators };
