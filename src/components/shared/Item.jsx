@@ -3,15 +3,22 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Grid } from '../../elements/index';
 import CartBtn from '../modal/CartBtn';
-
+import { useDispatch } from 'react-redux';
+import { actionCreators as productActions } from '../../redux/modules/product';
 const Item = (props) => {
-    const { imgUrl, brand, price, name } = props;
-    
+    const dispatch = useDispatch();
+    const { imgUrl, brand, price, name, id } = props;
     const locale_price = price.toLocaleString('ko-KR');
+
+    const goDetail = () => {
+        dispatch(productActions.getOneProductApi(id));
+    };
+
     return (
         <ItemContainer>
             <ItemImageWrap>
                 <ItemImage
+                    onClick={goDetail}
                     src={imgUrl}
                     alt={brand}
                 />
@@ -19,14 +26,14 @@ const Item = (props) => {
             </ItemImageWrap>
             <ItemInfoContainer>
                 <h3 style={{marginBottom: "8px"}}>
-                    <BrandName to="">  
+                    <BrandName to="#" onClick={goDetail}>  
                         {brand 
                             ? `[${brand}] ${name}`
                             : `${name}`}
                     </BrandName>
                 </h3>
                 <Grid>
-                    <Discount>10%</Discount>
+                    {/* <Discount>10%</Discount> */}
                     <Price>{locale_price}원</Price>
                 </Grid>
                 {/* <PrePrice>{price}</PrePrice> */}

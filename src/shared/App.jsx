@@ -32,7 +32,7 @@ function App() {
         <Route path="/" exact component={Main} />
         <Route path="/cart" exact component={CartPage} />
         <Route path="/search" exact component={SearchPage} />
-        <Route path="/detail" exact component={DetailPage} />
+        <Route path="/detail/:id" exact component={DetailPage} />
         <Route path="/detail/write" exact component={ReviewWritePage} />
         <Footer />
         {/* <ScrollTop /> */}

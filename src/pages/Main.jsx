@@ -15,7 +15,7 @@ const Main = (props) => {
     const product_list = useSelector(state => state.product.list);
     const is_loading = useSelector(state => state.product.is_loading);
     const [ page ] = useState(page_num);
-    
+    console.log(product_list)
     useEffect(() => {
         dispatch(productActions.getProductApi(page));
     }, []);
@@ -41,7 +41,7 @@ const Main = (props) => {
                 width="1050px"
                 margin="0 auto"
             >  
-                {product_list.map((v ,i) => {
+                {product_list.map((v, i) => {
                     return(
                         <div key={i}>
                             <Item {...v}/>

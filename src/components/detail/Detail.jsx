@@ -1,15 +1,19 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import NumBtn from "./NumBtn";
 
 const Detail = () => {
+  const product = useSelector(state => state.product.list[0]);
+  const locale_price = product.price.toLocaleString('ko-KR');
+  
   return (
     <>
       <Section>
         <Div>
           <Img>
             <ImgSrc
-              src="https://www.montshop.com/data/goods/22/01/03/1000000235/1000000235_detail_016.jpg"
+              src={`${product.imgUrl}`}
               alt=""
             />
           </Img>
@@ -19,17 +23,17 @@ const Detail = () => {
               <InfoSection>
                 <Wrapper>
                   <Strong>
-                    <span>[마이올리브트리]</span>
-                    엑스트라버진 500ml
+                    <span>{product.brand}</span>
+                    {product.name}
                   </Strong>
                 </Wrapper>
-                <Content>[그리스 햇올리브]2021년 가을 수확한 햇올리브</Content>
+                <Content>{product.info}</Content>
               </InfoSection>
 
               <div>
                 <Price>
                   <Num>
-                    39,600 <Won>원</Won>
+                  {locale_price} <Won>원</Won>
                   </Num>
                 </Price>
 
@@ -49,7 +53,7 @@ const Detail = () => {
 
               <Order>
                 <Total>
-                  총 상품금액 :<Bold>39,600</Bold>원
+                  총 상품금액 :<Bold>만</Bold>원
                 </Total>
                 <IconPoint>적립</IconPoint>로그인 후,회원할인가와 적립혜택 적용
                 <Point>
