@@ -6,14 +6,14 @@ import CountBtn from './CountBtn';
 
 const ModalItem = (props) => {
     const product_list = useSelector(state => state.modal.list);
-    const locale_price = product_list.price.toLocaleString('ko-KR');
+    const locale_price = product_list[0].price.toLocaleString('ko-KR');
     return (
         <Container>
             <Text
                 lineHeight="20px"
-                text={product_list.brand 
-                    ? `[${product_list.brand }] ${product_list.name }`
-                    : `${product_list.name}`}
+                text={product_list[0].brand 
+                    ? `[${product_list[0].brand }] ${product_list[0].name }`
+                    : `${product_list[0].name}`}
             />
             <Grid padding="7px 0 0 0" flex>
                 <Text 

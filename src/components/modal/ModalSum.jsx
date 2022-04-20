@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Grid, Text } from '../../elements';
 
 const ModalSum = (props) => {
-    const sum = useSelector(state => state.modal.list.sum);
+    const sum = useSelector(state => state.modal.list[0].sum);
     const locale_price = sum.toLocaleString('ko-KR');
     return (
         <Grid>
