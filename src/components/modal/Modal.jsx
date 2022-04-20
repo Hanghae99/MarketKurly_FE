@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import { Button, Grid } from '../../elements';
 import ModalItem from './ModalItem';
 import ModalSum from './ModalSum';
-import { setAlertModal, setModal } from '../../redux/modules/modal'
+import { setAlertModal, setModal } from '../../redux/modules/modal';
+import { actionCreators as cartActions } from '../../redux/modules/cart';
+
 
 const Modal = (props) => {
     const dispatch = useDispatch();
@@ -28,7 +30,7 @@ const Modal = (props) => {
         dispatch(setModal(false));
     };
 
-    const product_in_modal = useSelector(state => state.modal.list);
+    const product_in_modal = useSelector(state => state.modal.list)[0];
 
     // localStorage 장바구니
     const goBasket = () => {
@@ -45,10 +47,12 @@ const Modal = (props) => {
         })
 
         if(typeof(idx) === 'number'){
+            console.log(idx)
             baskets[idx].quantity += product_in_modal.quantity;
         } else {
             baskets.push(product_in_modal);
         }
+        dispatch(cartActions.setCart(baskets));
         localStorage.setItem("baskets", JSON.stringify(baskets));
         closeModal();
     };

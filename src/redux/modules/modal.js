@@ -8,7 +8,7 @@ const SET_ALERT_MODAL = "SET_ALERT_MODAL";
 
 // actionCreator
 export const setModal = createAction(SET_MODAL, (is_open, product_list) => ({is_open, product_list}));
-export const setCount = createAction(SET_COUNT, (count) => ({count}));
+export const setCountModal = createAction(SET_COUNT, (count) => ({count}));
 export const setAlertModal = createAction(SET_ALERT_MODAL, (is_open) => ({is_open}));
 
 // initialState
@@ -28,8 +28,8 @@ export default handleActions(
       }),
     [SET_COUNT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list[0].quantity = action.payload.count;
-        draft.list[0].sum = draft.list[0].price * action.payload.count;
+          draft.list[0].quantity = action.payload.count;
+          draft.list[0].sum = draft.list[0].price * action.payload.count;  
       }),
     [SET_ALERT_MODAL]: (state, action) =>
       produce(state, (draft) => {
@@ -38,3 +38,11 @@ export default handleActions(
   },
   initialState
 );
+
+const actionCreators = {
+  setModal,
+  setCountModal,
+  setAlertModal,
+};
+
+export { actionCreators }
