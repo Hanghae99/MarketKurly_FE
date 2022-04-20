@@ -18,7 +18,7 @@ import Footer from "../components/footer/Footer";
 import Modal from "../components/modal/Modal";
 import AlertModal from "../components/modal/AlertModal";
 import { useEffect } from "react";
-// import ScrollTop from "./ScrollTop";
+import ScrollTop from "./ScrollTop";
 import { actionCreators as cartActions } from "../redux/modules/cart";
 import { loginCheckDB } from "../redux/modules/user";
 
@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     if (baskets.length > 0) {
       dispatch(cartActions.setCart(baskets));
-    };
+    }
   }, []);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ function App() {
           component={ReviewWritePage}
         />
         <Footer />
-        {/* <ScrollTop /> */}
+        <ScrollTop />
       </ConnectedRouter>
       {is_open ? <Modal /> : ""}
       {is_open_alert ? <AlertModal /> : ""}
