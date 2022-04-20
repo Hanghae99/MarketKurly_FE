@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Grid, Text } from '../../elements';
-import CartCountBtn from './CartCountBtn';
+import { updateCart } from '../../redux/modules/cart';
 
 const CartBlock = (props) => {
-    const { brand, name, imgUrl, quantity, sum, id } = props;
+    const dispatch = useDispatch();
+    const { brand, name, imgUrl, quantity, sum, id, price } = props;
     const locale_price = sum.toLocaleString('ko-KR') + "원";
     
+    const [ number, setNumber ] = useState(quantity);
+    
+    const plusNumber_ = () => {
+        setNumber(number => number + 1);
+        dispatch(updateCart(id, price, number +1));
+    };
+
+    const minusNumber_ = () => {
+        if(number > 0){
+            setNumber(number => number - 1);
+            dispatch(updateCart(id, price, number - 1));
+        };    
+    };
+
     return (
         <Grid 
             flex
@@ -21,7 +37,15 @@ const CartBlock = (props) => {
                     ? `[${brand}] ${name}`
                     : `${name}`}
             </StyledLink2>
-            <CartCountBtn quantity={quantity} id={id}/>
+            <Container>
+                <MinusBtn 
+                    onClick={minusNumber_}
+                />
+                <NumberCount>{number}</NumberCount>
+                <PlusBtn 
+                    onClick={plusNumber_}
+                /> 
+            </Container>       
             <Text
                 bold="500"
                 lineHeight="24px"
@@ -35,6 +59,10 @@ const CartBlock = (props) => {
         </Grid>
     );
 };
+
+CartBlock.defaultProps = {
+    sum: 10000,
+}
 
 const CheckBox = styled.button`
     position: absolute;
@@ -95,6 +123,54 @@ const DeleteBtn = styled.button`
     background-repeat: no-repeat;
     background-size: 30px 30px;
     background-position: 50% 50%;
+`;
+
+const Container = styled.div`
+    width: 88px;
+    height: 30px;
+    border: 1px solid #dddfe1;
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+`;
+
+const PlusBtn = styled.button`
+    width: 28px;
+    height: 28px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-left: -1px;
+    background: #fff url('https://res.kurly.com/pc/ico/2010/ico_plus_on.svg') no-repeat 50% 50%;
+    background-size: 30px 30px;
+`;
+
+const MinusBtn = styled.button`
+    width: 28px;
+    height: 28px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-left: -1px;
+    background: #fff url('	https://res.kurly.com/pc/ico/2010/ico_minus_on.svg') no-repeat 50% 50%;
+    background-size: 30px 30px;
+`;
+
+const NumberCount = styled.div`
+    width: 30px;
+    height: 30px;
+    padding: 5px 0 2px;
+    font-weight: 500;
+    border: 0;
+    user-select: none;
+    background-color: #fff;
+    font-size: 14px;
+    color: #000;
+    line-height: 18px;
+    text-align: center;
 `;
 
 export default CartBlock;

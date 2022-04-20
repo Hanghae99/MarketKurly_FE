@@ -1,6 +1,6 @@
 import { ConnectedRouter } from "connected-react-router";
 import { Route } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/store";
 
 import "./app.css";
@@ -17,11 +17,21 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Modal from "../components/modal/Modal";
 import AlertModal from "../components/modal/AlertModal";
+import { useEffect } from "react";
 // import ScrollTop from "./ScrollTop";
+import { actionCreators as cartActions } from '../redux/modules/cart';
 
 function App() {
+  const dispatch = useDispatch();
   const is_open = useSelector((state) => state.modal.is_open);
   const is_open_alert = useSelector((state) => state.modal.alert_open);
+
+  const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
+  useEffect(() => {
+    if(baskets.length>0){
+      dispatch(cartActions.setCart(baskets));
+    }
+  }, []);
 
   return (
     <>

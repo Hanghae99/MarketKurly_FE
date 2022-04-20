@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { setCount } from '../../redux/modules/modal';
+import { setCountModal } from '../../redux/modules/modal';
 
 const CountBtn = (props) => {
     const dispatch = useDispatch();
@@ -9,13 +9,13 @@ const CountBtn = (props) => {
     
     const plusNumber = () => {
         setNumber(number => number + 1);
-        dispatch(setCount(number+1));
+        dispatch(setCountModal(number+1));
     };
 
     const minusNumber = () => {
         if(number > 0){
             setNumber(number => number - 1);
-            dispatch(setCount(number-1));
+            dispatch(setCountModal(number-1));
         };    
     };
 

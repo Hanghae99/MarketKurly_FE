@@ -3,11 +3,12 @@ import { produce } from "immer";
 
 // action
 const SET_CART = "SET_CART";
-const SET_COUNT = "SET_COUNT";
+const UPDATE_CART = "UPDATE_CART";
+
 
 // actionCreator
 export const setCart = createAction(SET_CART, (cart_list) => ({cart_list}));
-export const setCount = createAction(SET_COUNT, (id, count) => ({id, count}));
+export const updateCart = createAction(UPDATE_CART, (id, price, count) => ({id, price, count}));
 
 // initialState
 const initialState = {
@@ -20,16 +21,37 @@ export default handleActions(
     {
         [SET_CART]: (state, action) =>
             produce(state, (draft) => {
-                // draft.is_open = action.payload.is_open;
                 draft.list = action.payload.cart_list;
             }),
-        [SET_COUNT]: (state, action) =>
+        [UPDATE_CART]: (state, action) =>
             produce(state, (draft) => {
                 const idx = draft.list.findIndex(v => v.id === action.payload.id);
-                console.log(idx, "뜨니?")
-                draft.list[idx].quantity = action.payload.count;
-                draft.list[idx].sum = draft.list[idx].price * action.payload.count;
+                
+                // localStorage 업데이트
+                const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
+                if(draft.list[idx].quantity > action.payload.count){
+                    baskets[idx].quantity -= 1;
+                } else {
+                    baskets[idx].quantity += 1;
+                }
+                baskets[idx].sum = action.payload.price * action.payload.count;
+                localStorage.setItem("baskets", JSON.stringify(baskets));
+                //
+
+                const new_arr = {
+                    ...draft.list[idx], 
+                    quantity: action.payload.count,
+                    sum: action.payload.price * action.payload.count,
+                }
+                draft.list[idx] = new_arr;
             }),
     },
-  initialState
+    initialState
 );
+
+const actionCreators = {
+    setCart,
+    updateCart,
+};
+
+export { actionCreators };
