@@ -1,15 +1,23 @@
 import styled from "styled-components";
-import { React, useEffect } from "react";
+
 import Comment from "./Comment";
 import { useHistory } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getCommentDB } from "../../redux/modules/comment";
 
-const Review = () => {
+const Review = ({ productId }) => {
   const history = useHistory();
-  const post_list = useSelector((state) => state.comment.commentList);
-  console.log(post_list);
+  const dispatch = useDispatch();
 
-  useEffect(() => {});
+  useEffect(() => {
+    console.log("렌더링시쟉");
+    dispatch(getCommentDB(productId));
+  }, [productId]);
+
+  const post_list = useSelector((state) => state.comment.commentList);
+  console.log(productId);
+
   return (
     <>
       <Total>
@@ -96,7 +104,7 @@ const Review = () => {
       <Reg>
         <Btn
           onClick={() => {
-            history.push("/detail/write");
+            history.push(`${productId}/write`);
           }}
         >
           후기쓰기

@@ -2,13 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import { addCommentDB } from "../../redux/modules/comment";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 const Write = () => {
   const dispatch = useDispatch();
   const [commentValue, setCommentValue] = useState({
     comment: "",
   });
+  const product = useSelector((state) => state.product.list[0]);
+  const params = useParams();
+  const productId = params.productId;
+  console.log(params.productId);
 
   const onChangeFormValue = (e) => {
     const { name, value } = e.target;
@@ -23,7 +28,7 @@ const Write = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(addCommentDB(commentValue));
+    dispatch(addCommentDB(productId, commentValue));
     console.log(commentValue);
   };
 
@@ -43,12 +48,14 @@ const Write = () => {
                   display: "flex",
                   justifyContent: "center",
                 }}
-                src="https://www.montshop.com/data/goods/22/01/03/1000000235/1000000235_detail_016.jpg"
+                src={`${product.imgUrl}`}
                 alt="리뷰이미지"
               />
             </Imgurl>
             <div>
-              <Name>[마이올리브트리] 엑스트라버진 500ml </Name>
+              <Name>
+                [{product.brand}]{product.name}
+              </Name>
             </div>
           </Div>
         </div>
@@ -207,8 +214,7 @@ const Name = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 800px;
-  /* padding: 90px; */
+  width: 1000px;
   padding-right: 500px;
   padding-top: 180px;
 `;

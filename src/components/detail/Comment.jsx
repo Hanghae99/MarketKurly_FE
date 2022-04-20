@@ -14,7 +14,7 @@ const Comment = (props) => {
             paddingRight: "18px",
           }}
         >
-          {props.userId}
+          {props.commentId}
         </CommentData>
         <CommentData
           style={{
