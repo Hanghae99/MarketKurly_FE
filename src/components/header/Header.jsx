@@ -30,11 +30,11 @@ const Header = (props) => {
   const onMoveMain = () => {
     history.push("/");
   };
-  
+
   const onMoveCart = () => {
-    history.push('/cart');
+    history.push("/cart");
     window.scrollTo(0, 0);
-  }
+  };
 
   const searchItem = () => {
     dispatch(productActions.getProductApi(1, word));
@@ -117,7 +117,7 @@ const Header = (props) => {
             <Icons className="location" />
             <Icons className="pick" />
             <Icons className="cart" onClick={onMoveCart} />
-            {baskets.length ? <CartItemNum>{baskets.length}</CartItemNum> : ''}
+            {baskets.length ? <CartItemNum>{baskets.length}</CartItemNum> : ""}
           </Gnb>
           <Shadow />
         </Container>
@@ -193,7 +193,7 @@ const Header = (props) => {
             <Icons className="location" />
             <Icons className="pick" />
             <Icons className="cart" onClick={onMoveCart} />
-            {baskets.length ? <CartItemNum>{baskets.length}</CartItemNum> : ''}
+            {baskets.length ? <CartItemNum>{baskets.length}</CartItemNum> : ""}
           </Gnb>
           <Shadow />
         </Container>
