@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import CartAddress from '../components/cart/CartAddress';
 import CartBlock from '../components/cart/CartBlock';
@@ -11,7 +11,7 @@ import { Grid } from '../elements';
 
 const CartPage = (props) => {
     const cart_list = useSelector(state => state.cart.list);
-    console.log(cart_list)    
+       
     return (
         <>
             <Text>장바구니</Text>
