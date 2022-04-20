@@ -6,6 +6,7 @@ import Product from "./modules/product";
 import Modal from "./modules/modal";
 import user from "./modules/user";
 import Cart from "./modules/cart";
+import comment from "./modules/comment";
 
 export const history = createBrowserHistory();
 
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   product: Product,
   cart: Cart,
   user,
+  comment,
   router: connectRouter(history),
 });
 

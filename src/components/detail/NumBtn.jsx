@@ -1,14 +1,37 @@
 import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 const NumBtn = () => {
+  const [number, setNumber] = useState(1);
+
+  const min = () => {
+    if (number <= 1) {
+      window.alert("최소주문수량은 1개입니다!");
+    } else setNumber(parseInt(number) - 1);
+  };
+
+  const max = () => {
+    setNumber(parseInt(number) + 1);
+  };
+
   return (
     <>
-      <Box>
-        <Btn>-</Btn>
-        <Input type="number" placeholder={1} />
-        <Btn>+</Btn>
-      </Box>
+      <Total>
+        <Box>
+          <Btn onClick={min}>
+            <i className="fa-solid fa-minus"></i>
+          </Btn>
+          <label htmlFor="1">
+            <Input type="number" id="1" />
+            {number}
+          </label>
+
+          <Btn onClick={max}>
+            <i class="fa-solid fa-plus-large"></i>
+          </Btn>
+        </Box>
+      </Total>
     </>
   );
 };
@@ -16,14 +39,25 @@ const NumBtn = () => {
 export default NumBtn;
 
 const Input = styled.input`
-  width: 20px;
+  width: fit-content;
+  display: none;
+`;
+
+const Total = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Box = styled.div`
-  width: 88px;
+  margin-left: 20px;
+  width: 80px;
   height: 30px;
   border: 1px solid #dddfe1;
   border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Btn = styled.button`
@@ -31,10 +65,11 @@ const Btn = styled.button`
   height: 28px;
   border: none;
   color: #333;
-  font-weight: bold;
   background-color: white;
   border-radius: 4px;
   font-weight: 600;
   text-align: center;
   outline: none;
+  cursor: pointer;
+  font-size: 12px;
 `;

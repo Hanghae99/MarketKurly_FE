@@ -6,7 +6,7 @@ const DetailPage = () => {
   return (
     <>
       <Detail />
-      {/* <Review /> */}
+      <Review />
     </>
   );
 };
