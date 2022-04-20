@@ -1,9 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router";
+import { actionCreators as cartActions } from "../../redux/modules/cart";
 
 const Detail = (props) => {
+  const dispatch = useDispatch();
+  const params = useParams();
   const product = useSelector((state) => state.product.list[0]);
   const locale_price = product.price.toLocaleString("ko-KR");
   const price = product.price;
@@ -19,6 +23,34 @@ const Detail = (props) => {
   const max = () => {
     setNumber(parseInt(number) + 1);
   };
+ 
+  const product_info = {
+    id: params.id,
+    brand: product.brand,
+    imgUrl: product.imgUrl,
+    name: product.name,
+    price: product.price,
+    quantity: number,
+    sum: (product.price * number),
+    checked: true,
+  };
+
+  const goBasket = () => {
+    const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
+    
+    let idx;
+    baskets.map((v, i) => {
+        if(v.id === params.id*1) return idx = i;
+    });
+    console.log(idx)
+    if(typeof(idx) === 'number'){
+        baskets[idx].quantity += number;
+    } else {
+        baskets.push(product_info);
+    }
+    dispatch(cartActions.setCart(baskets));
+    localStorage.setItem("baskets", JSON.stringify(baskets));
+};
 
   return (
     <>
@@ -87,7 +119,7 @@ const Detail = (props) => {
                     <Alert />
 
                     <Reg>
-                      <Btn>장바구니 담기</Btn>
+                      <Btn onClick={goBasket}>장바구니 담기</Btn>
                     </Reg>
                   </WrapIcon>
                 </Point>

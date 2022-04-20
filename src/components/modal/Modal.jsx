@@ -47,7 +47,6 @@ const Modal = (props) => {
         })
 
         if(typeof(idx) === 'number'){
-            console.log(idx)
             baskets[idx].quantity += product_in_modal.quantity;
         } else {
             baskets.push(product_in_modal);
