@@ -14,6 +14,8 @@ const Header = (props) => {
 
   const token = localStorage.getItem("token");
   const is_login = useSelector((state) => state.user.is_login);
+  const nickname = useSelector((state) => state.user.user_info);
+  console.log(nickname);
 
   const logout_click = () => {
     localStorage.removeItem("token");
@@ -31,11 +33,11 @@ const Header = (props) => {
   const onMoveMain = () => {
     history.push("/");
   };
-  
+
   const onMoveCart = () => {
-    history.push('/cart');
+    history.push("/cart");
     window.scrollTo(0, 0);
-  }
+  };
 
   const searchItem = () => {
     dispatch(productActions.getProductApi(1, word));
@@ -64,6 +66,14 @@ const Header = (props) => {
               alt="서울, 경기, 인천 샛별배송, 수도권 이외 지역 택배배송"
             />
             <HeaderMenu>
+              <Nick>
+                <Gen>일반</Gen>
+                어서오세요 {nickname.nickname}님
+                <ImgN
+                  src="https://res.kurly.com/kurly/ico/2021/new_badge_28_28.png"
+                  alt=""
+                />
+              </Nick>
               <li className="menu" onClick={logout_click}>
                 로그아웃
               </li>
@@ -273,6 +283,34 @@ const Logo = styled.div`
     text-align: center;
     width: 100%;
   }
+`;
+
+const Nick = styled.div`
+  display: flex;
+  margin-top: 10px;
+`;
+
+const Gen = styled.span`
+  border: 1px solid #5f0080;
+  background-color: #fff;
+  color: #5f0080;
+  margin-top: 2.6px;
+  min-width: 38px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 30px;
+  font-size: 9px;
+  line-height: 14px;
+  text-align: center;
+  margin-right: 3px;
+`;
+
+const ImgN = styled.img`
+  font-size: 5px;
+  width: 10px;
+  height: 10px;
+  margin-top: 5px;
+  margin-left: 3px;
 `;
 
 const Gnb = styled.div`

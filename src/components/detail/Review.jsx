@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCommentDB } from "../../redux/modules/comment";
 
-const Review = ({ productId }) => {
+const Review = ({ productId, name }) => {
+  const comment = useSelector((state) => state.comment);
   const history = useHistory();
   const dispatch = useDispatch();
+  console.log(comment);
 
   useEffect(() => {
     console.log("렌더링시쟉");
@@ -22,7 +24,7 @@ const Review = ({ productId }) => {
     <>
       <Total>
         <div>
-          <Form action="">
+          <Form>
             <Title>
               <Name>PRODUCT REVIEW</Name>
 
@@ -95,7 +97,7 @@ const Review = ({ productId }) => {
             </HeaderInfo>
             <div>
               {post_list.map((item, idx) => {
-                return <Comment key={item.id} {...item} />;
+                return <Comment name={name} key={item.id} {...item} />;
               })}
             </div>
           </Form>
@@ -124,20 +126,21 @@ const Reg = styled.div`
   background-color: #795b8f;
   border: 1px solid #5f0080;
   margin-left: 1370px;
+  cursor: pointer;
 `;
 
 const Btn = styled.button`
   color: #fff;
   border-style: none;
   background-color: #795b8f;
-  height: 100%;
+  padding: 10px;
   font-weight: 500;
   font-size: 12px;
   cursor: pointer;
 `;
 
 const Total = styled.div`
-  width: 850px;
+  width: 1000px;
   margin: 50px auto;
   padding-top: 20px;
   display: flex;

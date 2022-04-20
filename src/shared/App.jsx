@@ -19,7 +19,8 @@ import Modal from "../components/modal/Modal";
 import AlertModal from "../components/modal/AlertModal";
 import { useEffect } from "react";
 // import ScrollTop from "./ScrollTop";
-import { actionCreators as cartActions } from '../redux/modules/cart';
+import { actionCreators as cartActions } from "../redux/modules/cart";
+import { loginCheckDB } from "../redux/modules/user";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,9 +29,13 @@ function App() {
 
   const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
   useEffect(() => {
-    if(baskets.length>0){
+    if (baskets.length > 0) {
       dispatch(cartActions.setCart(baskets));
     };
+  }, []);
+
+  useEffect(() => {
+    dispatch(loginCheckDB());
   }, []);
 
   return (

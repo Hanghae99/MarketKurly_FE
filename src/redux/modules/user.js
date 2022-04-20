@@ -11,9 +11,7 @@ export const setUser = createAction(SET_USER, (user) => ({ user }));
 export const logOut = createAction(LOG_OUT, () => ({}));
 
 const initialState = {
-  username: null,
-  address: null,
-  nickname: null,
+  user_info: null,
   is_login: false,
 };
 
@@ -43,15 +41,7 @@ export const logInDB = (formValue) => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.headers.authorization);
-
-        dispatch(
-          setUser({
-            username: res.data.username,
-            address: null,
-
-            is_login: true,
-          })
-        );
+        dispatch(loginCheckDB());
         history.push("/");
       })
       .catch((err) => {
@@ -61,19 +51,28 @@ export const logInDB = (formValue) => {
 };
 
 //
-export const loginCheckDB = (username) => {
+export const loginCheckDB = () => {
   return async function (dispatch, getState, { history }) {
-    //유저정보 요청
-  };
-};
-
-export const isLogin = () => {
-  return function (dispatch, getState, { history }) {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      return false;
-    }
+    await axios
+      .get(`http://54.180.156.74/api/user/loginCheck`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch(
+          setUser({
+            username: res.data.username,
+            address: res.data.address,
+            nickname: res.data.nickname,
+          })
+        );
+      })
+      .catch((err) => {
+        window.alert("에러!!");
+        console.log(err);
+      });
   };
 };
 
@@ -82,7 +81,7 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        draft.username = action.payload;
+        draft.user_info = action.payload.user;
         draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
