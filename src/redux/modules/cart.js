@@ -5,11 +5,13 @@ import { produce } from "immer";
 const SET_CART = "SET_CART";
 const UPDATE_CART = "UPDATE_CART";
 const DELETE_CART = "DELETE_CART";
+const SET_CHECK = "SET_CHECK";
 
 // actionCreator
 export const setCart = createAction(SET_CART, (cart_list) => ({cart_list}));
 export const updateCart = createAction(UPDATE_CART, (id, price, count) => ({id, price, count}));
 export const deleteCart = createAction(DELETE_CART, (id) => ({id}));
+export const setCheck = createAction(SET_CHECK, (id) => ({id}));
 
 // initialState
 const initialState = {
@@ -57,6 +59,17 @@ export default handleActions(
                 localStorage.setItem("baskets", JSON.stringify(baskets));
                 //
             }),
+        [SET_CHECK]: (state, action) =>
+            produce(state, (draft) => {
+                const idx = draft.list.findIndex(v => v.id === action.payload.id);
+                draft.list[idx].checked = draft.list[idx].checked ? false : true;
+
+                // localStorage 업데이트
+                const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
+                baskets[idx].checked = draft.list[idx].checked
+                localStorage.setItem("baskets", JSON.stringify(baskets));
+                //
+            }),
     },
     initialState
 );
@@ -65,6 +78,7 @@ const actionCreators = {
     setCart,
     updateCart,
     deleteCart,
+    setCheck,
 };
 
 export { actionCreators };

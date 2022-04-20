@@ -5,7 +5,8 @@ import { Text } from '../../elements';
 
 const CartCalPrice = (props) => {
     const cart_list =useSelector(state => state.cart.list);
-    const sum_arr = cart_list.map(v => v.sum);
+    const checked_true_arr = cart_list.filter(v => v.checked === true);
+    const sum_arr = checked_true_arr.map(v => v.sum);
     
     const prevprice = sum_arr.reduce((acc, cur) => acc + cur, 0);
     const locale_price = prevprice.toLocaleString('ko-KR') + "원";
@@ -19,6 +20,29 @@ const CartCalPrice = (props) => {
     const expected_payment = post_price + prevprice;
     const expected_payment_locale = expected_payment.toLocaleString('ko-KR')
     
+    if(checked_true_arr.length === 0){
+        return (
+            <Container>
+            <Calculate>
+                <Span>상품금액</Span>
+                <Span>0원</Span>
+            </Calculate>
+            <Calculate>
+                <Span>상품할인금액</Span>
+                <Span>0원</Span>
+            </Calculate>
+            <Calculate>
+                <Span>배송비</Span>
+                <Span>0원</Span>
+            </Calculate> 
+            <Line />
+            <Calculate>
+                <Span>결제예정금액</Span>
+                <Sum>0원</Sum>
+            </Calculate>
+        </Container>
+        )
+    }
     return (
         <Container>
             <Calculate>

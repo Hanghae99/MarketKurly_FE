@@ -7,7 +7,7 @@ import { actionCreators as cartActions } from '../../redux/modules/cart';
 
 const CartBlock = (props) => {
     const dispatch = useDispatch();
-    const { brand, name, imgUrl, quantity, sum, id, price } = props;
+    const { brand, name, imgUrl, quantity, sum, id, price, checked } = props;
     const locale_price = sum.toLocaleString('ko-KR') + "원";
     
     const [ number, setNumber ] = useState(quantity);
@@ -18,7 +18,7 @@ const CartBlock = (props) => {
     };
 
     const minusNumber_ = () => {
-        if(number > 0){
+        if(number > 1){
             setNumber(number => number - 1);
             dispatch(cartActions.updateCart(id, price, number - 1));
         };    
@@ -28,13 +28,21 @@ const CartBlock = (props) => {
         dispatch(cartActions.deleteCart(id));
     };
 
+    const doCheck = () => {
+        dispatch(cartActions.setCheck(id));
+    };
+
     return (
         <Grid 
             flex
             position="relative"
             justify=""
         >
-            <CheckBox type="button" />
+            <CheckBox 
+                type="button" 
+                checked={checked}
+                onClick={doCheck}
+            />
             <StyledLink1 to="#" imgurl={imgUrl}>상품이미지</StyledLink1> 
             <StyledLink2 to="#">
                 {brand 
@@ -44,6 +52,7 @@ const CartBlock = (props) => {
             <Container>
                 <MinusBtn 
                     onClick={minusNumber_}
+                    num={number}
                 />
                 <NumberCount>{number}</NumberCount>
                 <PlusBtn 
@@ -79,8 +88,10 @@ const CheckBox = styled.button`
     border: none;
     outline: none;
     margin: 0 12px 0 0;
-    background-image: url('https://res.kurly.com/mobile/service/common/2006/ico_checkbox_checked.svg');
-    /* background-image: url('https://res.kurly.com/mobile/service/common/2006/ico_checkbox.svg'); */
+    ${props => props.checked 
+        ? "background-image: url('https://res.kurly.com/mobile/service/common/2006/ico_checkbox_checked.svg');"
+        : "background-image: url('https://res.kurly.com/mobile/service/common/2006/ico_checkbox.svg');"
+    }
     background-color: transparent;
     background-repeat: no-repeat;     
     background-size: 24px 24px;
@@ -153,6 +164,7 @@ const PlusBtn = styled.button`
     margin-left: -1px;
     background: #fff url('https://res.kurly.com/pc/ico/2010/ico_plus_on.svg') no-repeat 50% 50%;
     background-size: 30px 30px;
+
 `;
 
 const MinusBtn = styled.button`
@@ -161,9 +173,13 @@ const MinusBtn = styled.button`
     border: none;
     outline: none;
     cursor: pointer;
-    margin-left: -1px;
+    margin-left: 1px;
     background: #fff url('	https://res.kurly.com/pc/ico/2010/ico_minus_on.svg') no-repeat 50% 50%;
     background-size: 30px 30px;
+    ${props => props.num === 1
+        ? "color: lightgray; cursor: default; background: url('https://res.kurly.com/pc/service/common/2009/ico_minus.svg')"
+        : "color: inherit;"
+    }
 `;
 
 const NumberCount = styled.div`

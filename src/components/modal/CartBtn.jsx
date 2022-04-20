@@ -12,6 +12,7 @@ const CartBtn = (props) => {
         ...product_list,
         quantity: 0,
         sum: 0,
+        checked: true,
     }]
     // console.log(new_product_list)
     const openModal = () => {

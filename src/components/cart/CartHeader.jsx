@@ -1,16 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Grid } from '../../elements';
 
 const CartHeader = (props) => {
     const { borderB } = props;
-    
+    const cart_list = useSelector(state => state.cart.list);
+    // const is_choice = useSelector(state => state.cart.list)
     return (
         <Container border={borderB}>
             <ChoiceAll>
                 <Grid flex>
                     <CheckBox onClick={() => {}}/>
-                    <Text className="all">전체선택 (0/0)</Text>
+                    <Text className="all">전체선택 ({cart_list.length}/{cart_list.length})</Text>
                 </Grid>
                 <Text className="choice">선택삭제</Text>
             </ChoiceAll>

@@ -11,7 +11,7 @@ import { Grid } from '../elements';
 
 const CartPage = (props) => {
     const cart_list = useSelector(state => state.cart.list);
-       
+    
     return (
         <>
             <Text>장바구니</Text>
