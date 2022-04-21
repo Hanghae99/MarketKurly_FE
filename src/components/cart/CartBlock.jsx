@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { Grid, Text } from '../../elements';
 import { actionCreators as cartActions } from '../../redux/modules/cart';
 
@@ -81,7 +81,7 @@ const CartBlock = (props) => {
 
 CartBlock.defaultProps = {
     sum: 10000,
-}
+};
 
 const CheckBox = styled.button`
     position: absolute;

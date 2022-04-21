@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { Button, Grid, Text } from '../../elements';
 import { actionCreators as productActions } from '../../redux/modules/product';
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 import { Text } from '../../elements';
 
 const CartCalPrice = (props) => {
@@ -18,29 +18,29 @@ const CartCalPrice = (props) => {
     const free_post_price_rest_locale = free_post_price_rest.toLocaleString('ko-KR') + "원 추가주문 시, 무료배송";
     
     const expected_payment = post_price + prevprice;
-    const expected_payment_locale = expected_payment.toLocaleString('ko-KR')
+    const expected_payment_locale = expected_payment.toLocaleString('ko-KR');
     
     if(checked_true_arr.length === 0){
         return (
             <Container>
-            <Calculate>
-                <Span>상품금액</Span>
-                <Span>0원</Span>
-            </Calculate>
-            <Calculate>
-                <Span>상품할인금액</Span>
-                <Span>0원</Span>
-            </Calculate>
-            <Calculate>
-                <Span>배송비</Span>
-                <Span>0원</Span>
-            </Calculate> 
-            <Line />
-            <Calculate>
-                <Span>결제예정금액</Span>
-                <Sum>0원</Sum>
-            </Calculate>
-        </Container>
+                <Calculate>
+                    <Span>상품금액</Span>
+                    <Span>0원</Span>
+                </Calculate>
+                <Calculate>
+                    <Span>상품할인금액</Span>
+                    <Span>0원</Span>
+                </Calculate>
+                <Calculate>
+                    <Span>배송비</Span>
+                    <Span>0원</Span>
+                </Calculate> 
+                <Line />
+                <Calculate>
+                    <Span>결제예정금액</Span>
+                    <Sum>0원</Sum>
+                </Calculate>
+            </Container>
         )
     }
     return (
@@ -76,8 +76,8 @@ const CartCalPrice = (props) => {
                 <Sum>{expected_payment_locale}원</Sum>
             </Calculate>
         </Container>
-    )
-}
+    );
+};
 
 const Container = styled.div`
     padding: 9px 18px 18px 20px;

@@ -4,7 +4,6 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router";
 import { actionCreators as cartActions } from "../../redux/modules/cart";
-import { Simulate } from "react-dom/test-utils";
 
 const Detail = (props) => {
   const dispatch = useDispatch();
@@ -305,14 +304,12 @@ const Fix = styled.div`
 `;
 
 const Content = styled.div`
-  /* display: block; */
   padding: 4px 60px 0 0;
   font-size: 14px;
   color: #999;
 `;
 
 const Reg = styled.div`
-  /* display: block; */
   display: flex;
   width: 280px;
   height: 54px;

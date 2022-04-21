@@ -95,7 +95,6 @@ const Modal = (props) => {
 };
 
 const ModalBackground = styled.div`
-    /* display: none; */
     position: fixed;
     z-index: 9999;
     left: 0;

@@ -1,7 +1,6 @@
-import { React } from "react";
+import React from "react";
 import Detail from "../components/detail/Detail";
 import Review from "../components/detail/Review";
-
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 

@@ -1,4 +1,3 @@
-import { nodeName } from 'jquery';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -50,7 +49,7 @@ Text.defaultProps = {
     width: "100%",
     textAlign: "auto",
     borderB: "none",
-}
+};
 
 const ElText = styled.div`
     font-size: ${props => props.size};

@@ -1,7 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 import { useState } from "react";
 
-import styled from "styled-components";
 
 const Comment = (props) => {
   const [oneComment, setOneComment] = useState(false);
@@ -12,8 +12,6 @@ const Comment = (props) => {
     setNumber((number) => number + 1);
   };
 
-  if (oneComment) {
-  }
   return (
     <>
       <OneComment

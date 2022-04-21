@@ -13,8 +13,8 @@ const CartBtn = (props) => {
         quantity: 0,
         sum: 0,
         checked: true,
-    }]
-    // console.log(new_product_list)
+    }];
+
     const openModal = () => {
         dispatch(setModal(true, new_product_list));
     };
