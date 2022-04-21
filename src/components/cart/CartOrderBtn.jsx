@@ -4,9 +4,6 @@ import styled from 'styled-components';
 
 const CartOrderBtn = (props) => {
     const cart_list = useSelector(state => state.cart.list);
-    // const quantity_arr = cart_list.map(v => v.quantity);
-    // const total_num = quantity_arr.reduce((acc, cur) => acc + cur, 0);
-    
     const choice_item = cart_list.findIndex(v => v.checked === false)
     
     if(choice_item !== 0){

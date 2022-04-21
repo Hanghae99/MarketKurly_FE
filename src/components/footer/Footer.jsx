@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { Grid } from "../../elements";
 
 const Footer = (props) => {
   return (
     <>
       <Bar />
+      <Grid flex justify="center" column="column">
       <Container>
         <Section>
           <div>
@@ -159,6 +161,7 @@ const Footer = (props) => {
           </Section>
         </OutsideInfo>
       </Container>
+      </Grid>
     </>
   );
 };
@@ -257,10 +260,10 @@ const Container = styled.div`
   display: flex;
   justify-content: left;
   align-items: left;
-  margin: 30px auto;
+  /* margin: 0px auto; */
   width: 80%;
   display: flex;
-  margin-left: 380px;
+  /* margin-left: 380px; */
   width: 1050px;
   letter-spacing: -0.2px;
 `;

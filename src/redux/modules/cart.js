@@ -2,8 +2,6 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-
 // action
 const SET_CART = "SET_CART";
 const UPDATE_CART = "UPDATE_CART";
@@ -32,26 +30,26 @@ export const loginCartPushApi = () => {
     const new_baskets = baskets.map(v => {
         return {id:v.id, quantity:v.quantity, sum:v.sum};
     });
-    console.log(new_baskets)
+    const token = localStorage.getItem("token");
     return async function (dispatch, getState, {history}){
         try {
-            console.log("여기와??", new_baskets)
-            const response = await axios.post("http://54.180.156.74/api/mybucket/logincart",new_baskets,{
+            await axios.post("http://54.180.156.74/api/mybucket/logincart",new_baskets,{
                 headers: {
                     Authorization: `${token}`,
                 },
             });
-            console.log(response)
-            console.log("loginCartPushApi: 작동");
+            dispatch(getCartApi());
+            console.log("실행")
         }catch(err){
             console.log(err);
             alert("장바구니 목록을 담지 못했습니다.");
         };
     };
+
 };
 
 export const setCartApi = (id, product_info) => {
-    console.log(id, product_info)
+    const token = localStorage.getItem("token");
     return async function (dispatch, getState, {history}){
         try {
             await axios.post(`http://54.180.156.74/api/mybucket/${id}`,product_info,{
@@ -59,7 +57,6 @@ export const setCartApi = (id, product_info) => {
                     Authorization: `${token}`,
                 },
             });
-            console.log("카트실행?")
         }catch(err){
             console.log(err);
             alert("장바구니에 상품을 추가하지 못했습니다.");
@@ -68,17 +65,40 @@ export const setCartApi = (id, product_info) => {
 };
 
 export const getCartApi = () => {
+    const token = localStorage.getItem("token");
     return async function (dispatch, getState, {history}){
         try {
             const response = await axios.get('http://54.180.156.74/api/mybucket',{
                 headers: {
                     Authorization: `${token}`,
                 },
-            })
-            console.log(response);
+            });
+            console.log("최신화 :", response.data)
+            // 제거하고
+            localStorage.removeItem('buckets');
+            // 다시 넣어주고
+            localStorage.setItem("baskets", JSON.stringify(response.data));
+            // 그걸 리덕스에 저장
+            dispatch(setCart(response.data));
         }catch(err){
             console.log(err);
             alert("장바구니를 불러오지 못했습니다.");
+        };
+    };
+};
+
+export const deleteCartApi = (id) => {
+    const token = localStorage.getItem("token");
+    return async function (dispatch, getState, {history}){
+        try {
+            await axios.delete(`http://54.180.156.74/api/mybucket/${id}`,{
+                headers: {
+                    Authorization: `${token}`,
+                },
+            });
+        }catch(err){
+            console.log(err);
+            alert("장바구니 상품을 삭제 못했습니다.");
         };
     };
 };
@@ -134,8 +154,6 @@ export default handleActions(
                 localStorage.setItem("baskets", JSON.stringify(new_baskets));
                 //
             }),
-        
-
         [SET_CHECK]: (state, action) =>
             produce(state, (draft) => {
                 const idx = draft.list.findIndex(v => v.id === action.payload.id);
@@ -180,6 +198,7 @@ const actionCreators = {
     choiceDeleteCart,
     setCartApi,
     getCartApi,
+    deleteCartApi,
 };
 
 export { actionCreators };

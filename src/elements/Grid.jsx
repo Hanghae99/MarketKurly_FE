@@ -15,6 +15,7 @@ const Grid = props => {
 		height, 
 		position,
 		justify,
+		column,
 	} = props;
 
 	const styles = {
@@ -28,6 +29,7 @@ const Grid = props => {
 		height: height,
         position,
 		justify,
+		column,
 	};
 
 	if (gridBox) {
@@ -57,6 +59,7 @@ Grid.defaultProp = {
 	height: false,
     position: "static",
 	justify: false,
+	column: "row",
 };
 
 const GridBox = styled.div`
@@ -70,6 +73,7 @@ const GridBox = styled.div`
 	${props => (props.flex ? `display:flex; align-items:center; justify-content:space-between` : '')};
 	${props => (props.height ? `height:${props.height}` : '')};
 	${props => (props.justify ? `justify-content:${props.justify}` : '')};
+	flex-direction: ${props => props.column};
 	/* border: 1px red solid; */
 `;
 
