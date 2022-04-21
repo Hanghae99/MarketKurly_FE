@@ -4,6 +4,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router";
 import { actionCreators as cartActions } from "../../redux/modules/cart";
+import { Simulate } from "react-dom/test-utils";
 
 const Detail = (props) => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Detail = (props) => {
   const max = () => {
     setNumber(parseInt(number) + 1);
   };
- 
+
   const product_info = {
     id: params.id,
     brand: product.brand,
@@ -31,26 +32,31 @@ const Detail = (props) => {
     name: product.name,
     price: product.price,
     quantity: number,
-    sum: (product.price * number),
+    sum: product.price * number,
     checked: true,
   };
 
   const goBasket = () => {
     const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
-    
+
     let idx;
     baskets.map((v, i) => {
-        if(v.id === params.id*1) return idx = i;
+      if (v.id === params.id * 1) return (idx = i);
     });
-    console.log(idx)
-    if(typeof(idx) === 'number'){
-        baskets[idx].quantity += number;
+    console.log(idx);
+    if (typeof idx === "number") {
+      baskets[idx].quantity += number;
     } else {
-        baskets.push(product_info);
+      baskets.push(product_info);
     }
     dispatch(cartActions.setCart(baskets));
     localStorage.setItem("baskets", JSON.stringify(baskets));
-};
+  };
+
+  const sum = price * number;
+  const result = sum.toLocaleString("ko-KR");
+
+  console.log(typeof sum);
 
   return (
     <>
@@ -110,7 +116,7 @@ const Detail = (props) => {
 
               <Order>
                 <Total>
-                  총 상품금액 :<Bold> {price * number}</Bold>원
+                  총 상품금액 :<Bold> {result}</Bold>원
                 </Total>
                 <IconPoint>적립</IconPoint>로그인 후,회원할인가와 적립혜택 적용
                 <Point>

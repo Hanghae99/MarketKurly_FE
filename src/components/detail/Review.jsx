@@ -8,12 +8,11 @@ import { getCommentDB } from "../../redux/modules/comment";
 
 const Review = ({ productId, name }) => {
   const comment = useSelector((state) => state.comment);
+
   const history = useHistory();
   const dispatch = useDispatch();
-  console.log(comment);
 
   useEffect(() => {
-    console.log("렌더링시쟉");
     dispatch(getCommentDB(productId));
   }, [productId]);
 
