@@ -29,8 +29,8 @@ const CountBtn = (props) => {
                 onClick={plusNumber}
             /> 
         </Container>
-    )
-}
+    );
+};
             
 const Container = styled.div`
     width: 88px;

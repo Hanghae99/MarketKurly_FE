@@ -74,7 +74,6 @@ const GridBox = styled.div`
 	${props => (props.height ? `height:${props.height}` : '')};
 	${props => (props.justify ? `justify-content:${props.justify}` : '')};
 	flex-direction: ${props => props.column};
-	/* border: 1px red solid; */
 `;
 
 const ParentsGridbox = styled.div`

@@ -1,9 +1,9 @@
 import React from "react";
+import styled from "styled-components";
+
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-
-import styled from "styled-components";
 import { actionCreators } from "../../redux/modules/user";
 
 const Login = (props) => {
@@ -23,7 +23,6 @@ const Login = (props) => {
       [name]: value,
     });
   };
-  // console.log(formValue);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -37,7 +36,7 @@ const Login = (props) => {
     if (formValue.username === "" || formValue.password === "") {
       window.alert("아이디 혹은 비밀번호가 공란입니다! 입력해주세요!");
       return;
-    }
+    };
   };
 
   return (
@@ -177,8 +176,6 @@ const Bar = styled.span`
   background-color: #333;
 `;
 
-const LogIn = styled.div``;
-
 const LoginBtn = styled.button`
   color: #fff;
   border-style: none;
@@ -192,8 +189,6 @@ const LoginBtn = styled.button`
   text-align: center;
   width: 340px;
 `;
-
-const SignUp = styled.div``;
 
 const SignBtn = styled.button`
   color: #5f0081;

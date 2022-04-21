@@ -38,8 +38,8 @@ const CartAddress = (props) => {
                 </Grid>
             </Grid>
         </Container>
-    )
-}
+    );
+};
 
 const Container = styled.div`
     width: 100%;

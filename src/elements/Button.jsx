@@ -139,13 +139,6 @@ const Btn = styled.button`
     border-radius: 3px;
     cursor: pointer;
     border: 1px solid #ddd;
-
 `;
-
-
-
-
-
-
 
 export default Button;

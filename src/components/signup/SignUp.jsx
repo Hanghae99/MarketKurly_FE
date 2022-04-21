@@ -25,7 +25,6 @@ const SignUp = (props) => {
       [name]: value,
     });
   };
-  // console.log(formRegister);
 
   const onClick = (e) => {
     e.preventDefault();
@@ -304,9 +303,7 @@ const Content = styled.section`
   font-size: 14px;
   color: #333;
   line-height: 20px;
-  /* vertical-align: top; */
   text-align: center;
-  /* margin-right: 10px; */
 `;
 
 const Input = styled.input`
@@ -316,7 +313,6 @@ const Input = styled.input`
   border: 1px solid #ccc;
   font-size: 14px;
   color: #333;
-  /* line-height: 20px; */
   border-radius: 3px;
   background: #fff;
   outline: none;

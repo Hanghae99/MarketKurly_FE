@@ -33,10 +33,8 @@ const Item = (props) => {
                     </BrandName>
                 </h3>
                 <Grid>
-                    {/* <Discount>10%</Discount> */}
                     <Price>{locale_price}원</Price>
                 </Grid>
-                {/* <PrePrice>{price}</PrePrice> */}
             </ItemInfoContainer>
         </ItemContainer>
     )
@@ -85,29 +83,12 @@ const BrandName = styled(Link)`
     line-height: 29px;
 `;
 
-const Discount = styled.span`
-    color: rgb(250, 98, 47);
-    font-size: 18px;
-    font-weight: bold;
-    line-height: 29px;
-    white-space: nowrap;
-    margin-right: 7px;
-`;
-
 const Price = styled.span`
     color: rgb(51, 51, 51);
     font-size: 18px;
     font-weight: bold;
     line-height: 29px;
     white-space: nowrap;
-`;
-
-const PrePrice = styled.span`
-    color: rgb(153, 153, 153);
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: line-through;
-    margin-top: 2px;
 `;
 
 export default Item;

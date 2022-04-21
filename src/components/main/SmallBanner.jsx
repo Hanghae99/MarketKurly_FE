@@ -13,7 +13,7 @@ const SmallBanner = (props) => {
                 width="100%"
             />
         </Grid>
-    )
+    );
 };
 
 export default SmallBanner;

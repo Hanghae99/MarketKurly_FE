@@ -23,8 +23,8 @@ const CartHeader = (props) => {
                 dispatch(cartActions.choiceDeleteCart());
             };
         } else {
-            window.alert("선택된 상품이 없습니다.")
-        }
+            window.alert("선택된 상품이 없습니다.");
+        };
     };
 
     return (

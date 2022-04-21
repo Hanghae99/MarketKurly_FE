@@ -24,7 +24,7 @@ const ModalItem = (props) => {
                 <CountBtn />
             </Grid>
         </Container>
-    )
+    );
 };
 
 const Container = styled.div`

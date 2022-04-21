@@ -1,5 +1,5 @@
+import React from "react";
 import styled from "styled-components";
-
 import Comment from "./Comment";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -141,6 +141,7 @@ const Total = styled.div`
   padding-top: 20px;
   display: flex;
 `;
+
 const Form = styled.form`
   font-weight: 400;
   letter-spacing: 0;

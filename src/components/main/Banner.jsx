@@ -80,9 +80,6 @@ const StyledSlider = styled(Slider)`
     background-color: rgb(238, 238, 238);
     background-position: 50% center;
     background-repeat: no-repeat;
-    /* &:hover Button{
-        opacity: 0;
-    } */ // 아직 잘 모르겠음,,
   }
 
   .slick-slide div { //슬라이더  컨텐츠

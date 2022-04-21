@@ -40,8 +40,6 @@ const Pagination = (props) => {
         }
     };
 
-
-
     // 좋은 방식이 아닌 것 같음
     const clickArrow = (e) => {
         // const click = e.target.dataset.num;

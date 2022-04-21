@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Grid } from '../../elements/index';
-import CartBtn from '../modal/CartBtn';
 
 const Item = (props) => {
     const { imgUrl, brand, price, name, sale_rate, sale_price } = props;
@@ -14,7 +13,6 @@ const Item = (props) => {
                     src={imgUrl}
                     alt={brand}
                 />
-                {/* <CartBtn bottom="10px" right="10px"/> */}
             </ItemImageWrap>
             <ItemInfoContainer>
                 <h3 style={{marginBottom: "8px"}}>

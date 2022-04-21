@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import Grid from "../../elements/Grid";
-import { loginCheckDB, logOut } from "../../redux/modules/user";
-import HoverList from "./HoverList";
 import { history } from "../../redux/store";
 import { actionCreators as productActions } from "../../redux/modules/product";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+
+import { loginCheckDB, logOut } from "../../redux/modules/user";
+import Grid from "../../elements/Grid";
+import HoverList from "./HoverList";
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -25,7 +26,6 @@ const Header = (props) => {
     localStorage.removeItem("token");
     localStorage.removeItem("baskets");
     dispatch(logOut());
-    window.location.replace("/");
   };
 
   const onMoveRegister = () => {
@@ -224,7 +224,7 @@ const Header = (props) => {
         </Container>
       </>
     );
-  }
+  };
 };
 
 const HeaderWrap = styled.div`
@@ -468,7 +468,7 @@ const Shadow = styled.div`
   top: 53px;
   width: 100%;
   height: 9px;
-  background: url(https://res.kurly.com/pc/service/common/1902/bg_1x9.png)
+  background: url('https://res.kurly.com/pc/service/common/1902/bg_1x9.png')
     repeat-x 0 100%;
 `;
 

@@ -22,7 +22,6 @@ const Write = () => {
       ...commentValue,
       [name]: value,
     });
-    // console.log(commentValue);
   };
 
   const onSubmit = (e) => {
@@ -182,7 +181,6 @@ const Box = styled.div`
   font-size: 12px;
   justify-content: center;
   align-items: center;
-  /* border-bottom: 1px solid gray; */
 `;
 
 const BigBox = styled.div`

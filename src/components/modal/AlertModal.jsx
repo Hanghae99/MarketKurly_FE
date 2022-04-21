@@ -58,7 +58,6 @@ const AlertModal = (props) => {
 };
 
 const ModalBackground = styled.div`
-    /* display: none; */
     position: fixed;
     z-index: 10000;
     left: 0;

@@ -6,8 +6,6 @@ import { getCartApi, loginCartPushApi } from "./cart";
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
 
-// const token = localStorage.getItem("token");
-
 export const setUser = createAction(SET_USER, (user_info) => ({ user_info }));
 export const logOut = createAction(LOG_OUT, () => ({}));
 
@@ -40,7 +38,7 @@ export const logInDB = (formValue) => {
     await axios
       .post(`http://54.180.156.74/user/login`, formValue)
       .then((res) => {
-        history.replace('/')
+        history.replace('/');
         localStorage.setItem("token", res.headers.authorization);
         dispatch(loginCheckDB());
         
@@ -72,7 +70,6 @@ export const loginCheckDB = () => {
         }
       )
       .then((res) => {
-        // console.log(res);
         dispatch(
           setUser({
             username: res.data.username,

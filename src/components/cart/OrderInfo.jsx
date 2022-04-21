@@ -7,8 +7,8 @@ const OrderInfo = (props) => {
             <Text><span>·</span>{`[배송준비중] 이전까지 주문 취소 가능합니다.`}</Text>
             <Text><span>·</span>{`[마이컬리 > 주문내역 상세페이지]에서 직접 취소하실 수 있습니다.`}</Text>
         </Container>
-    )
-}
+    );
+};
  
 const Container = styled.div`
     margin-top: 34px;
