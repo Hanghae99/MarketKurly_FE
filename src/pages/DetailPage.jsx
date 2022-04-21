@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 const DetailPage = (props) => {
   const name = useSelector((state) => state.product.list[0].name);
-
   const params = useParams();
   const productId = params.id;
 
