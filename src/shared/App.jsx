@@ -26,18 +26,20 @@ function App() {
   const dispatch = useDispatch();
   const is_open = useSelector((state) => state.modal.is_open);
   const is_open_alert = useSelector((state) => state.modal.alert_open);
-
   const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
+  
   useEffect(() => {
-    if (baskets.length > 0) {
+    if(baskets.length > 0) {
       dispatch(cartActions.setCart(baskets));
     };
   }, []);
 
   useEffect(() => {
-    dispatch(loginCheckDB());
+   dispatch(loginCheckDB());  
   }, []);
 
+  if(baskets.length) dispatch(cartActions.getCartApi());
+  
   return (
     <>
       <ConnectedRouter history={history}>

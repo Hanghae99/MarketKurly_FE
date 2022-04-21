@@ -1,5 +1,8 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+import axios from "axios";
+
+const token = localStorage.getItem("token");
 
 // action
 const SET_CART = "SET_CART";
@@ -24,13 +27,58 @@ const initialState = {
 };
 
 // middleWares
-export const setCartApi = () => {
-    return async function (dispatch, getState, { history }) {
+export const loginCartPushApi = () => {
+    const baskets = JSON.parse(localStorage.getItem("baskets"));
+    const new_baskets = baskets.map(v => {
+        return {id:v.id, quantity:v.quantity, sum:v.sum};
+    });
+    console.log(new_baskets)
+    return async function (dispatch, getState, {history}){
         try {
-            // const response = axios.
+            console.log("여기와??", new_baskets)
+            const response = await axios.post("http://54.180.156.74/api/mybucket/logincart",new_baskets,{
+                headers: {
+                    Authorization: `${token}`,
+                },
+            });
+            console.log(response)
+            console.log("loginCartPushApi: 작동");
         }catch(err){
             console.log(err);
             alert("장바구니 목록을 담지 못했습니다.");
+        };
+    };
+};
+
+export const setCartApi = (id, product_info) => {
+    console.log(id, product_info)
+    return async function (dispatch, getState, {history}){
+        try {
+            await axios.post(`http://54.180.156.74/api/mybucket/${id}`,product_info,{
+                headers: {
+                    Authorization: `${token}`,
+                },
+            });
+            console.log("카트실행?")
+        }catch(err){
+            console.log(err);
+            alert("장바구니에 상품을 추가하지 못했습니다.");
+        };
+    };
+};
+
+export const getCartApi = () => {
+    return async function (dispatch, getState, {history}){
+        try {
+            const response = await axios.get('http://54.180.156.74/api/mybucket',{
+                headers: {
+                    Authorization: `${token}`,
+                },
+            })
+            console.log(response);
+        }catch(err){
+            console.log(err);
+            alert("장바구니를 불러오지 못했습니다.");
         };
     };
 };
@@ -130,6 +178,8 @@ const actionCreators = {
     setCheck,
     setCheckAll,
     choiceDeleteCart,
+    setCartApi,
+    getCartApi,
 };
 
 export { actionCreators };

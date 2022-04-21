@@ -15,7 +15,7 @@ const Main = (props) => {
   const product_list = useSelector((state) => state.product.list);
   const is_loading = useSelector((state) => state.product.is_loading);
   const [page] = useState(page_num);
-
+  
   useEffect(() => {
     dispatch(productActions.getProductApi(page));
   }, []);

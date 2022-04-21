@@ -17,7 +17,9 @@ const Header = (props) => {
 
   const logout_click = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("baskets");
     dispatch(logOut());
+    history.replace('/');
   };
 
   const onMoveRegister = () => {

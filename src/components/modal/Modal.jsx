@@ -7,10 +7,10 @@ import ModalSum from './ModalSum';
 import { setAlertModal, setModal } from '../../redux/modules/modal';
 import { actionCreators as cartActions } from '../../redux/modules/cart';
 
-
 const Modal = (props) => {
     const dispatch = useDispatch();
-
+    const is_login = useSelector(state => state.user.is_login);
+    
     useEffect(() => {
         document.body.style.cssText = `
           position: fixed; 
@@ -31,7 +31,11 @@ const Modal = (props) => {
     };
 
     const product_in_modal = useSelector(state => state.modal.list)[0];
-
+    const product_list_for_api = {
+        quantity: product_in_modal.quantity,
+        sum: product_in_modal.sum,
+    };
+   
     // localStorage 장바구니
     const goBasket = () => {
         if(product_in_modal.quantity === 0){
@@ -51,6 +55,8 @@ const Modal = (props) => {
         } else {
             baskets.push(product_in_modal);
         }
+        
+        if(is_login) dispatch(cartActions.setCartApi(product_in_modal.id, product_list_for_api));
         dispatch(cartActions.setCart(baskets));
         localStorage.setItem("baskets", JSON.stringify(baskets));
         closeModal();
@@ -72,7 +78,7 @@ const Modal = (props) => {
                         size="16px"
                         bold="bold"
                     />
-                    <Button 
+                    <Button
                         onClick={goBasket}
                         type="big"
                         height="54px"
