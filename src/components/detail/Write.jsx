@@ -6,14 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 
 const Write = () => {
+  const product = useSelector((state) => state.product.list[0]);
+  const productId = params.productId;
+  const params = useParams();
   const dispatch = useDispatch();
   const [commentValue, setCommentValue] = useState({
     comment: "",
   });
-  const product = useSelector((state) => state.product.list[0]);
-  const params = useParams();
-  const productId = params.productId;
-  console.log(params.productId);
 
   const onChangeFormValue = (e) => {
     const { name, value } = e.target;
@@ -22,14 +21,12 @@ const Write = () => {
       ...commentValue,
       [name]: value,
     });
-    // console.log(commentValue);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     dispatch(addCommentDB(productId, commentValue));
-    console.log(commentValue);
   };
 
   return (

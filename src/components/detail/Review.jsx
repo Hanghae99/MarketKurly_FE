@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { getCommentDB } from "../../redux/modules/comment";
 
 const Review = ({ productId, name }) => {
+  const post_list = useSelector((state) => state.comment.commentList);
   const comment = useSelector((state) => state.comment);
 
   const history = useHistory();
@@ -15,9 +16,6 @@ const Review = ({ productId, name }) => {
   useEffect(() => {
     dispatch(getCommentDB(productId));
   }, [productId]);
-
-  const post_list = useSelector((state) => state.comment.commentList);
-  console.log(productId);
 
   return (
     <>
@@ -96,7 +94,7 @@ const Review = ({ productId, name }) => {
             </HeaderInfo>
             <div>
               {post_list.map((item, idx) => {
-                return <Comment name={name} key={item.id} {...item} />;
+                return <Comment name={name} key={idx} {...item} />;
               })}
             </div>
           </Form>
@@ -124,7 +122,7 @@ const Reg = styled.div`
   text-align: center;
   background-color: #795b8f;
   border: 1px solid #5f0080;
-  margin-left: 1370px;
+  margin-left: 1290px;
   cursor: pointer;
 `;
 
