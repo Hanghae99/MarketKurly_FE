@@ -56,8 +56,6 @@ const Detail = (props) => {
   const sum = price * number;
   const result = sum.toLocaleString("ko-KR");
 
-  console.log(typeof sum);
-
   return (
     <>
       <Section>
@@ -99,7 +97,7 @@ const Detail = (props) => {
                 <SectionBtn>
                   <Box>
                     <BtnNum onClick={min}>
-                      <i class="fa-solid fa-minus"></i>
+                      <i className="fa-solid fa-minus"></i>
                     </BtnNum>
                     <label htmlFor="1">
                       <Input type="number" id="1" />
@@ -107,7 +105,7 @@ const Detail = (props) => {
                     </label>
 
                     <BtnNum onClick={max}>
-                      <i class="fa-solid fa-plus"></i>
+                      <i className="fa-solid fa-plus"></i>
                     </BtnNum>
                   </Box>
                 </SectionBtn>
@@ -115,20 +113,25 @@ const Detail = (props) => {
               <Border />
 
               <Order>
-                <Total>
-                  총 상품금액 :<Bold> {result}</Bold>원
-                </Total>
-                <IconPoint>적립</IconPoint>로그인 후,회원할인가와 적립혜택 적용
-                <Point>
-                  <WrapIcon>
-                    <LikeBtn />
-                    <Alert />
+                <div>
+                  <Total>
+                    총 상품금액 :<Bold> {result}</Bold>원
+                  </Total>
+                  <Ho>
+                    <IconPoint>적립</IconPoint>로그인 후,회원할인가와 적립혜택
+                    적용
+                  </Ho>
+                  <Point>
+                    <WrapIcon>
+                      <LikeBtn />
+                      <Alert />
 
-                    <Reg>
-                      <Btn onClick={goBasket}>장바구니 담기</Btn>
-                    </Reg>
-                  </WrapIcon>
-                </Point>
+                      <Reg>
+                        <Btn onClick={goBasket}>장바구니 담기</Btn>
+                      </Reg>
+                    </WrapIcon>
+                  </Point>
+                </div>
               </Order>
             </Wrap>
           </Fix>
@@ -142,16 +145,21 @@ export default Detail;
 
 const Section = styled.section`
   width: 1050px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding-top: 20px;
   display: flex;
 `;
 
+const Ho = styled.div`
+  /* margin-right: 50px; */
+  padding: 0 5px;
+`;
+
 const IconPoint = styled.div`
   display: inline-block;
-  width: 38px;
+  width: 28px;
   height: 20px;
-  margin-left: 420px;
+  margin-left: 315px;
   margin-right: 2px;
   border-radius: 10px;
   background-color: #ffbf00;
@@ -166,7 +174,7 @@ const Total = styled.div`
   font-weight: 700;
   font-size: 15px;
   margin-bottom: 10px;
-  margin-right: 170px;
+  margin-right: 70px;
   display: flex;
   justify-content: right;
 `;
@@ -176,7 +184,7 @@ const Point = styled.span`
   display: block;
   justify-content: center;
   align-items: center;
-  margin-left: 140px;
+  margin-left: 120px;
 `;
 
 const Bold = styled.span`
@@ -202,6 +210,7 @@ const Div = styled.div`
 const Order = styled.div`
   margin-bottom: 10px;
   padding: 10px;
+  margin-right: 210px;
 `;
 
 const Tit = styled.span`
@@ -220,6 +229,7 @@ const Con = styled.span`
 
 const Border = styled.div`
   border-top: 0.2px solid gray;
+  width: 550px;
   opacity: 20%;
   margin-top: 30px;
   margin-bottom: 20px;

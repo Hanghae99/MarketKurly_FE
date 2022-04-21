@@ -260,10 +260,9 @@ const Container = styled.div`
   display: flex;
   justify-content: left;
   align-items: left;
-  /* margin: 0px auto; */
+  padding-top: 30px;
   width: 80%;
   display: flex;
-  /* margin-left: 380px; */
   width: 1050px;
   letter-spacing: -0.2px;
 `;
