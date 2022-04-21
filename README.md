@@ -1,9 +1,7 @@
 # MarketKurly
 
-## ☑️요약
-
 ### 항해99 6기, 9조 클론코딩
-
+![image](https://user-images.githubusercontent.com/97653052/164482246-75e6deb4-1106-4708-8ed3-5988289510f8.png)
 **클론 대상 사이트** : [마켓컬리](https://www.kurly.com/shop/main/index.php?utm_source=1055&utm_medium=2202&utm_campaign=home_hashtag&utm_term=&gclid=Cj0KCQiA09eQBhCxARIsAAYRiymFTo_B-h_Ud0gO_bvKSG36IaBralIpgBFdb2WKsfT25LH5s8RrK-4aAm26EALw_wcB#%EB%A7%88%EC%BC%93%EC%BB%AC%EB%A6%AC&utm_content=brand)
 
 📸 **클론 페이지** : 로그인, 회원가입, 메인, 장바구니, 상세, 리뷰작성
@@ -58,6 +56,7 @@
 ## 📜 페이지 설명
 
 ### 📎 로그인 페이지
+![image](https://user-images.githubusercontent.com/97653052/164483400-3a33c434-7529-43e6-9684-4c049298a729.png)
 
 <pre>
     - JWT 토큰을 활용하여 로그인기능 구현 
@@ -66,7 +65,7 @@
 </pre>
 
 ### 📎 회원가입 페이지
-
+![image](https://user-images.githubusercontent.com/97653052/164483558-f0e01e4c-26cd-44e2-8ee8-d1cf682f3fd8.png)
 <pre>
     - 아이디 : 6~15자의 영소문자, 숫자의 조합
     - 비밀번호 : 8~16자의 영대소문자, 숫자, 특수문자의 조합
@@ -76,7 +75,7 @@
 </pre>
 
 ### 📎 상세 & 리뷰페이지
-
+![image](https://user-images.githubusercontent.com/97653052/164482524-1b8477ad-6d13-4adf-be10-13e9ed2ae858.png)
 <pre>
     - 메인에서 클릭한 상품에 대한 상세정보표시 
     - 제품 수량에따른 가격표시
@@ -86,14 +85,15 @@
 </pre>
 
 ### 📎 메인페이지 & 검색페이지
-
+![image](https://user-images.githubusercontent.com/97653052/164482246-75e6deb4-1106-4708-8ed3-5988289510f8.png)
+![image](https://user-images.githubusercontent.com/97653052/164482684-a60d7ab0-4f67-47bf-ad02-72727ea4ef9e.png)
 <pre>
     -장바구니 추가 버튼 : 장바구니에 이미 있는 제품의 장바구니 추가 버튼을 누르면 장바구니의 수량 증가
     -메인 페이지, 상세 페이지, 장바구니 추가 모두 로그인 하지 않아도 접근 가능
 </pre>
 
 ### 📎 장바구니 페이지
-
+![image](https://user-images.githubusercontent.com/97653052/164482111-ed8b3603-da78-4cc5-a1c4-622d78c18014.png)
 <pre>
     - 장바구니에 담은 상품을 조회 (로그인 유저 & 비 로그인 유저)
         - 비 로그인 유저: localstorage로 장바구니 관리
