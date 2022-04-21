@@ -1,14 +1,22 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { deleteAll } from '../../redux/modules/cart';
 
 const CartOrderBtn = (props) => {
+    const dispatch = useDispatch();
     const cart_list = useSelector(state => state.cart.list);
     const choice_item = cart_list.findIndex(v => v.checked === false)
     
+    const clickOrder = () => {
+        window.alert("주문이 완료되었습니다.");
+        dispatch(deleteAll());
+        localStorage.removeItem("baskets");
+    };
+
     if(choice_item !== 0){
         return (
-            <OrderContainer type="submit">
+            <OrderContainer type="submit" onClick={clickOrder}>
                 <span>주문하기</span>
             </OrderContainer>
         );

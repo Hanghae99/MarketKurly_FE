@@ -9,6 +9,7 @@ const DELETE_CART = "DELETE_CART";
 const CHOICE_DELETE_CART ="CHOICE_DELETE_CART";
 const SET_CHECK = "SET_CHECK";
 const SET_CHECK_ALL = "SET_CHECK_ALL";
+const DELETE_ALL = "DELETE_ALL";
 
 // actionCreator
 export const setCart = createAction(SET_CART, (cart_list) => ({cart_list}));
@@ -17,6 +18,7 @@ export const deleteCart = createAction(DELETE_CART, (id) => ({id}));
 export const choiceDeleteCart = createAction(CHOICE_DELETE_CART, () => ({}));
 export const setCheck = createAction(SET_CHECK, (id) => ({id}));
 export const setCheckAll = createAction(SET_CHECK_ALL, (is_check) => ({is_check}));
+export const deleteAll = createAction(DELETE_ALL, () => ({}));
 
 // initialState
 const initialState = {
@@ -185,6 +187,11 @@ export default handleActions(
                 localStorage.setItem("baskets", JSON.stringify(new_baskets));
                 //
             }),
+        [DELETE_ALL]: (state, action) =>
+            produce(state, (draft) => {
+                draft.list = [];
+
+            }),
     },
     initialState
 );
@@ -199,6 +206,7 @@ const actionCreators = {
     setCartApi,
     getCartApi,
     deleteCartApi,
+    deleteAll,
 };
 
 export { actionCreators };
