@@ -100,7 +100,7 @@ const SignUp = (props) => {
           </Bar>
 
           <Table>
-            <tr>
+            <div>
               <Content>
                 <Id>
                   <Name>
@@ -119,9 +119,9 @@ const SignUp = (props) => {
                   <CheckBtn onClick={onClick}>중복확인</CheckBtn>
                 </Check>
               </Content>
-            </tr>
+            </div>
 
-            <tr>
+            <div>
               <Content>
                 <Id>
                   <Name>
@@ -137,9 +137,9 @@ const SignUp = (props) => {
                   />
                 </Div>
               </Content>
-            </tr>
+            </div>
 
-            <tr>
+            <div>
               <Content>
                 <Id>
                   <Name>
@@ -155,9 +155,9 @@ const SignUp = (props) => {
                   />
                 </Div>
               </Content>
-            </tr>
+            </div>
 
-            <tr>
+            <div>
               <Content>
                 <Id>
                   <Name>
@@ -173,9 +173,9 @@ const SignUp = (props) => {
                   />
                 </Div>
               </Content>
-            </tr>
+            </div>
 
-            <tr>
+            <div>
               <Content>
                 <Id>
                   <Name>
@@ -191,7 +191,7 @@ const SignUp = (props) => {
                   />
                 </Div>
               </Content>
-            </tr>
+            </div>
           </Table>
 
           <Reg>
@@ -284,7 +284,7 @@ const Table = styled.div`
   padding-bottom: 40px;
 `;
 
-const Name = styled.th`
+const Name = styled.div`
   padding: 10px 0;
   width: 129px;
   padding: 20px 0 0 20px;
@@ -296,7 +296,7 @@ const Name = styled.th`
   text-align: left;
 `;
 
-const Content = styled.div`
+const Content = styled.section`
   display: flex;
   width: 159px;
   padding: 5px 0;
@@ -323,6 +323,6 @@ const Input = styled.input`
   vertical-align: top;
 `;
 
-const Id = styled.div`
+const Id = styled.section`
   display: flex;
 `;
