@@ -20,7 +20,6 @@ import AlertModal from "../components/modal/AlertModal";
 import { useEffect } from "react";
 import ScrollTop from "./ScrollTop";
 import { actionCreators as cartActions } from "../redux/modules/cart";
-import { loginCheckDB } from "../redux/modules/user";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +28,7 @@ function App() {
   const is_open_alert = useSelector((state) => state.modal.alert_open);
 
   useEffect(() => {
-    if (baskets.length > 0) {
+    if(baskets.length > 0) {
       dispatch(cartActions.setCart(baskets));
     }
   }, []);
@@ -41,6 +40,8 @@ function App() {
     }
   }, []);
 
+  if(baskets.length) dispatch(cartActions.getCartApi());
+  
   return (
     <>
       <ConnectedRouter history={history}>

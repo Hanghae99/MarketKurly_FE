@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
+import { loginCartPushApi } from "./cart";
 
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
@@ -43,6 +44,9 @@ export const logInDB = (formValue) => {
         console.log(res);
         localStorage.setItem("token", res.headers.authorization);
         dispatch(loginCheckDB());
+
+        const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
+        if(baskets.length) dispatch(loginCartPushApi());
       })
       .catch((err) => {
         console.log(err);
@@ -50,7 +54,6 @@ export const logInDB = (formValue) => {
   };
 };
 
-//
 export const loginCheckDB = () => {
   return async function (dispatch, getState, { history }) {
     await axios
@@ -64,7 +67,7 @@ export const loginCheckDB = () => {
         }
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch(
           setUser({
             username: res.data.username,
