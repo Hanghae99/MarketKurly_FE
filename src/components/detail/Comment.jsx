@@ -11,7 +11,6 @@ const Comment = (props) => {
     e.preventDefault();
     setNumber((number) => number + 1);
   };
-  console.log(props);
 
   if (oneComment) {
   }

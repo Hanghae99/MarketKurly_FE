@@ -16,20 +16,10 @@ export const addComment = createAction(ADD_COMMENT, (productId, comment) => ({
   comment,
 }));
 
-export const editComment = createAction(
-  EDIT_COMMENT,
-  (commentId, newComment) => ({ commentId, newComment })
-);
+export const deleteComment = createAction(DELETE_COMMENT, (commentId) => ({
+  commentId,
+}));
 
-export const deleteComment = createAction(
-  DELETE_COMMENT,
-  (commentId, itemId) => ({
-    commentId,
-    itemId,
-  })
-);
-
-//미들웨어
 export const getCommentDB = (productId) => {
   const token = localStorage.getItem("token");
   return async function (dispatch, getState, { history }) {

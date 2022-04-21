@@ -8,7 +8,7 @@ import { getCommentDB } from "../../redux/modules/comment";
 
 const Review = ({ productId, name }) => {
   const post_list = useSelector((state) => state.comment.commentList);
-
+  const comment = useSelector((state) => state.comment);
   const history = useHistory();
   const dispatch = useDispatch();
 
