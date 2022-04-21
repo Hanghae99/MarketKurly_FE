@@ -235,22 +235,20 @@ const CheckBtn = styled.button`
 const Register = styled.button`
   color: #fff;
   border-style: none;
-  background-color: #5f0081;
-  height: 100%;
+  background-color: white;
   font-weight: 500;
   font-size: 16px;
   cursor: pointer;
-  line-height: 54px;
+  background-color: #5f0081;
+  height: 54px;
+  border-radius: 3px;
+  text-align: center;
+  width: 250px;
 `;
 
 const Reg = styled.div`
-  width: 240px;
-  height: 56px;
-  border-radius: 3px;
   text-align: center;
-  border: 1px solid #5f0081;
-  background-color: #5f0080;
-  margin-left: 230px;
+  margin-right: 40px;
 `;
 
 const Title = styled.h2`

@@ -18,24 +18,26 @@ import Footer from "../components/footer/Footer";
 import Modal from "../components/modal/Modal";
 import AlertModal from "../components/modal/AlertModal";
 import { useEffect } from "react";
-// import ScrollTop from "./ScrollTop";
+import ScrollTop from "./ScrollTop";
 import { actionCreators as cartActions } from "../redux/modules/cart";
-import { loginCheckDB } from "../redux/modules/user";
 
 function App() {
   const dispatch = useDispatch();
   const is_open = useSelector((state) => state.modal.is_open);
+
   const is_open_alert = useSelector((state) => state.modal.alert_open);
-  const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
-  
+
   useEffect(() => {
     if(baskets.length > 0) {
       dispatch(cartActions.setCart(baskets));
-    };
+    }
   }, []);
 
+  const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
   useEffect(() => {
-   dispatch(loginCheckDB());  
+    if (baskets.length > 0) {
+      dispatch(cartActions.setCart(baskets));
+    }
   }, []);
 
   if(baskets.length) dispatch(cartActions.getCartApi());
@@ -56,7 +58,7 @@ function App() {
           component={ReviewWritePage}
         />
         <Footer />
-        {/* <ScrollTop /> */}
+        <ScrollTop />
       </ConnectedRouter>
       {is_open ? <Modal /> : ""}
       {is_open_alert ? <AlertModal /> : ""}
