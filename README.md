@@ -1,4 +1,4 @@
-# MarketCury
+# MarketKurly
 
 ## ☑️요약
 
@@ -21,11 +21,23 @@
 
 👨‍👩‍👧 **Back-End** : 김승민 백승호 엄성훈
 
+## ⛳️ 역할 담당
+
+<details>
+    <summary>정연재</summary>
+    <!-- summary 아래 한칸 공백 두고 내용 삽입 -->
+        * 로그인 & 회원가입기능, 상세페이지, 리뷰CR(UD) 
+  </details>
+<details>
+    <summary>강동현</summary>
+    <!-- summary 아래 한칸 공백 두고 내용 삽입 -->
+        * 메인 & 장바구니 & 검색 페이지, 장바구니CRUD
+  </details>
+
 ## ⚔️ 기술 스택
 
 **Front-End**
 <br>
-
 <p align="center">
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
@@ -73,43 +85,19 @@
   
 </pre>
 
-### 📎 메인페이지
+### 📎 메인페이지 & 검색페이지
 
 <pre>
-    <!-- -메인 페이지 및 검색 : 메인페이지는 검색어:"식자재"를 default로 구현
     -장바구니 추가 버튼 : 장바구니에 이미 있는 제품의 장바구니 추가 버튼을 누르면 장바구니의 수량 증가
-    -메인 페이지, 상세 페이지, 장바구니 추가 모두 로그인 하지 않아도 접근 가능 -->
-</pre>
-
-### 📎 검색페이지
-
-<pre>
-    <!-- -메인 페이지 및 검색 : 메인페이지는 검색어:"식자재"를 default로 구현
-    -장바구니 추가 버튼 : 장바구니에 이미 있는 제품의 장바구니 추가 버튼을 누르면 장바구니의 수량 증가
-    -메인 페이지, 상세 페이지, 장바구니 추가 모두 로그인 하지 않아도 접근 가능 -->
+    -메인 페이지, 상세 페이지, 장바구니 추가 모두 로그인 하지 않아도 접근 가능
 </pre>
 
 ### 📎 장바구니 페이지
 
 <pre>
-    <!-- - 장바구니에 담은 상품을 조회 (로그인 유저 & 비 로그인 유저)
+    - 장바구니에 담은 상품을 조회 (로그인 유저 & 비 로그인 유저)
+        - 비 로그인 유저: localstorage로 장바구니 관리
+        - 로그인 유저: 장바구니 API를 통한 관리
     - 장바구니 페이지 내에서 개수 +,- 수정 기능
-    - 담을 제품 삭제 기능 -->
-</pre>
-
-## ⛳️ 역할 담당
-
-<details>
-    <summary>정연재</summary>
-    <!-- summary 아래 한칸 공백 두고 내용 삽입 -->
-        * 로그인 & 회원가입기능, 상세페이지, 리뷰CR(UD) 
-  </details>
-<details>
-    <summary>강동현</summary>
-    <!-- summary 아래 한칸 공백 두고 내용 삽입 -->
-        * [기능] 회원가입, 로그인, 로그인체크, 아이디 중복, 리뷰(작성, 조회, 수정, 삭제), 장바구니 상품추가(비로그인 -> 로그인 전환)
-  </details>
-
-<pre>
-
+    - 담을 제품 삭제 기능
 </pre>
