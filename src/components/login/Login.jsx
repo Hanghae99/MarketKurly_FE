@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 
 import styled from "styled-components";
 import { actionCreators } from "../../redux/modules/user";
 
 const Login = (props) => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const [formValue, setFormValue] = useState({
@@ -69,13 +71,15 @@ const Login = (props) => {
             </Search>
           </CheckContainer>
 
-          <LogIn>
-            <LoginBtn onClick={onSubmit}>로그인</LoginBtn>
-          </LogIn>
+          <LoginBtn onClick={onSubmit}>로그인</LoginBtn>
 
-          <SignUp>
-            <SignBtn>회원가입</SignBtn>
-          </SignUp>
+          <SignBtn
+            onClick={() => {
+              history.push("/register");
+            }}
+          >
+            회원가입
+          </SignBtn>
         </Form>
       </LoginSection>
     </>
@@ -173,45 +177,35 @@ const Bar = styled.span`
   background-color: #333;
 `;
 
-const LogIn = styled.div`
-  display: block;
-  width: 100%;
-  height: 54px;
-  border-radius: 3px;
-  font-size: 0;
-  text-align: center;
-  border: 1px solid #5f0081;
-  background-color: #5f0080;
-`;
+const LogIn = styled.div``;
 
 const LoginBtn = styled.button`
   color: #fff;
   border-style: none;
-  background-color: #5f0081;
-  height: 100%;
+  background-color: white;
   font-weight: 500;
   font-size: 16px;
   cursor: pointer;
-`;
-
-const SignUp = styled.div`
-  margin-top: 10px;
-  background-color: #fff;
-  border: 1px solid #5f0081;
-  width: 100%;
-  display: block;
+  background-color: #5f0081;
   height: 54px;
   border-radius: 3px;
-  font-size: 0;
   text-align: center;
-  cursor: pointer;
+  width: 340px;
 `;
+
+const SignUp = styled.div``;
 
 const SignBtn = styled.button`
   color: #5f0081;
   border-style: none;
   background-color: white;
-  height: 100%;
   font-weight: 500;
   font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #5f0081;
+  height: 54px;
+  border-radius: 3px;
+  text-align: center;
+  width: 340px;
+  margin-top: 10px;
 `;

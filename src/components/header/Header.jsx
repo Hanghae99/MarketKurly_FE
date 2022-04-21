@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Grid from "../../elements/Grid";
-import { logOut } from "../../redux/modules/user";
+import { loginCheckDB, logOut } from "../../redux/modules/user";
 import HoverList from "./HoverList";
 import { history } from "../../redux/store";
 import { actionCreators as productActions } from "../../redux/modules/product";
+import { useEffect } from "react";
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -13,7 +14,12 @@ const Header = (props) => {
 
   const token = localStorage.getItem("token");
   const is_login = useSelector((state) => state.user.is_login);
-  const nickname = useSelector((state) => state.user.user_info);
+  const user_info = useSelector((state) => state.user.user_info);
+  const is_token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (is_token) dispatch(loginCheckDB());
+  }, []);
 
   const logout_click = () => {
     localStorage.removeItem("token");
@@ -49,7 +55,7 @@ const Header = (props) => {
     }
   };
 
-  const cart_list = useSelector(state => state.cart.list);
+  const cart_list = useSelector((state) => state.cart.list);
 
   if (token && is_login) {
     return (
@@ -66,7 +72,7 @@ const Header = (props) => {
             <HeaderMenu>
               <Nick>
                 <Gen>일반</Gen>
-                어서오세요 {nickname.nickname}님
+                어서오세요 {user_info.nickname}님
                 <ImgN
                   src="https://res.kurly.com/kurly/ico/2021/new_badge_28_28.png"
                   alt=""
@@ -126,7 +132,11 @@ const Header = (props) => {
             <Icons className="location" />
             <Icons className="pick" />
             <Icons className="cart" onClick={onMoveCart} />
-            {cart_list.length ? <CartItemNum>{cart_list.length}</CartItemNum> : ''}
+            {cart_list.length ? (
+              <CartItemNum>{cart_list.length}</CartItemNum>
+            ) : (
+              ""
+            )}
           </Gnb>
           <Shadow />
         </Container>
@@ -202,7 +212,11 @@ const Header = (props) => {
             <Icons className="location" />
             <Icons className="pick" />
             <Icons className="cart" onClick={onMoveCart} />
-            {cart_list.length ? <CartItemNum>{cart_list.length}</CartItemNum> : ''}
+            {cart_list.length ? (
+              <CartItemNum>{cart_list.length}</CartItemNum>
+            ) : (
+              ""
+            )}
           </Gnb>
           <Shadow />
         </Container>
