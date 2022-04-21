@@ -44,6 +44,9 @@ export const logInDB = (formValue) => {
         localStorage.setItem("token", res.headers.authorization);
         dispatch(loginCheckDB());
         history.push("/");
+        
+        const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
+        if(baskets.length) dispatch(loginCartPushApi());
       })
       .catch((err) => {
         console.log(err);
