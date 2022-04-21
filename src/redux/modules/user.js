@@ -1,12 +1,12 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
-import { loginCartPushApi } from "./cart";
+import { getCartApi, loginCartPushApi } from "./cart";
 
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
 
-const token = localStorage.getItem("token");
+// const token = localStorage.getItem("token");
 
 export const setUser = createAction(SET_USER, (user_info) => ({ user_info }));
 export const logOut = createAction(LOG_OUT, () => ({}));
@@ -40,13 +40,17 @@ export const logInDB = (formValue) => {
     await axios
       .post(`http://54.180.156.74/user/login`, formValue)
       .then((res) => {
-        window.location.replace("/");
-        console.log(res);
+        history.replace('/')
         localStorage.setItem("token", res.headers.authorization);
         dispatch(loginCheckDB());
-
+        
         const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
-        if(baskets.length) dispatch(loginCartPushApi());
+        console.log(baskets);
+        if(baskets.length>0){
+          dispatch(loginCartPushApi());
+        } else {
+          dispatch(getCartApi());
+        };
       })
       .catch((err) => {
         console.log(err);
@@ -56,6 +60,7 @@ export const logInDB = (formValue) => {
 
 export const loginCheckDB = () => {
   return async function (dispatch, getState, { history }) {
+    const token = localStorage.getItem("token");
     await axios
       .get(
         `http://54.180.156.74/api/user/loginCheck`,

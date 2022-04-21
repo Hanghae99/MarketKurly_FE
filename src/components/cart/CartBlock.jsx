@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Grid, Text } from '../../elements';
@@ -7,6 +7,8 @@ import { actionCreators as cartActions } from '../../redux/modules/cart';
 
 const CartBlock = (props) => {
     const dispatch = useDispatch();
+    const is_login = useSelector((state) => state.user.is_login);
+
     const { brand, name, imgUrl, quantity, sum, id, price, checked } = props;
     const locale_price = sum.toLocaleString('ko-KR') + "원";
     
@@ -25,6 +27,7 @@ const CartBlock = (props) => {
     };
 
     const deleteBtn = () => {
+        if(is_login) dispatch(cartActions.deleteCartApi(id));
         dispatch(cartActions.deleteCart(id));
     };
 

@@ -27,20 +27,12 @@ function App() {
 
   const is_open_alert = useSelector((state) => state.modal.alert_open);
 
-  useEffect(() => {
-    if (baskets.length > 0) {
-      dispatch(cartActions.setCart(baskets));
-    }
-  }, []);
-
   const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
   useEffect(() => {
-    if (baskets.length > 0) {
+    if(baskets.length > 0) {
       dispatch(cartActions.setCart(baskets));
     }
   }, []);
-
-  // if(baskets.length) dispatch(cartActions.getCartApi());
 
   return (
     <>
