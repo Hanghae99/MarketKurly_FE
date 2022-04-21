@@ -7,7 +7,7 @@ const LOG_OUT = "LOG_OUT";
 
 const token = localStorage.getItem("token");
 
-export const setUser = createAction(SET_USER, (user) => ({ user }));
+export const setUser = createAction(SET_USER, (user_info) => ({ user_info }));
 export const logOut = createAction(LOG_OUT, () => ({}));
 
 const initialState = {
@@ -39,10 +39,10 @@ export const logInDB = (formValue) => {
     await axios
       .post(`http://54.180.156.74/user/login`, formValue)
       .then((res) => {
+        window.location.replace("/");
         console.log(res);
         localStorage.setItem("token", res.headers.authorization);
         dispatch(loginCheckDB());
-        history.push("/");
       })
       .catch((err) => {
         console.log(err);
@@ -54,11 +54,15 @@ export const logInDB = (formValue) => {
 export const loginCheckDB = () => {
   return async function (dispatch, getState, { history }) {
     await axios
-      .get(`http://54.180.156.74/api/user/loginCheck`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      })
+      .get(
+        `http://54.180.156.74/api/user/loginCheck`,
+
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
         dispatch(
@@ -81,12 +85,12 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        draft.user_info = action.payload.user;
+        draft.user_info = action.payload.user_info;
         draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
-        draft.username = "";
+        draft.user_info = null;
         draft.is_login = false;
       }),
   },
