@@ -308,7 +308,7 @@ const Gen = styled.span`
   border: 1px solid #5f0080;
   background-color: #fff;
   color: #5f0080;
-  margin-top: 2.6px;
+  margin-top: 1.5px;
   min-width: 38px;
   height: 16px;
   padding: 0 4px;
